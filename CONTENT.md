@@ -22,22 +22,35 @@ Avoid:
 MIDTS is NOT a generic service provider.
 
 It is:
-→ an overflow engineering partner
+-> an overflow engineering partner
 
 Core idea:
 We extend your engineering capacity when your team is overloaded.
 
 ---
 
+## Automation Positioning
+
+MIDTS lead capture follows a two-step nurture flow:
+
+Step 1 = lead capture
+Step 2 = qualification
+Quote = only after Step 2
+
+Automation logic:
+Step 1 form -> confirmation email -> nurture reminders -> Step 2 form -> qualified lead
+
+---
+
 ## Core Messaging
 
-“Overflow support, exactly when you need it.”
+"Overflow support, exactly when you need it."
 
-“Extend your engineering capacity without hiring.”
+"Extend your engineering capacity without hiring."
 
-“When timelines tighten, we step in.”
+"When timelines tighten, we step in."
 
-“Precision work. Delivered without friction.”
+"Precision work. Delivered without friction."
 
 ---
 
@@ -46,13 +59,13 @@ We extend your engineering capacity when your team is overloaded.
 ### Hero
 
 Heading:
-Overflow CAD/CAM support for teams that can’t slow down.
+Overflow CAD/CAM support for teams that can't slow down.
 
 Subtext:
-We integrate with your workflow and deliver precise engineering output when your internal capacity is stretched.
+Start with a short initial request. The technical brief follows by email so we can qualify the work before quoting.
 
 CTA:
-Request a quote
+Start a request
 
 ---
 
@@ -60,9 +73,9 @@ Request a quote
 
 Your team is at capacity.
 Deadlines are tightening.
-Hiring takes time you don’t have.
+Hiring takes time you don't have.
 
-Projects don’t wait.
+Projects don't wait.
 
 ---
 
@@ -78,36 +91,46 @@ No compromise on precision.
 
 ### Process
 
-1. Share your requirement
-2. We assess and quote
-3. Work begins
-4. Delivery on time
+1. Submit initial request
+2. Complete technical brief
+3. We assess and quote
+4. Work begins after approval
 
 ---
 
 ### CTA
 
-Need immediate capacity?
+Step 1 - Initial Project Request
 
-Send your requirements.
-We’ll handle the rest.
+Start the request.
+Complete the technical brief by email.
 
 ---
 
 ## Microcopy
 
 Buttons:
-- Request Quote
-- Submit Requirement
-- Start Project
+- Start a request
+- Submit initial request
+- Email instead
 
-Form fields:
+Step 1 form fields:
 - Full Name
+- Work Email
 - Company
 - Project Type
+- Brief Requirement
 
-Success message:
-Your request has been received. We will respond shortly.
+Step 1 success message:
+We've received your initial request.
+Check your email to complete the technical requirement form.
+
+Hidden automation fields:
+- Lead ID
+- Step 1 Completed At
+- Step 2 Completed = false
+- Nurture State = Active
+- Reminder Status = Pending
 
 ---
 
@@ -117,8 +140,10 @@ Do:
 - keep sentences short
 - be clear
 - be precise
+- keep quote language after Step 2
 
 Do NOT:
 - over-explain
 - use generic phrases
 - sound like a marketing agency
+- present Step 1 as a full final requirement form
