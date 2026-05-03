@@ -1,8 +1,8 @@
 const steps = [
-  'Share your requirement',
+  'Submit initial request',
+  'Complete technical brief',
   'We assess and quote',
-  'Work begins',
-  'Delivery on time',
+  'Work begins after approval',
 ];
 
 export default function Process() {
@@ -13,7 +13,7 @@ export default function Process() {
           <div>
             <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-teal-300">Process</p>
             <h2 className="heading_section text-3xl font-medium leading-tight md:text-4xl">
-              Simple, direct process
+              Lead capture first. Quote after qualification.
             </h2>
           </div>
           <ol className="grid_process grid gap-4">
