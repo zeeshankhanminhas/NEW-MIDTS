@@ -1,32 +1,28 @@
 const signals = [
-  'Deadlines are tightening',
+  'Deadlines tightening',
   'Hiring takes time',
-  'Internal capacity is stretched',
-  'Projects do not wait',
+  'Capacity stretched',
+  'Projects cannot wait',
 ];
 
 export default function Problem() {
   return (
-    <section className="section_problem bg-[#f6f4ed] py-20 text-[#111815] md:py-32">
+    <section className="section_problem bg-[#f6f4ed] py-32 text-[#111815] md:py-44">
       <div className="container_large padding_global">
-        <div className="problem_wrapper grid gap-12 border-b border-black/10 pb-20 md:grid-cols-[0.9fr_1.1fr] md:items-start">
-          <div>
-            <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-teal-700">The pressure point</p>
-            <h2 className="heading_section max-w-2xl text-3xl font-medium leading-tight md:text-4xl">
-              Your team is at capacity.
-            </h2>
-          </div>
-          <div>
-            <p className="text_body max-w-2xl text-base leading-8 text-[#44524b] md:text-lg">
-              Deadlines are tightening. Hiring takes time you don&apos;t have. Projects don&apos;t wait.
-            </p>
-            <div className="grid_signals mt-8 grid gap-4 sm:grid-cols-2">
-              {signals.map((signal) => (
-                <div key={signal} className="card_signal rounded-lg border border-black/10 bg-white p-5 text-base font-medium shadow-sm">
-                  {signal}
-                </div>
-              ))}
-            </div>
+        <div className="problem_wrapper mx-auto max-w-2xl text-center">
+          <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">The pressure point</p>
+          <h2 className="heading_section mx-auto max-w-xl text-4xl font-semibold leading-tight md:text-5xl">
+            Your team is at capacity.
+          </h2>
+          <p className="text_body mx-auto mt-10 max-w-xl text-lg leading-8 text-[#44524b] md:text-xl">
+            Deadlines are tightening. Hiring takes time you don&apos;t have. Projects don&apos;t wait.
+          </p>
+          <div className="grid_signals mt-14 grid gap-4 border-y border-black/10 py-5 text-xs font-medium uppercase text-[#6a746e] sm:grid-cols-2 md:grid-cols-4">
+            {signals.map((signal) => (
+              <p key={signal} className="text_signal md:border-l md:border-black/10 md:first:border-l-0">
+                {signal}
+              </p>
+            ))}
           </div>
         </div>
       </div>
