@@ -24,37 +24,39 @@ Overflow CAD/CAM engineering partner for design and manufacturing teams.
 
 ## Stage Progress
 
-### Stage 1 — Structure
+### Stage 1 - Structure
+Status: Complete
+
+Completed:
+- Built Next.js + Tailwind project
+- Created homepage section components
+- Established GitHub Pages deployment
+- Fixed TypeScript and dependency issues blocking the build
+
+---
+
+### Stage 2 - Design System
+Status: Complete
+
+Completed:
+- Applied consistent typography
+- Applied section spacing
+- Standardised buttons, cards, grids, and wrappers
+- Re-aligned component class names with SYSTEM_CONVENTION.md
+
+---
+
+### Stage 3 - Visual Refinement
 Status: Active
-
-Goal:
-- Build Next.js + Tailwind project
-- Create homepage structure
-- Keep layout simple
-- Use reference from old-site-reference
-
----
-
-### Stage 2 — Design System
-Status: Pending
-
-Goal:
-- Apply typography
-- Apply spacing
-- Standardise buttons and cards
-
----
-
-### Stage 3 — Visual Refinement
-Status: Pending
 
 Goal:
 - Improve layout balance
 - Improve hierarchy
+- Keep the design precise, technical, minimal, and serious
 
 ---
 
-### Stage 4 — Motion
+### Stage 4 - Motion
 Status: Pending
 
 Goal:
@@ -62,25 +64,27 @@ Goal:
 
 ---
 
-### Stage 5 — Conversion
-Status: Pending
+### Stage 5 - Conversion
+Status: Partial
 
-Goal:
+Completed:
+- Added clear CTA links
+- Added trust signals
+
+Pending:
 - Add enquiry form
-- Improve CTA
-- Add trust signals
+- Add success message
 
 ---
 
 ## Current Task for Codex
 
-Stage 1 — Structure
+Stage 3 - Visual Refinement
 
 Tasks:
-- Create Next.js + Tailwind setup
-- Create components for homepage sections
+- Preserve positioning from CONTENT.md
 - Follow SYSTEM_CONVENTION.md
-- Use CONTENT.md for copy
+- Keep the deployed build stable
 - Use old-site-reference only as guidance
 
 ---
@@ -90,11 +94,12 @@ Tasks:
 Do NOT:
 - redesign randomly
 - change positioning
-- add animations
-- add backend
+- add heavy animations
+- add backend without explicit approval
 - overcomplicate
 
 Focus:
 - structure
 - clarity
 - maintainability
+- reliable deployment
