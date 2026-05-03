@@ -1,16 +1,18 @@
 const points = [
-  'Capacity for urgent CAD, CAM, and documentation overflow',
-  'Works around your current tools, standards, and delivery rhythm',
-  'Built for quiet handoffs, fast communication, and production accuracy',
+  'Built for design and manufacturing teams',
+  'Aligned to your timeline and workflow',
+  'Precise output with minimal handoff friction',
 ];
 
 export default function TrustStrip() {
   return (
-    <section className="bg-[#f6f4ed] py-8 text-[#111815]">
+    <section className="section_trust bg-[#f6f4ed] py-20 text-[#111815] md:py-32">
       <div className="container_large padding_global">
-        <div className="grid gap-4 border-y border-black/10 py-7 text-sm font-semibold md:grid-cols-3">
+        <div className="trust_wrapper grid gap-6 border-y border-black/10 py-8 text-sm font-semibold md:grid-cols-3">
           {points.map((point) => (
-            <p key={point}>{point}</p>
+            <p key={point} className="text_body">
+              {point}
+            </p>
           ))}
         </div>
       </div>
