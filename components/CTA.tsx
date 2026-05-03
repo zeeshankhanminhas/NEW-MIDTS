@@ -8,10 +8,13 @@ export default function CTA() {
           <div className="cta_content">
             <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-teal-200">Step 1 - Initial Project Request</p>
             <h2 className="heading_section max-w-3xl text-3xl font-medium leading-tight md:text-4xl">
-              Start the request. Complete the technical brief by email.
+              Technical brief follows by email.
             </h2>
             <p className="text_body mt-6 max-w-2xl text-base text-teal-50/80 md:text-lg">
-              Step 1 captures the lead. Step 2 qualifies the requirement. Quote review starts only after the technical brief is complete.
+              Step 1 helps us understand the request. Step 2 collects the technical detail needed to assess scope, timing, and quote accurately.
+            </p>
+            <p className="text_body mt-4 max-w-2xl text-sm font-medium uppercase text-teal-200">
+              Quote only after technical review.
             </p>
             <a className="button_secondary mt-8 inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-6 py-3 text-sm font-medium uppercase text-white transition hover:border-white/50" href="mailto:hello@midts.co.uk?subject=MIDTS%20initial%20request">
               Email instead
