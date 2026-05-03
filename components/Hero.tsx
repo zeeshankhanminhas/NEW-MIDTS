@@ -28,11 +28,10 @@ export default function Hero() {
             </p>
           </div>
 
-          <aside className="card_capabilities mt-16 rounded-lg border border-white/10 bg-white/[0.03] p-6 text-left" aria-label="Engineering support capabilities">
-            <p className="text_label text-sm font-semibold uppercase text-neutral-400">Support scope</p>
-            <div className="grid_capabilities mt-6 grid gap-4 md:grid-cols-3">
+          <aside className="scope_wrapper mt-14 border-y border-white/10 py-5" aria-label="Engineering support capabilities">
+            <div className="grid_capabilities grid gap-4 text-center text-xs font-medium uppercase text-neutral-500 md:grid-cols-3">
               {capabilities.map((capability) => (
-                <p key={capability} className="text_body border-t border-white/10 pt-4 text-base text-neutral-300">
+                <p key={capability} className="text_scope md:border-l md:border-white/10 md:first:border-l-0">
                   {capability}
                 </p>
               ))}
