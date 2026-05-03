@@ -47,12 +47,12 @@ Completed:
 ---
 
 ### Stage 3 - Visual Refinement
-Status: Active
+Status: Complete
 
-Goal:
-- Improve layout balance
-- Improve hierarchy
-- Keep the design precise, technical, minimal, and serious
+Completed:
+- Improved layout balance across problem, proof, and CTA sections
+- Improved hierarchy with clearer section pairings and constrained body copy
+- Kept the design precise, technical, minimal, and serious
 
 ---
 
@@ -65,27 +65,26 @@ Goal:
 ---
 
 ### Stage 5 - Conversion
-Status: Partial
+Status: Complete
 
 Completed:
 - Added clear CTA links
 - Added trust signals
-
-Pending:
-- Add enquiry form
-- Add success message
+- Added enquiry form
+- Added success message
+- Kept the form static for GitHub Pages deployment
 
 ---
 
 ## Current Task for Codex
 
-Stage 3 - Visual Refinement
+Stage 4 - Motion
 
 Tasks:
+- Add subtle animations only if they preserve the serious B2B feel
 - Preserve positioning from CONTENT.md
 - Follow SYSTEM_CONVENTION.md
 - Keep the deployed build stable
-- Use old-site-reference only as guidance
 
 ---
 
