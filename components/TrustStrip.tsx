@@ -1,8 +1,8 @@
 const points = [
-  'UK-facing engineering support',
-  'NDA-ready workflow',
-  'Structured intake process',
-  'Fast response turnaround',
+  'UK-facing engineering communication',
+  'NDA-ready workflow for confidential projects',
+  'Structured intake for fast turnaround',
+  'CAD/CAM overflow support on demand',
 ];
 
 export default function TrustStrip() {
