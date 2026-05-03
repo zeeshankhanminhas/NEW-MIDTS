@@ -13,7 +13,7 @@ export default function Process() {
           <div>
             <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-teal-300">Process</p>
             <h2 className="heading_section text-3xl font-medium leading-tight md:text-4xl">
-              Lead capture first. Quote after qualification.
+              Start with a short request. We&apos;ll follow up with the technical brief.
             </h2>
           </div>
           <ol className="grid_process grid gap-4">
