@@ -7,6 +7,9 @@ Build a premium B2B website for MIDTS.
 Positioning:
 Overflow CAD/CAM engineering partner for design and manufacturing teams.
 
+Automation model:
+Step 1 form -> confirmation email -> nurture reminders -> Step 2 form -> qualified lead
+
 ---
 
 ## Homepage Structure
@@ -70,21 +73,38 @@ Status: Complete
 Completed:
 - Added clear CTA links
 - Added trust signals
-- Added enquiry form
-- Added success message
+- Added Step 1 enquiry form
+- Added Step 1 success message
 - Kept the form static for GitHub Pages deployment
+
+---
+
+### Stage 6 - Automation Alignment
+Status: Front-end Complete
+
+Completed:
+- Reframed hero CTA as Step 1 lead capture
+- Reframed CTA section as Step 1 - Initial Project Request
+- Updated process to Step 1 capture, Step 2 qualification, quote after Step 2
+- Added hidden automation field names for future integration
+
+Pending integration:
+- Connect Step 1 form to Brevo or backend capture
+- Send confirmation email with Step 2 form link
+- Trigger nurture reminders when Step 2 is incomplete
+- Mark qualified lead after Step 2 completion
 
 ---
 
 ## Current Task for Codex
 
-Stage 4 - Motion
+Stage 6 - Automation Integration
 
 Tasks:
-- Add subtle animations only if they preserve the serious B2B feel
 - Preserve positioning from CONTENT.md
 - Follow SYSTEM_CONVENTION.md
 - Keep the deployed build stable
+- Do not add a backend without explicit approval
 
 ---
 
@@ -102,3 +122,4 @@ Focus:
 - clarity
 - maintainability
 - reliable deployment
+- automation accuracy
