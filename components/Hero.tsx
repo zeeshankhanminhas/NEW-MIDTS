@@ -6,24 +6,24 @@ const capabilities = [
 
 export default function Hero() {
   return (
-    <section id="top" className="section_hero border-b border-white/10 bg-[#050705] py-24 md:py-40">
+    <section id="top" className="section_hero border-b border-white/10 bg-[#050705] py-32 md:py-48">
       <div className="container_large padding_global">
-        <div className="hero_wrapper grid gap-14 md:grid-cols-[1.1fr_0.9fr] md:items-end">
-          <div className="hero_content max-w-5xl">
-            <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">
+        <div className="hero_wrapper grid gap-16 md:grid-cols-[1.1fr_0.9fr] md:items-end">
+          <div className="hero_content max-w-4xl">
+            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-400">
               Overflow engineering partner
             </p>
-            <h1 className="heading_hero max-w-6xl text-6xl font-semibold leading-tight text-white md:text-8xl">
+            <h1 className="heading_hero max-w-5xl text-7xl font-semibold leading-tight text-white md:text-8xl lg:text-9xl">
               Overflow CAD/CAM support for teams that can&apos;t slow down.
             </h1>
-            <p className="text_body mt-8 max-w-3xl text-lg leading-8 text-neutral-300 md:text-xl">
+            <p className="text_body mt-10 max-w-2xl text-lg leading-8 text-neutral-300 md:text-xl">
               Production-ready CAD, reverse engineering, and drawing support - delivered when your internal capacity is stretched.
             </p>
-            <div className="hero_actions mt-10">
-              <a className="button_primary inline-flex min-h-12 items-center justify-center rounded-md bg-white px-7 py-3 text-sm font-medium uppercase text-black transition hover:bg-neutral-200" href="#contact">
+            <div className="hero_actions mt-14">
+              <a className="button_primary inline-flex min-h-14 items-center justify-center rounded-md bg-white px-8 py-4 text-sm font-medium uppercase text-black transition hover:bg-neutral-200" href="#contact">
                 Start your request
               </a>
-              <p className="text_support mt-4 text-sm text-neutral-500">
+              <p className="text_support mt-5 max-w-2xl text-sm text-neutral-500">
                 For CAD/CAM overflow, reverse engineering, and production drawings.
               </p>
             </div>
