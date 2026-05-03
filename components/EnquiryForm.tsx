@@ -25,12 +25,9 @@ export default function EnquiryForm() {
 
   return (
     <form className="form_enquiry grid gap-4 rounded-lg border border-white/10 bg-white/[0.06] p-5" onSubmit={handleSubmit}>
-      <div>
-        <p className="text_eyebrow mb-2 text-sm font-semibold uppercase text-teal-200">Step 1 - Initial Project Request</p>
-        <p className="text_body text-sm text-teal-50/70">
-          Submit the first request so we can send the Step 2 technical requirement form.
-        </p>
-      </div>
+      <p className="text_body text-sm text-teal-50/70">
+        Submit the first request so we can send the Step 2 technical requirement form.
+      </p>
 
       <input type="hidden" name="lead_id" value={automationMeta.leadId} readOnly />
       <input type="hidden" name="step_1_completed_at" value={automationMeta.step1CompletedAt} readOnly />
