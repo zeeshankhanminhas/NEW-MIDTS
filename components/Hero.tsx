@@ -1,7 +1,7 @@
 const metrics = [
-  { value: '24-48h', label: 'Typical start window' },
-  { value: 'CAD/CAM', label: 'Overflow support' },
-  { value: 'On demand', label: 'Engineering capacity' },
+  { value: 'Step 1', label: 'Initial request' },
+  { value: 'Step 2', label: 'Technical brief by email' },
+  { value: 'Quote', label: 'After qualification' },
 ];
 
 export default function Hero() {
@@ -18,20 +18,20 @@ export default function Hero() {
               Overflow CAD/CAM support for teams that can&apos;t slow down.
             </h1>
             <p className="text_body mt-6 max-w-2xl text-base text-neutral-300 md:text-lg">
-              We integrate with your workflow and deliver precise engineering output when your internal capacity is stretched.
+              Start with a short initial request. The technical brief follows by email so we can qualify the work before quoting.
             </p>
             <div className="hero_actions mt-8 flex flex-wrap gap-3">
-              <a className="button_primary rounded-md bg-teal-300 px-6 py-3 text-sm font-medium uppercase text-black transition hover:bg-teal-200" href="mailto:hello@midts.co.uk?subject=MIDTS%20quote%20request">
-                Request a quote
+              <a className="button_primary rounded-md bg-teal-300 px-6 py-3 text-sm font-medium uppercase text-black transition hover:bg-teal-200" href="#contact">
+                Start a request
               </a>
-              <a className="button_secondary rounded-md border border-white/20 px-6 py-3 text-sm font-medium uppercase text-white transition hover:border-white/50" href="#services">
-                View services
+              <a className="button_secondary rounded-md border border-white/20 px-6 py-3 text-sm font-medium uppercase text-white transition hover:border-white/50" href="#process">
+                See process
               </a>
             </div>
           </div>
 
-          <aside className="card_snapshot rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/30 backdrop-blur" aria-label="Delivery snapshot">
-            <p className="text_label text-sm font-semibold uppercase text-teal-200">Delivery snapshot</p>
+          <aside className="card_snapshot rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/30 backdrop-blur" aria-label="Lead qualification flow">
+            <p className="text_label text-sm font-semibold uppercase text-teal-200">Qualification flow</p>
             <div className="grid_metrics mt-6 grid gap-4">
               {metrics.map((metric) => (
                 <div key={metric.label} className="card_metric border-t border-white/10 pt-4">
