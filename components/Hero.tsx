@@ -1,43 +1,41 @@
-const metrics = [
-  { value: 'Step 1', label: 'Initial request' },
-  { value: 'Step 2', label: 'Technical brief by email' },
-  { value: 'Quote', label: 'After qualification' },
+const capabilities = [
+  'Production-ready CAD support',
+  'Reverse engineering support',
+  'Manufacturing drawing support',
 ];
 
 export default function Hero() {
   return (
-    <section id="top" className="section_hero relative isolate overflow-hidden border-b border-white/10 bg-[#050705] py-20 md:py-32">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(20,184,166,0.2),transparent_34%),linear-gradient(115deg,rgba(255,255,255,0.08),transparent_40%)]" />
+    <section id="top" className="section_hero border-b border-white/10 bg-[#050705] py-24 md:py-40">
       <div className="container_large padding_global">
-        <div className="hero_wrapper grid items-center gap-12 md:grid-cols-[1.05fr_0.95fr]">
-          <div className="hero_content max-w-4xl">
-            <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-teal-300">
+        <div className="hero_wrapper grid gap-14 md:grid-cols-[1.1fr_0.9fr] md:items-end">
+          <div className="hero_content max-w-5xl">
+            <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">
               Overflow engineering partner
             </p>
-            <h1 className="heading_hero max-w-5xl text-5xl font-semibold leading-tight text-white md:text-6xl">
+            <h1 className="heading_hero max-w-6xl text-6xl font-semibold leading-tight text-white md:text-8xl">
               Overflow CAD/CAM support for teams that can&apos;t slow down.
             </h1>
-            <p className="text_body mt-6 max-w-2xl text-base text-neutral-300 md:text-lg">
-              Start with a short initial request. The technical brief follows by email so we can qualify the work before quoting.
+            <p className="text_body mt-8 max-w-3xl text-lg leading-8 text-neutral-300 md:text-xl">
+              Production-ready CAD, reverse engineering, and drawing support - delivered when your internal capacity is stretched.
             </p>
-            <div className="hero_actions mt-8 flex flex-wrap gap-3">
-              <a className="button_primary rounded-md bg-teal-300 px-6 py-3 text-sm font-medium uppercase text-black transition hover:bg-teal-200" href="#contact">
-                Start a request
+            <div className="hero_actions mt-10">
+              <a className="button_primary inline-flex min-h-12 items-center justify-center rounded-md bg-white px-7 py-3 text-sm font-medium uppercase text-black transition hover:bg-neutral-200" href="#contact">
+                Start your request
               </a>
-              <a className="button_secondary rounded-md border border-white/20 px-6 py-3 text-sm font-medium uppercase text-white transition hover:border-white/50" href="#process">
-                See process
-              </a>
+              <p className="text_support mt-4 text-sm text-neutral-500">
+                For CAD/CAM overflow, reverse engineering, and production drawings.
+              </p>
             </div>
           </div>
 
-          <aside className="card_snapshot rounded-lg border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/30 backdrop-blur" aria-label="Lead qualification flow">
-            <p className="text_label text-sm font-semibold uppercase text-teal-200">Qualification flow</p>
-            <div className="grid_metrics mt-6 grid gap-4">
-              {metrics.map((metric) => (
-                <div key={metric.label} className="card_metric border-t border-white/10 pt-4">
-                  <p className="heading_metric text-3xl font-semibold text-white">{metric.value}</p>
-                  <p className="text_body mt-1 text-sm text-neutral-400">{metric.label}</p>
-                </div>
+          <aside className="card_capabilities rounded-lg border border-white/10 bg-white/[0.03] p-6" aria-label="Engineering support capabilities">
+            <p className="text_label text-sm font-semibold uppercase text-neutral-400">Support scope</p>
+            <div className="grid_capabilities mt-6 grid gap-4">
+              {capabilities.map((capability) => (
+                <p key={capability} className="text_body border-t border-white/10 pt-4 text-base text-neutral-300 md:text-lg">
+                  {capability}
+                </p>
               ))}
             </div>
           </aside>
