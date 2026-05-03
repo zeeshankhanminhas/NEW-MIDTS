@@ -29,6 +29,28 @@ a {
   text-decoration: none;
 }
 
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #5eead4;
+  outline-offset: 3px;
+}
+
 .container_large {
   @apply mx-auto max-w-7xl;
 }
