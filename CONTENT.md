@@ -29,16 +29,16 @@ We extend your engineering capacity when your team is overloaded.
 
 ---
 
-## Automation Positioning
+## Two-Step Intake Positioning
 
-MIDTS lead capture follows a two-step nurture flow:
+Keep the intake flow client-facing:
 
-Step 1 = lead capture
-Step 2 = qualification
-Quote = only after Step 2
+Step 1 = initial project request
+Step 2 = technical brief
+Quote = only after technical review
 
-Automation logic:
-Step 1 form -> confirmation email -> nurture reminders -> Step 2 form -> qualified lead
+Client-facing logic:
+Step 1 helps us understand the request. Step 2 collects the technical detail needed to assess scope, timing, and quote accurately.
 
 ---
 
@@ -62,7 +62,7 @@ Heading:
 Overflow CAD/CAM support for teams that can't slow down.
 
 Subtext:
-Start with a short initial request. The technical brief follows by email so we can qualify the work before quoting.
+Start with a short initial request. The technical brief follows by email so we can review the work before quoting.
 
 CTA:
 Start a request
@@ -91,6 +91,9 @@ No compromise on precision.
 
 ### Process
 
+Heading:
+Start with a short request. We'll follow up with the technical brief.
+
 1. Submit initial request
 2. Complete technical brief
 3. We assess and quote
@@ -102,8 +105,11 @@ No compromise on precision.
 
 Step 1 - Initial Project Request
 
-Start the request.
-Complete the technical brief by email.
+Technical brief follows by email.
+
+Step 1 helps us understand the request. Step 2 collects the technical detail needed to assess scope, timing, and quote accurately.
+
+Quote only after technical review.
 
 ---
 
@@ -140,10 +146,11 @@ Do:
 - keep sentences short
 - be clear
 - be precise
-- keep quote language after Step 2
+- keep quote language after technical review
 
 Do NOT:
 - over-explain
 - use generic phrases
 - sound like a marketing agency
+- expose internal automation language on the page
 - present Step 1 as a full final requirement form
