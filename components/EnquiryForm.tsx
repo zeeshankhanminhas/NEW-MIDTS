@@ -7,6 +7,10 @@ type AutomationMeta = {
   step1CompletedAt: string;
 };
 
+const fieldClass =
+  'field_input rounded-md border border-black/15 bg-white px-4 py-3 text-[#111815] outline-none transition placeholder:text-neutral-400 focus:border-black/50';
+const labelClass = 'field_group grid gap-2 text-sm font-medium text-[#111815]';
+
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
   const [automationMeta, setAutomationMeta] = useState<AutomationMeta>({
@@ -24,8 +28,8 @@ export default function EnquiryForm() {
   }
 
   return (
-    <form className="form_enquiry grid gap-4 rounded-lg border border-white/10 bg-white/[0.06] p-5" onSubmit={handleSubmit}>
-      <p className="text_body text-sm text-teal-50/70">
+    <form className="form_enquiry grid gap-5" onSubmit={handleSubmit}>
+      <p className="text_body text-sm leading-6 text-[#6a746e]">
         Submit the first request so we can send the Step 2 technical requirement form.
       </p>
 
@@ -35,23 +39,23 @@ export default function EnquiryForm() {
       <input type="hidden" name="nurture_state" value="Active" readOnly />
       <input type="hidden" name="reminder_status" value="Pending" readOnly />
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <label className="field_group grid gap-2 text-sm font-medium text-teal-50" htmlFor="full-name">
+      <div className="grid gap-5 md:grid-cols-2">
+        <label className={labelClass} htmlFor="full-name">
           Full Name
-          <input className="field_input rounded-md border border-white/10 bg-[#092622] px-4 py-3 text-white outline-none transition placeholder:text-teal-50/40 focus:border-teal-300" id="full-name" name="full_name" type="text" required />
+          <input className={fieldClass} id="full-name" name="full_name" type="text" required />
         </label>
-        <label className="field_group grid gap-2 text-sm font-medium text-teal-50" htmlFor="work-email">
+        <label className={labelClass} htmlFor="work-email">
           Work Email
-          <input className="field_input rounded-md border border-white/10 bg-[#092622] px-4 py-3 text-white outline-none transition placeholder:text-teal-50/40 focus:border-teal-300" id="work-email" name="work_email" type="email" required />
+          <input className={fieldClass} id="work-email" name="work_email" type="email" required />
         </label>
       </div>
-      <label className="field_group grid gap-2 text-sm font-medium text-teal-50" htmlFor="company">
+      <label className={labelClass} htmlFor="company">
         Company
-        <input className="field_input rounded-md border border-white/10 bg-[#092622] px-4 py-3 text-white outline-none transition placeholder:text-teal-50/40 focus:border-teal-300" id="company" name="company" type="text" required />
+        <input className={fieldClass} id="company" name="company" type="text" required />
       </label>
-      <label className="field_group grid gap-2 text-sm font-medium text-teal-50" htmlFor="project-type">
+      <label className={labelClass} htmlFor="project-type">
         Project Type
-        <select className="field_select rounded-md border border-white/10 bg-[#092622] px-4 py-3 text-white outline-none transition focus:border-teal-300" id="project-type" name="project_type" required defaultValue="">
+        <select className={fieldClass} id="project-type" name="project_type" required defaultValue="">
           <option value="" disabled>Select project type</option>
           <option>Overflow CAD drafting support</option>
           <option>Manufacturing-ready CAM assistance</option>
@@ -59,15 +63,15 @@ export default function EnquiryForm() {
           <option>Other CAD/CAM requirement</option>
         </select>
       </label>
-      <label className="field_group grid gap-2 text-sm font-medium text-teal-50" htmlFor="brief-requirement">
+      <label className={labelClass} htmlFor="brief-requirement">
         Brief Requirement
-        <textarea className="field_textarea min-h-28 rounded-md border border-white/10 bg-[#092622] px-4 py-3 text-white outline-none transition placeholder:text-teal-50/40 focus:border-teal-300" id="brief-requirement" name="brief_requirement" placeholder="Briefly describe the work. The technical detail comes in Step 2." required />
+        <textarea className={`${fieldClass} field_textarea min-h-28`} id="brief-requirement" name="brief_requirement" placeholder="Briefly describe the work. The technical detail comes in Step 2." required />
       </label>
-      <button className="button_primary min-h-12 rounded-md bg-teal-300 px-6 py-3 text-sm font-medium uppercase text-black transition hover:bg-teal-200" type="submit">
+      <button className="button_primary min-h-12 rounded-md bg-[#111815] px-6 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" type="submit">
         Start a request
       </button>
       {submitted ? (
-        <p className="text_success rounded-md border border-teal-300/30 bg-teal-300/10 p-4 text-sm text-teal-50" role="status">
+        <p className="text_success rounded-md border border-black/10 bg-[#f6f4ed] p-4 text-sm text-[#44524b]" role="status">
           We&apos;ve received your initial request. Check your email to complete the technical requirement form.
         </p>
       ) : null}
