@@ -2,21 +2,21 @@ import EnquiryForm from './EnquiryForm';
 
 export default function CTA() {
   return (
-    <section id="contact" className="section_cta bg-white py-20 text-[#111815] md:py-32">
+    <section id="contact" className="section_cta bg-white py-32 text-[#111815] md:py-44">
       <div className="container_large padding_global">
-        <div className="cta_wrapper grid gap-10 rounded-lg border border-black/10 bg-[#0a2f2b] p-8 text-white shadow-xl shadow-black/10 md:grid-cols-[0.9fr_1.1fr] md:p-10">
+        <div className="cta_wrapper mx-auto grid max-w-5xl gap-12 border-y border-black/10 py-12 md:grid-cols-[0.85fr_1.15fr] md:items-start">
           <div className="cta_content">
-            <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-teal-200">Step 1 - Initial Project Request</p>
-            <h2 className="heading_section max-w-3xl text-3xl font-medium leading-tight md:text-4xl">
+            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Step 1 - Initial Project Request</p>
+            <h2 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
               Technical brief follows by email.
             </h2>
-            <p className="text_body mt-6 max-w-2xl text-base text-teal-50/80 md:text-lg">
+            <p className="text_body mt-8 max-w-xl text-base leading-7 text-[#44524b] md:text-lg">
               Step 1 helps us understand the request. Step 2 collects the technical detail needed to assess scope, timing, and quote accurately.
             </p>
-            <p className="text_body mt-4 max-w-2xl text-sm font-medium uppercase text-teal-200">
+            <p className="text_body mt-5 max-w-xl text-xs font-medium uppercase text-[#6a746e]">
               Quote only after technical review.
             </p>
-            <a className="button_secondary mt-8 inline-flex min-h-12 items-center justify-center rounded-md border border-white/20 px-6 py-3 text-sm font-medium uppercase text-white transition hover:border-white/50" href="mailto:hello@midts.co.uk?subject=MIDTS%20initial%20request">
+            <a className="button_secondary mt-10 inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-6 py-3 text-sm font-medium uppercase text-[#111815] transition hover:border-black/50" href="mailto:hello@midts.co.uk?subject=MIDTS%20initial%20request">
               Email instead
             </a>
           </div>
