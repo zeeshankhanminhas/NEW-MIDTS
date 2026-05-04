@@ -1,6 +1,7 @@
 const links = [
   { label: 'Services', href: '#services' },
   { label: 'Process', href: '#process' },
+  { label: 'Why MIDTS', href: '#why-midts' },
   { label: 'Contact', href: '#contact' },
 ];
 
