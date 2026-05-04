@@ -38,6 +38,10 @@ export default function EnquiryForm() {
       <input type="hidden" name="step_2_completed" value="false" readOnly />
       <input type="hidden" name="nurture_state" value="Active" readOnly />
       <input type="hidden" name="reminder_status" value="Pending" readOnly />
+      {/* Scoring integration placeholders for future backend or Apps Script mapping. */}
+      <input type="hidden" name="lead_score" value="" readOnly />
+      <input type="hidden" name="qualification_status" value="Pending" readOnly />
+      <input type="hidden" name="high_value_flag" value="false" readOnly />
 
       <div className="grid gap-8 md:grid-cols-2">
         <label className={labelClass} htmlFor="full-name">
@@ -62,6 +66,39 @@ export default function EnquiryForm() {
             <option>Manufacturing-ready CAM assistance</option>
             <option>Engineering documentation handoff</option>
             <option>Other CAD/CAM requirement</option>
+          </select>
+        </label>
+      </div>
+      <div className="grid gap-8 md:grid-cols-3">
+        <label className={labelClass} htmlFor="timeline-urgency">
+          Timeline / Urgency
+          <select className={fieldClass} id="timeline-urgency" name="timeline_urgency" required defaultValue="">
+            <option value="" disabled>Select timeline</option>
+            <option>Urgent: 24-72 hours</option>
+            <option>This week</option>
+            <option>This month</option>
+            <option>Exploring support</option>
+          </select>
+        </label>
+        <label className={labelClass} htmlFor="files-ready">
+          Files / Drawings Ready
+          <select className={fieldClass} id="files-ready" name="files_drawings_ready" required defaultValue="">
+            <option value="" disabled>Select status</option>
+            <option>Yes, files are ready</option>
+            <option>Partially</option>
+            <option>Not yet</option>
+            <option>Not sure</option>
+          </select>
+        </label>
+        <label className={labelClass} htmlFor="requirement-complexity">
+          Requirement Complexity
+          <select className={fieldClass} id="requirement-complexity" name="requirement_complexity" required defaultValue="">
+            <option value="" disabled>Select complexity</option>
+            <option>Simple drafting / drawing support</option>
+            <option>CAD modelling</option>
+            <option>Reverse engineering</option>
+            <option>CAM / manufacturing support</option>
+            <option>Mixed or unsure</option>
           </select>
         </label>
       </div>
