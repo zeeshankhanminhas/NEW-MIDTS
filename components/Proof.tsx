@@ -6,20 +6,18 @@ const proof = [
 
 export default function Proof() {
   return (
-    <section className="section_proof bg-[#f6f4ed] py-20 text-[#111815] md:py-32">
+    <section className="section_proof bg-[#f6f4ed] py-32 text-[#111815] md:py-44">
       <div className="container_large padding_global">
-        <div className="proof_wrapper grid gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-start">
-          <div className="proof_heading max-w-4xl">
-            <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-teal-700">Solution</p>
-            <h2 className="heading_section text-3xl font-medium leading-tight md:text-4xl">
-              We act as an extension of your team.
-            </h2>
-          </div>
-          <div className="grid_proof grid gap-4">
+        <div className="proof_wrapper mx-auto max-w-2xl text-center">
+          <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Solution</p>
+          <h2 className="heading_section mx-auto max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
+            We act as an extension of your team.
+          </h2>
+          <div className="grid_proof mt-14 grid gap-4 border-y border-black/10 py-5 text-xs font-medium uppercase text-[#6a746e] md:grid-cols-3">
             {proof.map((item) => (
-              <article key={item} className="card_proof rounded-lg border border-black/10 bg-white p-6 shadow-sm">
-                <p className="text_body text-base font-medium text-[#44524b] md:text-lg">{item}</p>
-              </article>
+              <p key={item} className="text_proof md:border-l md:border-black/10 md:first:border-l-0">
+                {item}
+              </p>
             ))}
           </div>
         </div>
