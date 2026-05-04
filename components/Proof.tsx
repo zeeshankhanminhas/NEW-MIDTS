@@ -15,7 +15,7 @@ const reasons = [
 
 export default function Proof() {
   return (
-    <section id="why-midts" className="section_proof bg-[#f6f4ed] py-32 text-[#111815] md:py-44">
+    <section id="why-midts" className="section_proof bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="proof_wrapper mx-auto max-w-4xl">
           <div className="proof_heading mx-auto max-w-2xl text-center">
@@ -30,7 +30,7 @@ export default function Proof() {
                 <p className="text_label text-sm font-medium text-neutral-400">0{index + 1}</p>
                 <div>
                   <h3 className="heading_card text-xl font-semibold md:text-2xl">{reason.title}</h3>
-                  <p className="text_body mt-4 max-w-2xl text-base leading-7 text-[#526158] md:text-lg">{reason.text}</p>
+                  <p className="text_body mt-4 max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">{reason.text}</p>
                 </div>
               </article>
             ))}
