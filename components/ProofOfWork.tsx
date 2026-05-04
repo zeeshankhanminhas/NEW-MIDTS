@@ -59,7 +59,7 @@ function LineIcon({ type }: { type: string }) {
   const common = 'stroke-current';
 
   return (
-    <svg className="h-10 w-10 text-[#111815]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    <svg className="h-10 w-10 text-[var(--ink)]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
       {type === 'upload' ? (
         <>
           <path className={common} d="M24 32V10" strokeWidth="1.6" strokeLinecap="round" />
@@ -103,7 +103,7 @@ function LineIcon({ type }: { type: string }) {
 function DrawingPreview() {
   return (
     <div className="drawing_preview border border-black/15 bg-white p-4">
-      <svg viewBox="0 0 640 420" className="h-auto w-full text-[#111815]" fill="none" aria-label="Sample technical drawing preview">
+      <svg viewBox="0 0 640 420" className="h-auto w-full text-[var(--ink)]" fill="none" aria-label="Sample technical drawing preview">
         <rect x="18" y="18" width="604" height="384" stroke="currentColor" strokeWidth="1" />
         <path d="M74 154h118l38-46h150l40 46h80v70h-84l-36 44H230l-40-44H74z" stroke="currentColor" strokeWidth="2" />
         <path d="M134 154v70M226 109v160M382 109v160M472 154v70" stroke="currentColor" strokeWidth="1" />
@@ -136,7 +136,7 @@ function DrawingPreview() {
 
 export default function ProofOfWork() {
   return (
-    <section className="section_proof_work bg-white py-32 text-[#111815] md:py-44">
+    <section className="section_proof_work bg-white py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="proof_work_wrapper mx-auto max-w-6xl">
           <div className="proof_work_heading max-w-2xl">
@@ -144,7 +144,7 @@ export default function ProofOfWork() {
             <h2 className="heading_section text-4xl font-semibold leading-tight md:text-5xl">
               Not a promise. A visible workflow.
             </h2>
-            <p className="text_body mt-8 max-w-xl text-base leading-7 text-[#44524b] md:text-lg">
+            <p className="text_body mt-8 max-w-xl text-base leading-7 text-[var(--muted)] md:text-lg">
               Every project follows a controlled engineering process, from intake to delivery, with defined checkpoints and quality control at each stage.
             </p>
           </div>
@@ -157,12 +157,12 @@ export default function ProofOfWork() {
                   <LineIcon type={item.icon} />
                 </div>
                 <h3 className="heading_card mt-7 text-lg font-semibold">{item.title}</h3>
-                <p className="text_body mt-4 text-sm leading-6 text-[#526158]">{item.text}</p>
+                <p className="text_body mt-4 text-sm leading-6 text-[var(--muted)]">{item.text}</p>
               </article>
             ))}
           </div>
 
-          <div className="proof_note mt-8 border-y border-black/10 py-5 text-sm text-[#44524b]">
+          <div className="proof_note mt-8 border-y border-black/10 py-5 text-sm text-[var(--muted)]">
             Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
           </div>
 
@@ -172,13 +172,13 @@ export default function ProofOfWork() {
               <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
                 Example output: production-ready drawing pack.
               </h3>
-              <p className="text_body mt-6 max-w-2xl text-base leading-7 text-[#44524b]">
+              <p className="text_body mt-6 max-w-2xl text-base leading-7 text-[var(--muted)]">
                 A typical MIDTS drawing package includes fully dimensioned technical drawings, tolerance definitions, and revision-controlled documentation ready for manufacturing or internal use.
               </p>
               <div className="mt-8">
                 <DrawingPreview />
               </div>
-              <div className="grid_drawing_details mt-6 grid gap-4 border-y border-black/10 py-5 text-xs font-medium uppercase text-[#6a746e] sm:grid-cols-2 lg:grid-cols-5">
+              <div className="grid_drawing_details mt-6 grid gap-4 border-y border-black/10 py-5 text-xs font-medium uppercase text-[var(--subtle)] sm:grid-cols-2 lg:grid-cols-5">
                 {drawingDetails.map((detail) => (
                   <p key={detail} className="text_detail lg:border-l lg:border-black/10 lg:first:border-l-0 lg:pl-4">
                     {detail}
@@ -192,10 +192,10 @@ export default function ProofOfWork() {
               <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
                 What you actually receive.
               </h3>
-              <p className="text_body mt-6 max-w-xl text-base leading-7 text-[#44524b]">
+              <p className="text_body mt-6 max-w-xl text-base leading-7 text-[var(--muted)]">
                 Every project is delivered as a structured, ready-to-use package, not a loose collection of files.
               </p>
-              <div className="card_file_tree mt-8 border border-black/10 p-6 font-mono text-sm text-[#111815]">
+              <div className="card_file_tree mt-8 border border-black/10 p-6 font-mono text-sm text-[var(--ink)]">
                 {fileTree.map((item) => (
                   <p key={`${item.level}-${item.label}`} className="text_file py-1" style={{ paddingLeft: `${item.level * 18}px` }}>
                     {item.level < 2 ? '+ ' : '- '}{item.label}
@@ -204,30 +204,30 @@ export default function ProofOfWork() {
               </div>
               <div className="delivery_checks mt-6 border-y border-black/10 py-5">
                 {deliveryChecks.map((check) => (
-                  <p key={check} className="text_check py-2 text-sm text-[#44524b]">
+                  <p key={check} className="text_check py-2 text-sm text-[var(--muted)]">
                     {check}
                   </p>
                 ))}
               </div>
-              <div className="delivery_statement mt-6 bg-[#050705] px-6 py-5 text-sm font-semibold text-white">
+              <div className="delivery_statement mt-6 bg-[var(--black)] px-6 py-5 text-sm font-semibold text-white">
                 No guesswork. No missing files. No rework loops.
               </div>
             </div>
           </div>
 
-          <div className="proof_cta mt-16 grid gap-8 border-y border-black/10 bg-[#f6f4ed] px-6 py-8 md:grid-cols-[1fr_auto] md:items-center">
+          <div className="proof_cta mt-16 grid gap-8 border-y border-black/10 bg-[var(--paper)] px-6 py-8 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-neutral-500">Ready to start?</p>
               <h3 className="heading_card text-2xl font-semibold md:text-3xl">
                 Send your drawings. Get clarity. Move forward.
               </h3>
-              <p className="text_body mt-3 text-sm text-[#44524b]">Quick response. Clear scope. Zero pressure.</p>
+              <p className="text_body mt-3 text-sm text-[var(--muted)]">Quick response. Clear scope. Zero pressure.</p>
             </div>
             <div className="proof_cta_actions flex flex-wrap gap-4">
-              <a className="button_primary inline-flex min-h-12 items-center justify-center rounded-md bg-[#111815] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" href="#contact">
+              <a className="button_primary inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" href="#contact">
                 Start your request
               </a>
-              <a className="button_secondary inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-7 py-3 text-sm font-medium uppercase text-[#111815] transition hover:border-black/50" href="#services">
+              <a className="button_secondary inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-7 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black/50" href="#services">
                 View services
               </a>
             </div>
