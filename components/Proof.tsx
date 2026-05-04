@@ -15,7 +15,7 @@ const reasons = [
 
 export default function Proof() {
   return (
-    <section className="section_proof bg-[#f6f4ed] py-32 text-[#111815] md:py-44">
+    <section id="why-midts" className="section_proof bg-[#f6f4ed] py-32 text-[#111815] md:py-44">
       <div className="container_large padding_global">
         <div className="proof_wrapper mx-auto max-w-4xl">
           <div className="proof_heading mx-auto max-w-2xl text-center">
