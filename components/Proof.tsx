@@ -1,23 +1,38 @@
-const proof = [
-  'No onboarding friction',
-  'No delays',
-  'No compromise on precision',
+const reasons = [
+  {
+    title: 'Capacity without hiring',
+    text: 'Add engineering execution when the workload spikes, without waiting on recruitment or long onboarding cycles.',
+  },
+  {
+    title: 'Controlled technical handoff',
+    text: 'Work moves through a structured intake, review, and delivery flow so scope and files stay clear.',
+  },
+  {
+    title: 'Output ready for use',
+    text: 'Drawing packs, CAD files, and documentation are prepared for manufacturing, internal review, or supplier handoff.',
+  },
 ];
 
 export default function Proof() {
   return (
     <section className="section_proof bg-[#f6f4ed] py-32 text-[#111815] md:py-44">
       <div className="container_large padding_global">
-        <div className="proof_wrapper mx-auto max-w-2xl text-center">
-          <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Solution</p>
-          <h2 className="heading_section mx-auto max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
-            We act as an extension of your team.
-          </h2>
-          <div className="grid_proof mt-14 grid gap-4 border-y border-black/10 py-5 text-xs font-medium uppercase text-[#6a746e] md:grid-cols-3">
-            {proof.map((item) => (
-              <p key={item} className="text_proof md:border-l md:border-black/10 md:first:border-l-0">
-                {item}
-              </p>
+        <div className="proof_wrapper mx-auto max-w-4xl">
+          <div className="proof_heading mx-auto max-w-2xl text-center">
+            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Why MIDTS</p>
+            <h2 className="heading_section mx-auto max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
+              Built for teams that need reliable engineering output, not more coordination overhead.
+            </h2>
+          </div>
+          <div className="grid_proof mt-16 border-y border-black/10">
+            {reasons.map((reason, index) => (
+              <article key={reason.title} className="card_reason grid gap-6 border-b border-black/10 py-8 last:border-b-0 md:grid-cols-[96px_1fr] md:items-start">
+                <p className="text_label text-sm font-medium text-neutral-400">0{index + 1}</p>
+                <div>
+                  <h3 className="heading_card text-xl font-semibold md:text-2xl">{reason.title}</h3>
+                  <p className="text_body mt-4 max-w-2xl text-base leading-7 text-[#526158] md:text-lg">{reason.text}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
