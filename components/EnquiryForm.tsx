@@ -8,8 +8,8 @@ type AutomationMeta = {
 };
 
 const fieldClass =
-  'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[#111815] outline-none transition placeholder:text-neutral-400 focus:border-black';
-const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[#6a746e]';
+  'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
+const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[var(--subtle)]';
 
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -29,7 +29,7 @@ export default function EnquiryForm() {
 
   return (
     <form className="form_enquiry grid gap-8" onSubmit={handleSubmit}>
-      <p className="text_body max-w-xl text-sm leading-6 text-[#6a746e]">
+      <p className="text_body max-w-xl text-sm leading-6 text-[var(--subtle)]">
         Submit the first request so we can send the Step 2 technical requirement form.
       </p>
 
@@ -107,13 +107,13 @@ export default function EnquiryForm() {
         <textarea className={`${fieldClass} field_textarea min-h-24 resize-y`} id="brief-requirement" name="brief_requirement" placeholder="Briefly describe the work. The technical detail comes in Step 2." required />
       </label>
       <div className="form_actions grid gap-4 border-t border-black/10 pt-8 md:grid-cols-[auto_1fr] md:items-center">
-        <button className="button_primary min-h-12 rounded-md bg-[#111815] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" type="submit">
+        <button className="button_primary min-h-12 rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" type="submit">
           Start a request
         </button>
-        <p className="text_body text-sm text-[#6a746e]">Technical brief follows by email.</p>
+        <p className="text_body text-sm text-[var(--subtle)]">Technical brief follows by email.</p>
       </div>
       {submitted ? (
-        <p className="text_success rounded-md border border-black/10 bg-[#f6f4ed] p-4 text-sm text-[#44524b]" role="status">
+        <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
           We&apos;ve received your initial request. Check your email to complete the technical requirement form.
         </p>
       ) : null}
