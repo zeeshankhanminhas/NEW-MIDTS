@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import Problem from '@/components/Problem';
 import Process from '@/components/Process';
 import Proof from '@/components/Proof';
+import ProofOfWork from '@/components/ProofOfWork';
 import Services from '@/components/Services';
 import TrustStrip from '@/components/TrustStrip';
 
@@ -18,6 +19,7 @@ export default function HomePage() {
         <Problem />
         <Services />
         <Process />
+        <ProofOfWork />
         <Proof />
         <CTA />
         <Footer />
