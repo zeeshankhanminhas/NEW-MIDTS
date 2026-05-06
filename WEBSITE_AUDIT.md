@@ -165,7 +165,20 @@ This is:
 A strong foundation requiring conversion alignment
 Once optimized → becomes a lead-generating machine
 
+Latest findings after above update < Keep adherence to CONTENT.md, MIDTS_BUILD.md and SYSTEM_CONVENTION.md)
 
+1. Connect form to webhook (EnquiryForm.tsx) — revenue-blocking
+2. Add privacy policy page + footer link — legal requirement
+3. Add OG/Twitter meta tags (layout.tsx) — 30 min, high impact
+4. Add mobile nav (Header.tsx) — UX blocker on mobile
+5. Add form loading + error states (EnquiryForm.tsx) — polish
+6. Move to midts.co.uk custom domain — credibility + SEO
+7. Port FAQ from old-site-reference — high conversion value
+8. Add software compatibility strip to Services.tsx
+9. Add "Fit" section (works well for / not right fit)
+10. Add Plausible analytics
+11. Create Testimonials.tsx placeholder (activate when ready)
+12. Remove duplicate Process section or merge into ProofOfWork
 
 
 ng page
