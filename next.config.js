@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
 
 const nextConfig = {
   reactStrictMode: true,
@@ -8,12 +8,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  ...(isGitHubPages
-    ? {
-        basePath: '/NEW-MIDTS',
-        assetPrefix: '/NEW-MIDTS/',
-      }
-    : {}),
+  basePath: isGitHubPages ? '/NEW-MIDTS' : undefined,
+  assetPrefix: isGitHubPages ? '/NEW-MIDTS/' : undefined,
 };
 
 module.exports = nextConfig;
