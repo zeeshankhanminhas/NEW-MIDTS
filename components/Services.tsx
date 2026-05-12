@@ -13,6 +13,8 @@ const services = [
   },
 ];
 
+const software = ['SOLIDWORKS', 'Fusion 360', 'AutoCAD', 'Inventor', 'STEP / IGES', 'DXF / PDF'];
+
 export default function Services() {
   return (
     <section id="services" className="section_services bg-white py-32 text-[var(--ink)] md:py-44">
@@ -34,6 +36,16 @@ export default function Services() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="software_strip mt-12 border-y border-black/10 py-6">
+            <p className="text_eyebrow text-xs font-semibold uppercase text-neutral-500">Common file and software workflows</p>
+            <div className="grid_software mt-5 grid gap-3 text-xs font-medium uppercase text-[var(--subtle)] sm:grid-cols-2 md:grid-cols-3">
+              {software.map((item, index) => (
+                <p key={item} className="text_software border-t border-black/10 pt-3 sm:border-t-0 sm:border-l sm:pl-4 sm:[&:nth-child(2n+1)]:border-l-0 md:[&:nth-child(2n+1)]:border-l md:[&:nth-child(3n+1)]:border-l-0">
+                  {item}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
