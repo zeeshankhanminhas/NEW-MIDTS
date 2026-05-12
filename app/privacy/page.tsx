@@ -31,9 +31,15 @@ export default function PrivacyPage() {
               </section>
               <section className="privacy_block">
                 <h2 className="heading_card text-xl font-semibold">Contact</h2>
-                <p className="text_body mt-4 text-base leading-7 text-[var(--muted)]">
-                  For privacy or data requests, contact MIDTS at hello@midts.co.uk.
-                </p>
+                <div className="text_body mt-4 grid gap-2 text-base leading-7 text-[var(--muted)]">
+                  <a className="text_link w-fit text-[var(--ink)] underline-offset-4 hover:underline" href="mailto:intake@midts.com">
+                    intake@midts.com
+                  </a>
+                  <a className="text_link w-fit text-[var(--ink)] underline-offset-4 hover:underline" href="tel:+441223656090">
+                    01223 656 090
+                  </a>
+                  <p>1010 Cambourne Business Center, Cambridge CB23 6DP</p>
+                </div>
               </section>
             </div>
           </div>
