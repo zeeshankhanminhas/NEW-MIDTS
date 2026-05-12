@@ -38,7 +38,12 @@ export default function Footer() {
     <footer className="section_footer bg-[#050705] py-20 text-white">
       <div className="container_large padding_global">
         <div className="footer_wrapper flex flex-col gap-6 border-t border-white/10 pt-8 text-sm text-neutral-400 md:flex-row md:items-center md:justify-between">
-          <p className="text_body">MIDTS | Overflow CAD/CAM engineering support.</p>
+          <div className="footer_content grid gap-3">
+            <p className="text_body">MIDTS | Overflow CAD/CAM engineering support.</p>
+            <a className="text_link w-fit transition hover:text-white" href="/NEW-MIDTS/privacy/">
+              Privacy policy
+            </a>
+          </div>
           <div className="social_links flex items-center gap-3" aria-label="Social and contact links">
             {socialLinks.map((link) => (
               <a
