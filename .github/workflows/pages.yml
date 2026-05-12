@@ -30,6 +30,8 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: true
+          NEXT_PUBLIC_MIDTS_WEBHOOK_URL: ${{ secrets.MIDTS_WEBHOOK_URL }}
+          NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN: ${{ secrets.MIDTS_WEBHOOK_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
