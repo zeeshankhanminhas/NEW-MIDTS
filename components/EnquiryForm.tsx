@@ -10,6 +10,8 @@ type AutomationMeta = {
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
 const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[var(--subtle)]';
+const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
+const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
 
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -27,12 +29,37 @@ export default function EnquiryForm() {
     setIsSubmitting(true);
 
     try {
+      if (!webhookUrl || !webhookToken) {
+        throw new Error('Webhook configuration is missing.');
+      }
+
+      const form = event.currentTarget;
       const completedAt = new Date().toISOString();
       const leadId = `midts-${completedAt.replace(/[^0-9]/g, '')}`;
+      const formData = new FormData(form);
+      const body = new URLSearchParams();
+
+      formData.set('lead_id', leadId);
+      formData.set('step_1_completed_at', completedAt);
+      formData.set('webhookToken', webhookToken);
+      formData.set('source', 'Website');
+      formData.set('pageUrl', window.location.href);
+
+      formData.forEach((value, key) => {
+        if (typeof value === 'string') {
+          body.append(key, value);
+        }
+      });
+
+      await fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        body,
+      });
 
       setAutomationMeta({ leadId, step1CompletedAt: completedAt });
-      await new Promise((resolve) => setTimeout(resolve, 400));
       setSubmitted(true);
+      form.reset();
     } catch {
       setErrorMessage('Something went wrong. Please email intake@midts.com instead.');
     } finally {
@@ -51,6 +78,7 @@ export default function EnquiryForm() {
       <input type="hidden" name="step_2_completed" value="false" readOnly />
       <input type="hidden" name="nurture_state" value="Active" readOnly />
       <input type="hidden" name="reminder_status" value="Pending" readOnly />
+      <input type="hidden" name="formHoneypot" value="" readOnly />
       {/* Scoring integration placeholders for future backend or Apps Script mapping. */}
       <input type="hidden" name="lead_score" value="" readOnly />
       <input type="hidden" name="qualification_status" value="Pending" readOnly />
