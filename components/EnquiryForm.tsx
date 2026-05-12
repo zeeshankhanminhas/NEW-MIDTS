@@ -34,7 +34,7 @@ export default function EnquiryForm() {
       await new Promise((resolve) => setTimeout(resolve, 400));
       setSubmitted(true);
     } catch {
-      setErrorMessage('Something went wrong. Please email hello@midts.co.uk instead.');
+      setErrorMessage('Something went wrong. Please email intake@midts.com instead.');
     } finally {
       setIsSubmitting(false);
     }
