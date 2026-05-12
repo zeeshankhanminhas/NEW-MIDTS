@@ -16,7 +16,7 @@ export default function CTA() {
             <p className="text_body mt-5 max-w-xl text-xs font-medium uppercase text-[var(--subtle)]">
               Quote only after technical review.
             </p>
-            <a className="button_secondary mt-10 inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-6 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black/50" href="mailto:hello@midts.co.uk?subject=MIDTS%20initial%20request">
+            <a className="button_secondary mt-10 inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-6 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black/50" href="mailto:intake@midts.com?subject=MIDTS%20initial%20request">
               Email instead
             </a>
           </div>
