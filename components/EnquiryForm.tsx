@@ -13,18 +13,31 @@ const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[v
 
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [automationMeta, setAutomationMeta] = useState<AutomationMeta>({
     leadId: '',
     step1CompletedAt: '',
   });
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const completedAt = new Date().toISOString();
-    const leadId = `midts-${completedAt.replace(/[^0-9]/g, '')}`;
+    setSubmitted(false);
+    setErrorMessage('');
+    setIsSubmitting(true);
 
-    setAutomationMeta({ leadId, step1CompletedAt: completedAt });
-    setSubmitted(true);
+    try {
+      const completedAt = new Date().toISOString();
+      const leadId = `midts-${completedAt.replace(/[^0-9]/g, '')}`;
+
+      setAutomationMeta({ leadId, step1CompletedAt: completedAt });
+      await new Promise((resolve) => setTimeout(resolve, 400));
+      setSubmitted(true);
+    } catch {
+      setErrorMessage('Something went wrong. Please email hello@midts.co.uk instead.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -46,21 +59,21 @@ export default function EnquiryForm() {
       <div className="grid gap-8 md:grid-cols-2">
         <label className={labelClass} htmlFor="full-name">
           Full Name
-          <input className={fieldClass} id="full-name" name="full_name" type="text" required />
+          <input className={fieldClass} id="full-name" name="full_name" type="text" required disabled={isSubmitting} />
         </label>
         <label className={labelClass} htmlFor="work-email">
           Work Email
-          <input className={fieldClass} id="work-email" name="work_email" type="email" required />
+          <input className={fieldClass} id="work-email" name="work_email" type="email" required disabled={isSubmitting} />
         </label>
       </div>
       <div className="grid gap-8 md:grid-cols-2">
         <label className={labelClass} htmlFor="company">
           Company
-          <input className={fieldClass} id="company" name="company" type="text" required />
+          <input className={fieldClass} id="company" name="company" type="text" required disabled={isSubmitting} />
         </label>
         <label className={labelClass} htmlFor="project-type">
           Project Type
-          <select className={fieldClass} id="project-type" name="project_type" required defaultValue="">
+          <select className={fieldClass} id="project-type" name="project_type" required defaultValue="" disabled={isSubmitting}>
             <option value="" disabled>Select project type</option>
             <option>Overflow CAD drafting support</option>
             <option>Manufacturing-ready CAM assistance</option>
@@ -72,7 +85,7 @@ export default function EnquiryForm() {
       <div className="grid gap-8 md:grid-cols-3">
         <label className={labelClass} htmlFor="timeline-urgency">
           Timeline / Urgency
-          <select className={fieldClass} id="timeline-urgency" name="timeline_urgency" required defaultValue="">
+          <select className={fieldClass} id="timeline-urgency" name="timeline_urgency" required defaultValue="" disabled={isSubmitting}>
             <option value="" disabled>Select timeline</option>
             <option>Urgent: 24-72 hours</option>
             <option>This week</option>
@@ -82,7 +95,7 @@ export default function EnquiryForm() {
         </label>
         <label className={labelClass} htmlFor="files-ready">
           Files / Drawings Ready
-          <select className={fieldClass} id="files-ready" name="files_drawings_ready" required defaultValue="">
+          <select className={fieldClass} id="files-ready" name="files_drawings_ready" required defaultValue="" disabled={isSubmitting}>
             <option value="" disabled>Select status</option>
             <option>Yes, files are ready</option>
             <option>Partially</option>
@@ -92,7 +105,7 @@ export default function EnquiryForm() {
         </label>
         <label className={labelClass} htmlFor="requirement-complexity">
           Requirement Complexity
-          <select className={fieldClass} id="requirement-complexity" name="requirement_complexity" required defaultValue="">
+          <select className={fieldClass} id="requirement-complexity" name="requirement_complexity" required defaultValue="" disabled={isSubmitting}>
             <option value="" disabled>Select complexity</option>
             <option>Simple drafting / drawing support</option>
             <option>CAD modelling</option>
@@ -104,17 +117,22 @@ export default function EnquiryForm() {
       </div>
       <label className={labelClass} htmlFor="brief-requirement">
         Brief Requirement
-        <textarea className={`${fieldClass} field_textarea min-h-24 resize-y`} id="brief-requirement" name="brief_requirement" placeholder="Briefly describe the work. The technical detail comes in Step 2." required />
+        <textarea className={`${fieldClass} field_textarea min-h-24 resize-y`} id="brief-requirement" name="brief_requirement" placeholder="Briefly describe the work. The technical detail comes in Step 2." required disabled={isSubmitting} />
       </label>
       <div className="form_actions grid gap-4 border-t border-black/10 pt-8 md:grid-cols-[auto_1fr] md:items-center">
-        <button className="button_primary min-h-12 rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" type="submit">
-          Start a request
+        <button className="button_primary min-h-12 rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black disabled:cursor-not-allowed disabled:bg-neutral-500" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting' : 'Start a request'}
         </button>
         <p className="text_body text-sm text-[var(--subtle)]">Technical brief follows by email.</p>
       </div>
       {submitted ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
           We&apos;ve received your initial request. Check your email to complete the technical requirement form.
+        </p>
+      ) : null}
+      {errorMessage ? (
+        <p className="text_error rounded-md border border-black/10 p-4 text-sm text-[var(--ink)]" role="alert">
+          {errorMessage}
         </p>
       ) : null}
     </form>
