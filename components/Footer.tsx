@@ -1,3 +1,9 @@
+const contactDetails = [
+  { label: 'Email', href: 'mailto:intake@midts.com', text: 'intake@midts.com' },
+  { label: 'Phone', href: 'tel:+441223656090', text: '01223 656 090' },
+  { label: 'Address', href: null, text: '1010 Cambourne Business Center, Cambridge CB23 6DP' },
+];
+
 const socialLinks = [
   {
     label: 'LinkedIn',
@@ -6,7 +12,7 @@ const socialLinks = [
   },
   {
     label: 'Email',
-    href: 'mailto:hello@midts.co.uk',
+    href: 'mailto:intake@midts.com',
     icon: 'email',
   },
 ];
@@ -37,9 +43,22 @@ export default function Footer() {
   return (
     <footer className="section_footer bg-[#050705] py-20 text-white">
       <div className="container_large padding_global">
-        <div className="footer_wrapper flex flex-col gap-6 border-t border-white/10 pt-8 text-sm text-neutral-400 md:flex-row md:items-center md:justify-between">
-          <div className="footer_content grid gap-3">
-            <p className="text_body">MIDTS | Overflow CAD/CAM engineering support.</p>
+        <div className="footer_wrapper flex flex-col gap-8 border-t border-white/10 pt-8 text-sm text-neutral-400 md:flex-row md:items-start md:justify-between">
+          <div className="footer_content grid gap-5">
+            <p className="text_body text-white">MIDTS | Overflow CAD/CAM engineering support.</p>
+            <div className="footer_contact grid gap-2">
+              {contactDetails.map((item) =>
+                item.href ? (
+                  <a key={item.label} className="text_link w-fit transition hover:text-white" href={item.href}>
+                    {item.text}
+                  </a>
+                ) : (
+                  <p key={item.label} className="text_body max-w-sm">
+                    {item.text}
+                  </p>
+                ),
+              )}
+            </div>
             <a className="text_link w-fit transition hover:text-white" href="/NEW-MIDTS/privacy/">
               Privacy policy
             </a>
