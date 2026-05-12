@@ -35,17 +35,17 @@ const drawingDetails = [
 ];
 
 const fileTree = [
-  { level: 0, label: '/MIDTS-PRJ-001/' },
-  { level: 1, label: 'CAD/' },
-  { level: 2, label: 'part_model.step' },
-  { level: 2, label: 'assembly.step' },
-  { level: 1, label: 'Drawings/' },
-  { level: 2, label: 'part_drawing_v1.pdf' },
-  { level: 2, label: 'assembly_drawing_v1.pdf' },
-  { level: 1, label: 'Exports/' },
-  { level: 2, label: 'dxf_files/' },
-  { level: 1, label: 'QA_Report.pdf' },
-  { level: 1, label: 'Revision_Log.xlsx' },
+  { level: 0, label: '/MIDTS-PRJ-001/', indent: 'pl-0' },
+  { level: 1, label: 'CAD/', indent: 'pl-5' },
+  { level: 2, label: 'part_model.step', indent: 'pl-10' },
+  { level: 2, label: 'assembly.step', indent: 'pl-10' },
+  { level: 1, label: 'Drawings/', indent: 'pl-5' },
+  { level: 2, label: 'part_drawing_v1.pdf', indent: 'pl-10' },
+  { level: 2, label: 'assembly_drawing_v1.pdf', indent: 'pl-10' },
+  { level: 1, label: 'Exports/', indent: 'pl-5' },
+  { level: 2, label: 'dxf_files/', indent: 'pl-10' },
+  { level: 1, label: 'QA_Report.pdf', indent: 'pl-5' },
+  { level: 1, label: 'Revision_Log.xlsx', indent: 'pl-5' },
 ];
 
 const deliveryChecks = [
@@ -136,7 +136,7 @@ function DrawingPreview() {
 
 export default function ProofOfWork() {
   return (
-    <section className="section_proof_work bg-white py-32 text-[var(--ink)] md:py-44">
+    <section id="process" className="section_proof_work bg-white py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="proof_work_wrapper mx-auto max-w-6xl">
           <div className="proof_work_heading max-w-2xl">
@@ -197,7 +197,7 @@ export default function ProofOfWork() {
               </p>
               <div className="card_file_tree mt-8 border border-black/10 p-6 font-mono text-sm text-[var(--ink)]">
                 {fileTree.map((item) => (
-                  <p key={`${item.level}-${item.label}`} className="text_file py-1" style={{ paddingLeft: `${item.level * 18}px` }}>
+                  <p key={`${item.level}-${item.label}`} className={`text_file py-1 ${item.indent}`}>
                     {item.level < 2 ? '+ ' : '- '}{item.label}
                   </p>
                 ))}
