@@ -2,13 +2,11 @@
 
 ## Scope
 
-This diagnostic compares the Stage 10 Apps Script website webhook contract with the public website form implementation.
+This diagnostic compares the Stage 10 Apps Script website webhook contract in this repository with the public website form implementation in `zeeshankhanminhas/NEW-MIDTS` as inspected on GitHub.
 
 ## Finding
 
-The Apps Script Stage 10 payload test proves the backend can create a lead when it receives a valid payload with the configured `WEBSITE_WEBHOOK_TOKEN`.
-
-The live website form can still appear to submit successfully while no lead is created because the website uses a `fetch()` call with `mode: 'no-cors'` and never reads the Apps Script response.
+The Apps Script Stage 10 payload test proves the backend can create a lead when it receives a valid payload with the configured `WEBSITE_WEBHOOK_TOKEN`. The live website form can still appear to submit successfully while no lead is created because the website uses a `fetch()` call with `mode: 'no-cors'` and never reads the Apps Script response.
 
 That means any Apps Script rejection is hidden from the browser, including:
 
@@ -29,14 +27,14 @@ That means any Apps Script rejection is hidden from the browser, including:
 
 ## Evidence from the website repository
 
-In `components/EnquiryForm.tsx`, the website should:
+In `components/EnquiryForm.tsx`, the website:
 
-- read `NEXT_PUBLIC_MIDTS_WEBHOOK_URL` and `NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN`,
-- throw only if those values are empty,
-- create a `URLSearchParams` body,
-- set `webhookToken`, `source`, and `pageUrl`,
-- post with `fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body })`,
-- immediately mark the submission as successful without checking Apps Script's JSON response.
+- reads `NEXT_PUBLIC_MIDTS_WEBHOOK_URL` and `NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN`,
+- throws only if those values are empty,
+- creates a `URLSearchParams` body,
+- sets `webhookToken`, `source`, and `pageUrl`,
+- posts with `fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body })`,
+- immediately marks the submission as successful without checking Apps Script's JSON response.
 
 Because `no-cors` returns an opaque response, the frontend cannot see whether Apps Script returned success or failure.
 
@@ -86,9 +84,7 @@ Expected successful response:
 
 ## Recommended website fix
 
-For production debugging, temporarily remove `mode: 'no-cors'` and read the response body, or route submissions through a same-origin Next.js API route that posts to Apps Script server-side.
-
-The same-origin API route is preferred because it avoids exposing the webhook token in public `NEXT_PUBLIC_*` browser variables.
+For production debugging, temporarily remove `mode: 'no-cors'` and read the response body, or route submissions through a same-origin Next.js API route that posts to Apps Script server-side. The same-origin API route is preferred because it avoids exposing the webhook token in public `NEXT_PUBLIC_*` browser variables.
 
 Recommended server-side shape:
 

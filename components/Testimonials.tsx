@@ -1,12 +1,25 @@
+const testimonials: Array<{ quote: string; name: string; role: string }> = [];
+
 export default function Testimonials() {
+  if (testimonials.length === 0) {
+    return null;
+  }
+
   return (
-    <section className="section_testimonials py-20 md:py-32" aria-label="Testimonials placeholder">
+    <section className="section_testimonials bg-white py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
-        <div className="testimonials_wrapper rounded-xl border border-dashed border-neutral-800 p-8">
-          <h2 className="heading_section mb-4 text-3xl font-medium md:text-4xl">Client proof will be added here.</h2>
-          <p className="text_body text-base text-neutral-400 md:text-lg">
-            Testimonials and case-study quotes will be activated after client approval. Until then, this section stays as a controlled placeholder.
-          </p>
+        <div className="testimonials_wrapper mx-auto max-w-4xl">
+          <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Client feedback</p>
+          <div className="grid_testimonials grid gap-6">
+            {testimonials.map((item) => (
+              <article key={`${item.name}-${item.role}`} className="card_testimonial border-y border-black/10 py-8">
+                <p className="text_body text-xl leading-8 text-[var(--muted)]">{item.quote}</p>
+                <p className="text_label mt-6 text-sm font-medium uppercase text-[var(--subtle)]">
+                  {item.name} | {item.role}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

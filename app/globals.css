@@ -2,8 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+  --background: #f7f7f5;
+  --foreground: #111815;
+  --paper: #f7f7f5;
+  --muted: #4b5651;
+  --subtle: #737a76;
+  --ink: #111815;
+  --black: #050705;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  @apply bg-black text-white antialiased;
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
+  @apply antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 .container_large {
@@ -11,5 +61,5 @@ body {
 }
 
 .padding_global {
-  @apply px-6 md:px-10;
+  @apply px-5 sm:px-6 md:px-10;
 }

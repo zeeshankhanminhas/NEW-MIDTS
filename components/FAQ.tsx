@@ -1,48 +1,43 @@
 const faqs = [
   {
-    question: 'What file formats do you work with?',
+    question: 'Can you quote from the initial request?',
     answer:
-      'We accept all major CAD and production formats: STEP, DXF, DWG, STL, PDF markups, and native files from SolidWorks, AutoCAD, Fusion 360, Inventor, CATIA, and Creo.',
+      'We review the initial request first, then ask for the technical brief where needed. Quote follows technical review so scope, timing, and deliverables are clear.',
   },
   {
-    question: 'How is pricing calculated?',
+    question: 'What files can we send?',
     answer:
-      'All work is quoted per project after scope review. You receive a fixed cost and delivery timeline before approving work.',
+      'Typical inputs include CAD files, drawings, sketches, scan data, DXF files, PDFs, photos, or reference parts. Step 2 collects the detail needed for review.',
   },
   {
-    question: 'What happens if the output does not match the requirement?',
+    question: 'Is confidential engineering data handled under NDA?',
     answer:
-      'Deliverables are checked against the agreed brief before release. Defined revisions within the original scope are included.',
+      'Yes. The workflow is NDA-ready for confidential projects and controlled file handoff.',
   },
   {
-    question: 'Do I need to sign an NDA before sharing files?',
+    question: 'What type of support is MIDTS built for?',
     answer:
-      'No technical files are needed at initial intake. NDA review is available before any drawings or models are shared.',
-  },
-  {
-    question: 'Is there a minimum project size or volume commitment?',
-    answer:
-      'No minimum volume or ongoing commitment is required. MIDTS supports individual overflow tasks and repeat production requirements.',
-  },
-  {
-    question: 'How long does the initial review take?',
-    answer:
-      'Initial review is typically completed within one UK business day. If clarification is needed, we contact you using the work email provided.',
+      'MIDTS is built for CAD/CAM overflow, reverse engineering, production drawings, documentation packs, and supplier-ready engineering outputs.',
   },
 ];
 
 export default function FAQ() {
   return (
-    <section id="faq" className="section_faq py-20 md:py-32">
+    <section id="faq" className="section_faq bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
-        <div className="faq_wrapper max-w-4xl">
-          <h2 className="heading_section mb-8 text-3xl font-medium md:text-4xl">Common questions before submitting.</h2>
-          <div className="grid_faq grid gap-4">
-            {faqs.map((faq) => (
-              <details key={faq.question} className="card_faq rounded-lg border border-neutral-800 p-5">
-                <summary className="cursor-pointer text-base font-medium text-neutral-200 md:text-lg">{faq.question}</summary>
-                <p className="text_body mt-4 text-base text-neutral-400 md:text-lg">{faq.answer}</p>
-              </details>
+        <div className="faq_wrapper mx-auto max-w-4xl">
+          <div className="faq_heading mx-auto max-w-2xl text-center">
+            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">FAQ</p>
+            <h2 className="heading_section text-3xl font-semibold leading-tight md:text-4xl">
+              Common questions before sending a request.
+            </h2>
+          </div>
+          <div className="grid_faq mt-16 border-y border-black/10">
+            {faqs.map((item) => (
+              <article key={item.question} className="card_faq grid gap-4 border-b border-black/10 py-7 last:border-b-0 md:grid-cols-[0.75fr_1fr]">
+                <h3 className="heading_card text-lg font-semibold">{item.question}</h3>
+                <p className="text_body text-base leading-7 text-[var(--muted)]">{item.answer}</p>
+              </article>
             ))}
           </div>
         </div>

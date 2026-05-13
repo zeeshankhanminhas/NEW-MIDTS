@@ -5,33 +5,41 @@ export default function PrivacyPage() {
   return (
     <>
       <Header />
-      <main className="section_privacy py-20 md:py-32">
+      <main className="section_privacy bg-white py-32 text-[var(--ink)] md:py-44">
         <div className="container_large padding_global">
-          <div className="privacy_wrapper max-w-3xl">
-            <h1 className="heading_hero mb-6 text-5xl font-semibold leading-tight md:text-6xl">Privacy Policy</h1>
-            <p className="text_body mb-8 text-base text-neutral-400 md:text-lg">
-              MIDTS uses enquiry details only to review requirements, respond to project requests, and coordinate approved work.
-            </p>
-            <div className="grid gap-8 text-base text-neutral-400 md:text-lg">
-              <section>
-                <h2 className="heading_section mb-4 text-3xl font-medium text-white md:text-4xl">Information we collect</h2>
-                <p>We collect contact details, company information, project type, and requirement summaries submitted through the enquiry form.</p>
+          <div className="privacy_wrapper mx-auto max-w-3xl">
+            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Privacy policy</p>
+            <h1 className="heading_section text-4xl font-semibold leading-tight md:text-5xl">How MIDTS handles enquiry data.</h1>
+            <div className="privacy_content mt-12 grid gap-10 border-y border-black/10 py-10">
+              <section className="privacy_block">
+                <h2 className="heading_card text-xl font-semibold">What we collect</h2>
+                <p className="text_body mt-4 text-base leading-7 text-[var(--muted)]">
+                  We collect the information you submit through the initial request form, including name, work email, company, project type, timeline, file readiness, complexity, and brief requirement notes.
+                </p>
               </section>
-              <section>
-                <h2 className="heading_section mb-4 text-3xl font-medium text-white md:text-4xl">How we use it</h2>
-                <p>We use submitted information to assess project fit, prepare quotes, clarify technical requirements, and manage delivery communication.</p>
+              <section className="privacy_block">
+                <h2 className="heading_card text-xl font-semibold">How we use it</h2>
+                <p className="text_body mt-4 text-base leading-7 text-[var(--muted)]">
+                  We use enquiry information to understand the request, send the technical brief, assess scope, and respond about timing and quotation after review.
+                </p>
               </section>
-              <section>
-                <h2 className="heading_section mb-4 text-3xl font-medium text-white md:text-4xl">Confidentiality</h2>
-                <p>Technical files are not required for initial intake. NDA review is available before drawings, models, or production data are shared.</p>
+              <section className="privacy_block">
+                <h2 className="heading_card text-xl font-semibold">Confidential project data</h2>
+                <p className="text_body mt-4 text-base leading-7 text-[var(--muted)]">
+                  Engineering files and project details are treated as confidential. NDA handling can be agreed before detailed technical files are shared.
+                </p>
               </section>
-              <section>
-                <h2 className="heading_section mb-4 text-3xl font-medium text-white md:text-4xl">Analytics</h2>
-                <p>Analytics may be used to understand site performance and improve the enquiry flow. Analytics should be configured without collecting unnecessary personal data.</p>
-              </section>
-              <section>
-                <h2 className="heading_section mb-4 text-3xl font-medium text-white md:text-4xl">Contact</h2>
-                <p>For privacy questions, contact MIDTS through the enquiry form and include “Privacy” in the requirement summary.</p>
+              <section className="privacy_block">
+                <h2 className="heading_card text-xl font-semibold">Contact</h2>
+                <div className="text_body mt-4 grid gap-2 text-base leading-7 text-[var(--muted)]">
+                  <a className="text_link w-fit text-[var(--ink)] underline-offset-4 hover:underline" href="mailto:intake@midts.com">
+                    intake@midts.com
+                  </a>
+                  <a className="text_link w-fit text-[var(--ink)] underline-offset-4 hover:underline" href="tel:+441223656090">
+                    01223 656 090
+                  </a>
+                  <p>1010 Cambourne Business Center, Cambridge CB23 6DP</p>
+                </div>
               </section>
             </div>
           </div>
