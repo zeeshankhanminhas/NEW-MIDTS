@@ -78,7 +78,6 @@ export default function EnquiryForm() {
       <input type="hidden" name="step_2_completed" value="false" readOnly />
       <input type="hidden" name="nurture_state" value="Active" readOnly />
       <input type="hidden" name="reminder_status" value="Pending" readOnly />
-      <input type="hidden" name="formHoneypot" value="" readOnly />
       {/* Scoring integration placeholders for future backend or Apps Script mapping. */}
       <input type="hidden" name="lead_score" value="" readOnly />
       <input type="hidden" name="qualification_status" value="Pending" readOnly />
