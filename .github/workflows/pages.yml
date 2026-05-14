@@ -16,7 +16,13 @@ concurrency:
 
 jobs:
   build:
+    environment:
+      name: github-pages
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAGES: true
+      NEXT_PUBLIC_MIDTS_WEBHOOK_URL: ${{ secrets.MIDTS_WEBHOOK_URL }}
+      NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN: ${{ secrets.MIDTS_WEBHOOK_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,14 +30,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Verify webhook build secrets
+        run: |
+          test -n "$NEXT_PUBLIC_MIDTS_WEBHOOK_URL" || (echo "Missing MIDTS_WEBHOOK_URL secret" && exit 1)
+          test -n "$NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN" || (echo "Missing MIDTS_WEBHOOK_TOKEN secret" && exit 1)
       - name: Install dependencies
         run: npm install
       - name: Build static site
         run: npm run build
-        env:
-          GITHUB_PAGES: true
-          NEXT_PUBLIC_MIDTS_WEBHOOK_URL: ${{ secrets.MIDTS_WEBHOOK_URL }}
-          NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN: ${{ secrets.MIDTS_WEBHOOK_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
