@@ -70,7 +70,7 @@ export default function EnquiryForm() {
   return (
     <form className="form_enquiry grid gap-8" onSubmit={handleSubmit}>
       <p className="text_body max-w-xl text-sm leading-6 text-[var(--subtle)]">
-        Submit the first request so we can send the Step 2 technical requirement form.
+        Send the first request. The technical requirement form follows by email.
       </p>
 
       <input type="hidden" name="lead_id" value={automationMeta.leadId} readOnly />
@@ -109,48 +109,15 @@ export default function EnquiryForm() {
           </select>
         </label>
       </div>
-      <div className="grid gap-8 md:grid-cols-3">
-        <label className={labelClass} htmlFor="timeline-urgency">
-          Timeline / Urgency
-          <select className={fieldClass} id="timeline-urgency" name="timeline_urgency" required defaultValue="" disabled={isSubmitting}>
-            <option value="" disabled>Select timeline</option>
-            <option>Urgent: 24-72 hours</option>
-            <option>This week</option>
-            <option>This month</option>
-            <option>Exploring support</option>
-          </select>
-        </label>
-        <label className={labelClass} htmlFor="files-ready">
-          Files / Drawings Ready
-          <select className={fieldClass} id="files-ready" name="files_drawings_ready" required defaultValue="" disabled={isSubmitting}>
-            <option value="" disabled>Select status</option>
-            <option>Yes, files are ready</option>
-            <option>Partially</option>
-            <option>Not yet</option>
-            <option>Not sure</option>
-          </select>
-        </label>
-        <label className={labelClass} htmlFor="requirement-complexity">
-          Requirement Complexity
-          <select className={fieldClass} id="requirement-complexity" name="requirement_complexity" required defaultValue="" disabled={isSubmitting}>
-            <option value="" disabled>Select complexity</option>
-            <option>Simple drafting / drawing support</option>
-            <option>CAD modelling</option>
-            <option>Reverse engineering</option>
-            <option>CAM / manufacturing support</option>
-            <option>Mixed or unsure</option>
-          </select>
-        </label>
-      </div>
       <label className={labelClass} htmlFor="brief-requirement">
         Brief Requirement
-        <textarea className={`${fieldClass} field_textarea min-h-24 resize-y`} id="brief-requirement" name="brief_requirement" placeholder="Briefly describe the work. The technical detail comes in Step 2." required disabled={isSubmitting} />
+        <textarea className={`${fieldClass} field_textarea min-h-24 resize-y`} id="brief-requirement" name="brief_requirement" placeholder="A short summary is enough. Technical detail comes in Step 2." required disabled={isSubmitting} />
       </label>
       <div className="form_actions grid gap-4 border-t border-black/10 pt-8 md:grid-cols-[auto_1fr] md:items-center">
         <button className="button_primary min-h-12 rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black disabled:cursor-not-allowed disabled:bg-neutral-500" type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting' : 'Start a request'}
         </button>
-        <p className="text_body text-sm text-[var(--subtle)]">Technical brief follows by email.</p>
+        <p className="text_body text-sm text-[var(--subtle)]">Step 2 follows by email.</p>
       </div>
       {submitted ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
