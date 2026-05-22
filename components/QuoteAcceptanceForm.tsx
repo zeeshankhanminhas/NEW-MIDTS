@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black disabled:text-neutral-500';
@@ -21,7 +21,7 @@ export default function QuoteAcceptanceForm({ initialQuoteId = '', initialLeadId
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const hasWebhookConfig = useMemo(() => Boolean(webhookUrl && webhookToken), []);
+  const hasWebhookConfig = Boolean(webhookUrl && webhookToken);
   const isSubmitting = submitState === 'submitting';
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
