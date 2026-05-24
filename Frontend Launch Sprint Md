@@ -1,0 +1,220 @@
+# MIDTS FRONTEND LAUNCH SPRINT
+
+STATUS:
+Frontend foundation already exists.
+
+Objective:
+Stabilize and harden the frontend for production launch.
+
+RULES:
+
+* Do NOT redesign UI system.
+* Do NOT add unnecessary animations.
+* Do NOT rebuild architecture.
+* Do NOT introduce new frameworks.
+* Preserve current monochrome operational design language.
+* Focus ONLY on launch-critical execution.
+
+REPO:
+NEW-MIDTS
+
+CRITICAL REPOSITORY LOCK RULE:
+
+* All other markdowns, specs, experiments, drafts, architecture notes, and planning documents inside the repository are considered FROZEN.
+* Agents MUST NOT read, modify, reinterpret, or execute against any other markdown or planning file unless explicitly instructed by the project owner.
+* This markdown is the SINGLE ACTIVE execution source for the frontend.
+* Avoid architectural drift.
+* Avoid conflicting implementation paths.
+* Focus ONLY on completing the defined launch sprints.
+
+TECH STACK:
+
+* Next.js
+* TypeScript
+* Tailwind
+* GitHub
+* Hostinger deployment
+* Google Apps Script backend
+
+---
+
+## PHASE F1 — WEBHOOK STABILIZATION
+
+GOAL:
+Reliable frontend ↔ backend communication.
+
+TASKS:
+
+1. Remove all no-cors fetch usage.
+
+2. Implement proper JSON response handling.
+
+3. Add:
+
+* loading states
+* success states
+* failure states
+* timeout handling
+
+4. Validate:
+
+* Step 1 enquiry form
+* Step 2 form
+* Vendor pricing form
+* Quote acceptance form
+
+5. Add frontend validation:
+
+* required fields
+* email validation
+* file size validation
+* extension validation
+
+DELIVERABLE:
+All forms reliably communicate with backend.
+
+---
+
+## PHASE F2 — FILE INTAKE CONNECTION
+
+GOAL:
+Enable real engineering file upload pipeline.
+
+TASKS:
+
+1. Implement actual file uploads.
+
+2. Convert files to base64 safely.
+
+3. Add:
+
+* upload progress state
+* upload queue handling
+* upload failure recovery
+
+4. Validate:
+
+* STEP
+* STP
+* IGES
+* STL
+* DXF
+* DWG
+* ZIP
+* PDF
+
+5. Ensure payload structure matches backend requirements.
+
+DELIVERABLE:
+Files successfully stored inside Google Drive intake folders.
+
+---
+
+## PHASE F3 — FRONTEND HARDENING
+
+GOAL:
+Production-grade frontend readiness.
+
+TASKS:
+
+1. Mobile responsiveness QA.
+
+2. Performance optimization.
+
+3. Add:
+
+* metadata
+* OpenGraph
+* favicon
+* robots.txt
+* sitemap
+
+4. Configure analytics.
+
+5. Add legal pages:
+
+* Privacy Policy
+* Terms
+* Cookie Policy
+* NDA/IP notice
+
+6. Verify Hostinger deployment.
+
+DELIVERABLE:
+Production-ready frontend.
+
+---
+
+## PHASE F4 — OPERATIONAL UI
+
+GOAL:
+Operational clarity.
+
+TASKS:
+
+1. Improve status visibility.
+
+2. Add queue indicators.
+
+3. Add:
+
+* submission IDs
+* timestamps
+* upload confirmation
+
+4. Add internal operational pages if needed:
+
+* vendor pricing intake
+* quote acceptance
+* upload confirmation
+
+DELIVERABLE:
+Operationally understandable frontend.
+
+---
+
+## PHASE F5 — END-TO-END VALIDATION
+
+GOAL:
+Verify complete frontend lifecycle.
+
+FULL FLOW:
+
+STEP 1
+↓
+STEP 2
+↓
+FILE UPLOAD
+↓
+VENDOR PRICING
+↓
+QUOTE ACCEPTANCE
+
+TESTS:
+
+* valid payloads
+* invalid payloads
+* duplicate submissions
+* missing tokens
+* upload failures
+* timeout handling
+
+FINAL DELIVERABLE:
+Frontend approved for public launch.
+
+---
+
+## FROZEN ITEMS
+
+DO NOT TOUCH:
+
+* redesign concepts
+* animation experiments
+* alternate frameworks
+* dashboard redesigns
+* AI enhancement ideas
+* future intelligence systems
+* visual pivots
+* architecture rewrites
+
+ONLY COMPLETE THE ACTIVE SPRINTS.
