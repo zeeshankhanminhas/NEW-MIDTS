@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { buildBody, submitToAppsScript } from '@/components/formSubmission';
+import { submitJsonPayload } from '@/components/formSubmission';
 
 type AutomationMeta = {
   leadId: string;
@@ -19,6 +19,7 @@ export default function EnquiryForm() {
     leadId: '',
     step1CompletedAt: '',
   });
+  const [submissionInfo, setSubmissionInfo] = useState<{submissionId:string;timestamp:string}|null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,16 +38,17 @@ export default function EnquiryForm() {
         if (typeof value === 'string') payload[key] = value;
       });
 
-      await submitToAppsScript(buildBody({
+      const result = await submitJsonPayload({
         ...payload,
         formStage: 'step1',
         lead_id: leadId,
         step_1_completed_at: completedAt,
         source: 'Website',
         pageUrl: window.location.href,
-      }));
+      });
 
       setAutomationMeta({ leadId, step1CompletedAt: completedAt });
+      setSubmissionInfo(result);
       setSubmitted(true);
       form.reset();
     } catch (error) {
@@ -111,7 +113,8 @@ export default function EnquiryForm() {
       </div>
       {submitted ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
-          Submitted. Please check confirmation/logs if needed. Check your email to complete the technical requirement form.
+          We&apos;ve received your initial request. Check your email to complete the technical requirement form.
+          {submissionInfo ? ` Submission ID: ${submissionInfo.submissionId} at ${new Date(submissionInfo.timestamp).toLocaleString()}.` : ''}
         </p>
       ) : null}
       {errorMessage ? (

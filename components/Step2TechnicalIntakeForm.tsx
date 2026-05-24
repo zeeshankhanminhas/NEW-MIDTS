@@ -3,7 +3,7 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import FileUploadZone from '@/components/FileUploadZone';
-import { buildBody, filesToBase64, submitToAppsScript } from '@/components/formSubmission';
+import { filesToBase64, submitJsonPayload, submitUrlEncodedPayload } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
@@ -18,7 +18,8 @@ export default function Step2TechnicalIntakeForm() {
   const [errorMessage, setErrorMessage] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
   const [uploadPhase, setUploadPhase] = useState<'idle' | 'text_submitting' | 'encoding' | 'upload_submitting' | 'failed' | 'complete'>('idle');
-    const [includedFileUpload, setIncludedFileUpload] = useState(false);
+  const [submissionInfo, setSubmissionInfo] = useState<{ submissionId: string; timestamp: string } | null>(null);
+  const [includedFileUpload, setIncludedFileUpload] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,13 +40,13 @@ export default function Step2TechnicalIntakeForm() {
       });
 
       const hadFiles = files.length > 0;
-      await submitToAppsScript(buildBody({
+      const result = await submitJsonPayload({
         ...payload,
         formStage: 'step2',
         leadId,
         source: 'WebsiteStep2',
         pageUrl: window.location.href,
-      }));
+      });
 
       if (hadFiles) {
         setUploadPhase('encoding');
@@ -60,22 +61,20 @@ export default function Step2TechnicalIntakeForm() {
           uploadId: `${leadId}-${Date.now()}-${index + 1}`,
           name: file.name,
           type: file.type,
-          size: file.size,
-          base64: file.base64,
+          size: file.sizeBytes,
+          base64: file.contentBase64,
         }));
 
-        await submitToAppsScript(buildBody({
+        await submitUrlEncodedPayload({
           formStage: 'step2_file_upload',
           leadId,
-          source: 'WebsiteStep2FileUpload',
-          pageUrl: window.location.href,
           files: JSON.stringify(uploadPayload),
-        }));
-        setUploadProgress(100);
+        });
       }
 
       setUploadProgress(100);
       setUploadPhase('complete');
+      setSubmissionInfo(result);
       setIncludedFileUpload(hadFiles);
       setSubmitted(true);
       setFiles([]);
@@ -142,7 +141,7 @@ export default function Step2TechnicalIntakeForm() {
         <p className="text-sm text-[var(--subtle)]">This sends Step 2 details and encoded upload payload.</p>
       </div>
 
-      {submitted ? <p className="rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">Technical intake submitted{includedFileUpload ? ' with file upload.' : '.'} Step 2 submitted. File upload sent. Check Drive/File Logs for confirmation.</p> : null}
+      {submitted ? <p className="rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">Technical intake submitted{includedFileUpload ? ' with file upload.' : '.'} Submission ID: {submissionInfo?.submissionId}.</p> : null}
       {errorMessage ? <p className="rounded-md border border-black/10 p-4 text-sm text-[var(--ink)]">{errorMessage}</p> : null}
     </form>
   );

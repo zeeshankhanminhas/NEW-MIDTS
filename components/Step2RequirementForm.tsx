@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { buildBody, submitToAppsScript } from '@/components/formSubmission';
+import { submitJsonPayload } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
@@ -32,13 +32,13 @@ export default function Step2RequirementForm() {
         if (typeof value === 'string') payload[key] = value;
       });
 
-      await submitToAppsScript(buildBody({
+      await submitJsonPayload({
         ...payload,
         formStage: 'step2',
         leadId,
         source: 'WebsiteStep2',
         pageUrl: window.location.href,
-      }));
+      });
 
       setSubmitted(true);
       form.reset();

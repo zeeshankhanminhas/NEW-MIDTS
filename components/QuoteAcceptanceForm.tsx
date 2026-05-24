@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { buildBody, submitToAppsScript } from '@/components/formSubmission';
+import { submitJsonPayload } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black disabled:text-neutral-500';
@@ -32,14 +32,14 @@ export default function QuoteAcceptanceForm({ initialQuoteId = '', initialLeadId
         throw new Error('Quote reference is required.');
       }
 
-      await submitToAppsScript(buildBody({
+      await submitJsonPayload({
         formStage: 'quoteAcceptance',
         quoteId: normalizedQuoteId,
         leadId: initialLeadId.trim(),
         acceptanceNotes: acceptanceNotes.trim() || 'Accepted from MIDTS quote acceptance page.',
         source: 'Quote Acceptance Page',
         pageUrl: window.location.href,
-      }));
+      });
 
       setSubmitState('success');
     } catch (error) {
