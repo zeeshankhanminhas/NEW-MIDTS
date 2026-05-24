@@ -2,13 +2,11 @@
 
 import { FormEvent, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { buildBody, submitToAppsScript } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
 const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[var(--subtle)]';
-const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
-const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
-
 export default function Step2RequirementForm() {
   const searchParams = useSearchParams();
   const leadId = useMemo(() => String(searchParams.get('leadId') || searchParams.get('lead_id') || '').trim(), [searchParams]);
@@ -26,36 +24,27 @@ export default function Step2RequirementForm() {
       if (!leadId) {
         throw new Error('Missing lead ID.');
       }
-      if (!webhookUrl || !webhookToken) {
-        throw new Error('Webhook configuration is missing.');
-      }
-
       const form = event.currentTarget;
       const formData = new FormData(form);
-      const body = new URLSearchParams();
-
-      formData.set('formStage', 'step2');
-      formData.set('webhookToken', webhookToken);
-      formData.set('leadId', leadId);
-      formData.set('source', 'WebsiteStep2');
-      formData.set('pageUrl', window.location.href);
+      const payload: Record<string, string> = {};
 
       formData.forEach((value, key) => {
-        if (typeof value === 'string') {
-          body.append(key, value);
-        }
+        if (typeof value === 'string') payload[key] = value;
       });
 
-      await fetch(webhookUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        body,
-      });
+      await submitToAppsScript(buildBody({
+        ...payload,
+        formStage: 'step2',
+        leadId,
+        source: 'WebsiteStep2',
+        pageUrl: window.location.href,
+      }));
 
       setSubmitted(true);
       form.reset();
-    } catch {
-      setErrorMessage('Something went wrong. Please email intake@midts.com with your lead reference.');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Submission failed.';
+      setErrorMessage(`${message} Please email intake@midts.com with your lead reference.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -134,11 +123,11 @@ export default function Step2RequirementForm() {
       <div className="grid gap-8 md:grid-cols-2">
         <label className={labelClass} htmlFor="budget">
           Budget
-          <input className={fieldClass} id="budget" name="budget" type="text" placeholder="Optional" disabled={isSubmitting} />
+          <input className={fieldClass} id="budget" name="budgetEstimate" type="text" placeholder="Optional" disabled={isSubmitting} />
         </label>
         <label className={labelClass} htmlFor="phone">
           Phone
-          <input className={fieldClass} id="phone" name="phone" type="tel" placeholder="Optional" disabled={isSubmitting} />
+          <input className={fieldClass} id="phone" name="notes" type="tel" placeholder="Optional" disabled={isSubmitting} />
         </label>
       </div>
 
@@ -151,7 +140,7 @@ export default function Step2RequirementForm() {
 
       {submitted ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
-          Your technical requirement has been submitted. MIDTS will review the details and qualify the request.
+          Submitted. Please check confirmation/logs if needed.
         </p>
       ) : null}
       {errorMessage ? (

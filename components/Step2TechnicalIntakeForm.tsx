@@ -3,12 +3,11 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import FileUploadZone from '@/components/FileUploadZone';
+import { buildBody, filesToBase64, submitToAppsScript } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
 const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[var(--subtle)]';
-const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
-const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
 
 export default function Step2TechnicalIntakeForm() {
   const searchParams = useSearchParams();
@@ -17,41 +16,75 @@ export default function Step2TechnicalIntakeForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadPhase, setUploadPhase] = useState<'idle' | 'text_submitting' | 'encoding' | 'upload_submitting' | 'failed' | 'complete'>('idle');
+    const [includedFileUpload, setIncludedFileUpload] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitted(false);
     setErrorMessage('');
     setIsSubmitting(true);
+    setUploadProgress(0);
+    setUploadPhase('text_submitting');
 
     try {
       if (!leadId) throw new Error('Missing lead ID.');
-      if (!webhookUrl || !webhookToken) throw new Error('Webhook configuration is missing.');
 
       const form = event.currentTarget;
       const formData = new FormData(form);
-      const body = new URLSearchParams();
-
-      const uploadMetadata = files.map((file) => ({ name: file.name, sizeBytes: file.size, type: file.type || 'unknown' }));
-
-      formData.set('formStage', 'step2');
-      formData.set('webhookToken', webhookToken);
-      formData.set('leadId', leadId);
-      formData.set('source', 'WebsiteStep2');
-      formData.set('pageUrl', window.location.href);
-      formData.set('uploadMetadata', JSON.stringify(uploadMetadata));
-
+      const payload: Record<string, string> = {};
       formData.forEach((value, key) => {
-        if (typeof value === 'string') body.append(key, value);
+        if (typeof value === 'string') payload[key] = value;
       });
 
-      await fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body });
+      const hadFiles = files.length > 0;
+      await submitToAppsScript(buildBody({
+        ...payload,
+        formStage: 'step2',
+        leadId,
+        source: 'WebsiteStep2',
+        pageUrl: window.location.href,
+      }));
 
+      if (hadFiles) {
+        setUploadPhase('encoding');
+        setUploadProgress(15);
+        const encodedFiles = await filesToBase64(files, (completed, total) => {
+          const percent = Math.round((completed / total) * 60) + 15;
+          setUploadProgress(percent);
+        });
+
+        setUploadPhase('upload_submitting');
+        const uploadPayload = encodedFiles.map((file, index) => ({
+          uploadId: `${leadId}-${Date.now()}-${index + 1}`,
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          base64: file.base64,
+        }));
+
+        await submitToAppsScript(buildBody({
+          formStage: 'step2_file_upload',
+          leadId,
+          source: 'WebsiteStep2FileUpload',
+          pageUrl: window.location.href,
+          files: JSON.stringify(uploadPayload),
+        }));
+        setUploadProgress(100);
+      }
+
+      setUploadProgress(100);
+      setUploadPhase('complete');
+      setIncludedFileUpload(hadFiles);
       setSubmitted(true);
       setFiles([]);
       form.reset();
-    } catch {
-      setErrorMessage('Something went wrong. Please email intake@midts.com with your lead reference.');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Submission failed.';
+      setErrorMessage(`${message} Please email intake@midts.com with your lead reference.`);
+      setUploadProgress(0);
+      setUploadPhase('failed');
     } finally {
       setIsSubmitting(false);
     }
@@ -63,9 +96,7 @@ export default function Step2TechnicalIntakeForm() {
 
   return (
     <form className="grid gap-8" onSubmit={handleSubmit}>
-      <input type="hidden" name="formStage" value="step2" readOnly />
       <input type="hidden" name="leadId" value={leadId} readOnly />
-      <input type="hidden" name="uploadMetadata" value={JSON.stringify(files.map((f) => ({ name: f.name, sizeBytes: f.size, type: f.type || 'unknown' })))} readOnly />
 
       <div className="grid gap-2">
         <p className="text-xs font-medium uppercase text-[var(--subtle)]">Lead reference</p>
@@ -94,28 +125,24 @@ export default function Step2TechnicalIntakeForm() {
         </label>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2">
-        <label className={labelClass} htmlFor="budget-estimate">Budget / Estimate
-          <input className={fieldClass} id="budget-estimate" name="budgetEstimate" type="text" placeholder="Optional" disabled={isSubmitting} />
-        </label>
-        <label className={labelClass} htmlFor="notes">Notes
-          <input className={fieldClass} id="notes" name="notes" type="text" placeholder="Optional" disabled={isSubmitting} />
-        </label>
-      </div>
-
       <div className="grid gap-2">
-        <p className="text-xs font-medium uppercase text-[var(--subtle)]">Technical Files (metadata only for now)</p>
+        <p className="text-xs font-medium uppercase text-[var(--subtle)]">Technical Files</p>
         <FileUploadZone files={files} onFilesChange={setFiles} disabled={isSubmitting} />
+        {isSubmitting ? <p className="text-xs text-[var(--subtle)]">Upload progress: {uploadProgress}%</p> : null}
+        {uploadPhase === 'text_submitting' ? <p className="text-xs text-[var(--subtle)]">Submitting Step 2 intake details.</p> : null}
+        {uploadPhase === 'encoding' ? <p className="text-xs text-[var(--subtle)]">Encoding files for secure transfer.</p> : null}
+        {uploadPhase === 'upload_submitting' ? <p className="text-xs text-[var(--subtle)]">Submitting upload queue to file intake service.</p> : null}
+        {uploadPhase === 'failed' ? <p className="text-xs text-[var(--subtle)]">Upload failed. Your queue is preserved — review and resubmit.</p> : null}
       </div>
 
       <div className="grid gap-4 border-t border-black/10 pt-8 md:grid-cols-[auto_1fr] md:items-center">
         <button className="button_primary min-h-12 rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black disabled:cursor-not-allowed disabled:bg-neutral-500" type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting' : 'Submit technical intake'}
         </button>
-        <p className="text-sm text-[var(--subtle)]">This sends Step 2 text payload and upload metadata only.</p>
+        <p className="text-sm text-[var(--subtle)]">This sends Step 2 details and encoded upload payload.</p>
       </div>
 
-      {submitted ? <p className="rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">Technical intake submitted successfully.</p> : null}
+      {submitted ? <p className="rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">Technical intake submitted{includedFileUpload ? ' with file upload.' : '.'} Step 2 submitted. File upload sent. Check Drive/File Logs for confirmation.</p> : null}
       {errorMessage ? <p className="rounded-md border border-black/10 p-4 text-sm text-[var(--ink)]">{errorMessage}</p> : null}
     </form>
   );

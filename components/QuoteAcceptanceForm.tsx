@@ -1,13 +1,11 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { buildBody, submitToAppsScript } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black disabled:text-neutral-500';
 const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[var(--subtle)]';
-const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
-const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
-
 type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
 
 type Props = {
@@ -21,7 +19,6 @@ export default function QuoteAcceptanceForm({ initialQuoteId = '', initialLeadId
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const hasWebhookConfig = Boolean(webhookUrl && webhookToken);
   const isSubmitting = submitState === 'submitting';
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -30,29 +27,19 @@ export default function QuoteAcceptanceForm({ initialQuoteId = '', initialLeadId
     setErrorMessage('');
 
     try {
-      if (!hasWebhookConfig) {
-        throw new Error('Quote acceptance configuration is missing.');
-      }
-
       const normalizedQuoteId = quoteId.trim();
       if (!normalizedQuoteId) {
         throw new Error('Quote reference is required.');
       }
 
-      const body = new URLSearchParams();
-      body.set('formStage', 'quoteAcceptance');
-      body.set('webhookToken', webhookToken);
-      body.set('quoteId', normalizedQuoteId);
-      body.set('leadId', initialLeadId.trim());
-      body.set('acceptanceNotes', acceptanceNotes.trim() || 'Accepted from MIDTS quote acceptance page.');
-      body.set('source', 'Quote Acceptance Page');
-      body.set('pageUrl', window.location.href);
-
-      await fetch(webhookUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        body,
-      });
+      await submitToAppsScript(buildBody({
+        formStage: 'quoteAcceptance',
+        quoteId: normalizedQuoteId,
+        leadId: initialLeadId.trim(),
+        acceptanceNotes: acceptanceNotes.trim() || 'Accepted from MIDTS quote acceptance page.',
+        source: 'Quote Acceptance Page',
+        pageUrl: window.location.href,
+      }));
 
       setSubmitState('success');
     } catch (error) {
@@ -111,7 +98,7 @@ export default function QuoteAcceptanceForm({ initialQuoteId = '', initialLeadId
 
       {submitState === 'success' ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
-          Quote acceptance has been submitted. MIDTS will confirm the project creation details by email.
+          Submitted. Please check confirmation/logs if needed.
         </p>
       ) : null}
 
