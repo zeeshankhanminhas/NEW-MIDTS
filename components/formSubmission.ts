@@ -77,40 +77,6 @@ export async function submitUrlEncodedPayload(payload: Record<string, string>): 
   }
 }
 
-export async function submitUrlEncodedPayloadWithFallback(payload: Record<string, string>): Promise<void> {
-  try {
-    await submitUrlEncodedPayload(payload);
-    return;
-  } catch (error) {
-    const message = error instanceof Error ? error.message : '';
-    const shouldAttemptFallback = message.includes('Network request failed') || message.includes('Failed to fetch');
-
-    if (!shouldAttemptFallback) {
-      throw error;
-    }
-  }
-
-  const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
-  const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
-
-  if (!webhookUrl || !webhookToken) {
-    throw new Error('Webhook configuration is missing.');
-  }
-
-  const body = new URLSearchParams();
-  Object.entries({ ...payload, webhookToken }).forEach(([key, value]) => {
-    body.set(key, value);
-  });
-
-  // Targeted compatibility fallback for Apps Script/CORS edge cases.
-  await fetch(webhookUrl, {
-    method: 'POST',
-    mode: 'no-cors',
-    body,
-    signal: withTimeout(REQUEST_TIMEOUT_MS),
-  });
-}
-
 export type EncodedUploadFile = {
   name: string;
   type: string;
