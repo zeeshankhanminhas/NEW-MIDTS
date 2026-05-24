@@ -134,7 +134,7 @@ export default function VendorPricingForm() {
 
       {submitted ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
-          Pricing submitted. MIDTS will review it before preparing the client quote.
+          Submitted. Please check confirmation/logs if needed.
         </p>
       ) : null}
       {errorMessage ? (

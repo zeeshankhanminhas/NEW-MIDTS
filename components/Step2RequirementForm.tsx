@@ -123,11 +123,11 @@ export default function Step2RequirementForm() {
       <div className="grid gap-8 md:grid-cols-2">
         <label className={labelClass} htmlFor="budget">
           Budget
-          <input className={fieldClass} id="budget" name="budget" type="text" placeholder="Optional" disabled={isSubmitting} />
+          <input className={fieldClass} id="budget" name="budgetEstimate" type="text" placeholder="Optional" disabled={isSubmitting} />
         </label>
         <label className={labelClass} htmlFor="phone">
           Phone
-          <input className={fieldClass} id="phone" name="phone" type="tel" placeholder="Optional" disabled={isSubmitting} />
+          <input className={fieldClass} id="phone" name="notes" type="tel" placeholder="Optional" disabled={isSubmitting} />
         </label>
       </div>
 
@@ -140,7 +140,7 @@ export default function Step2RequirementForm() {
 
       {submitted ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
-          Your technical requirement has been submitted. MIDTS will review the details and qualify the request.
+          Submitted. Please check confirmation/logs if needed.
         </p>
       ) : null}
       {errorMessage ? (

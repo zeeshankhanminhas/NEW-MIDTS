@@ -98,7 +98,7 @@ export default function QuoteAcceptanceForm({ initialQuoteId = '', initialLeadId
 
       {submitState === 'success' ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
-          Quote acceptance has been submitted. MIDTS will confirm the project creation details by email.
+          Submitted. Please check confirmation/logs if needed.
         </p>
       ) : null}
 
