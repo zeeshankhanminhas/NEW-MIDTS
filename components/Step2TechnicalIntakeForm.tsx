@@ -3,7 +3,7 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import FileUploadZone from '@/components/FileUploadZone';
-import { filesToBase64, submitJsonPayload, submitUrlEncodedPayloadWithFallback } from '@/components/formSubmission';
+import { filesToBase64, submitJsonPayload, submitUrlEncodedPayload } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
@@ -65,17 +65,11 @@ export default function Step2TechnicalIntakeForm() {
           base64: file.contentBase64,
         }));
 
-        for (let index = 0; index < uploadPayload.length; index += 1) {
-          const singleFileBatch = [uploadPayload[index]];
-          // eslint-disable-next-line no-await-in-loop
-          await submitUrlEncodedPayloadWithFallback({
-            formStage: 'step2_file_upload',
-            leadId,
-            files: JSON.stringify(singleFileBatch),
-          });
-          const percent = 75 + Math.round(((index + 1) / uploadPayload.length) * 25);
-          setUploadProgress(percent);
-        }
+        await submitUrlEncodedPayload({
+          formStage: 'step2_file_upload',
+          leadId,
+          files: JSON.stringify(uploadPayload),
+        });
       }
 
       setUploadProgress(100);

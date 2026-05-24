@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { submitStep1PayloadWithFallback } from '@/components/formSubmission';
+import { submitJsonPayload } from '@/components/formSubmission';
 
 type AutomationMeta = {
   leadId: string;
@@ -38,7 +38,7 @@ export default function EnquiryForm() {
         if (typeof value === 'string') payload[key] = value;
       });
 
-      const result = await submitStep1PayloadWithFallback({
+      const result = await submitJsonPayload({
         ...payload,
         formStage: 'step1',
         lead_id: leadId,
