@@ -1,6 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
+import { submitJsonPayload } from '@/components/formSubmission';
 
 type AutomationMeta = {
   leadId: string;
@@ -10,9 +11,6 @@ type AutomationMeta = {
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
 const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-[var(--subtle)]';
-const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
-const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
-
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,6 +19,7 @@ export default function EnquiryForm() {
     leadId: '',
     step1CompletedAt: '',
   });
+  const [submissionInfo, setSubmissionInfo] = useState<{submissionId:string;timestamp:string}|null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -29,39 +28,32 @@ export default function EnquiryForm() {
     setIsSubmitting(true);
 
     try {
-      if (!webhookUrl || !webhookToken) {
-        throw new Error('Webhook configuration is missing.');
-      }
-
       const form = event.currentTarget;
       const completedAt = new Date().toISOString();
       const leadId = `midts-${completedAt.replace(/[^0-9]/g, '')}`;
       const formData = new FormData(form);
-      const body = new URLSearchParams();
 
-      formData.set('lead_id', leadId);
-      formData.set('step_1_completed_at', completedAt);
-      formData.set('webhookToken', webhookToken);
-      formData.set('source', 'Website');
-      formData.set('pageUrl', window.location.href);
-
+      const payload: Record<string, string> = {};
       formData.forEach((value, key) => {
-        if (typeof value === 'string') {
-          body.append(key, value);
-        }
+        if (typeof value === 'string') payload[key] = value;
       });
 
-      await fetch(webhookUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        body,
+      const result = await submitJsonPayload({
+        ...payload,
+        formStage: 'step1',
+        lead_id: leadId,
+        step_1_completed_at: completedAt,
+        source: 'Website',
+        pageUrl: window.location.href,
       });
 
       setAutomationMeta({ leadId, step1CompletedAt: completedAt });
+      setSubmissionInfo(result);
       setSubmitted(true);
       form.reset();
-    } catch {
-      setErrorMessage('Something went wrong. Please email intake@midts.com instead.');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Submission failed.';
+      setErrorMessage(`${message} Please email intake@midts.com instead.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -122,6 +114,7 @@ export default function EnquiryForm() {
       {submitted ? (
         <p className="text_success rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]" role="status">
           We&apos;ve received your initial request. Check your email to complete the technical requirement form.
+          {submissionInfo ? ` Submission ID: ${submissionInfo.submissionId} at ${new Date(submissionInfo.timestamp).toLocaleString()}.` : ''}
         </p>
       ) : null}
       {errorMessage ? (
