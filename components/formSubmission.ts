@@ -58,10 +58,10 @@ export async function submitUrlEncodedPayload(payload: Record<string, string>): 
     body.set(key, value);
   });
 
-  let response: Response;
   try {
-    response = await fetch(webhookUrl, {
+    await fetch(webhookUrl, {
       method: 'POST',
+      mode: 'no-cors',
       body,
       signal: withTimeout(REQUEST_TIMEOUT_MS),
     });
@@ -70,10 +70,6 @@ export async function submitUrlEncodedPayload(payload: Record<string, string>): 
       throw new Error(`Request timed out after ${REQUEST_TIMEOUT_MS / 1000} seconds.`);
     }
     throw new Error('Network request failed.');
-  }
-
-  if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}.`);
   }
 }
 
