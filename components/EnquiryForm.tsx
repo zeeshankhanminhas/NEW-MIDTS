@@ -1,7 +1,7 @@
 'use client';
 
 import { FormEvent, useState } from 'react';
-import { submitJsonPayload } from '@/components/formSubmission';
+import { submitUrlEncodedPayload } from '@/components/formSubmission';
 
 type AutomationMeta = {
   leadId: string;
@@ -38,7 +38,7 @@ export default function EnquiryForm() {
         if (typeof value === 'string') payload[key] = value;
       });
 
-      const result = await submitJsonPayload({
+      await submitUrlEncodedPayload({
         ...payload,
         formStage: 'step1',
         lead_id: leadId,
@@ -48,7 +48,7 @@ export default function EnquiryForm() {
       });
 
       setAutomationMeta({ leadId, step1CompletedAt: completedAt });
-      setSubmissionInfo(result);
+      setSubmissionInfo({ submissionId: leadId, timestamp: completedAt });
       setSubmitted(true);
       form.reset();
     } catch (error) {
