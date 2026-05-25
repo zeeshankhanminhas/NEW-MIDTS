@@ -11,13 +11,19 @@ function withTimeout(ms: number): AbortSignal {
   return controller.signal;
 }
 
-export async function submitJsonPayload(payload: Record<string, unknown>): Promise<SubmitResult> {
+function assertWebhookConfig(): { webhookUrl: string; webhookToken: string } {
   const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
   const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
 
   if (!webhookUrl || !webhookToken) {
     throw new Error('Webhook configuration is missing.');
   }
+
+  return { webhookUrl, webhookToken };
+}
+
+export async function submitJsonPayload(payload: Record<string, unknown>): Promise<SubmitResult> {
+  const { webhookUrl, webhookToken } = assertWebhookConfig();
 
   let response: Response;
   try {
@@ -45,32 +51,72 @@ export async function submitJsonPayload(payload: Record<string, unknown>): Promi
   };
 }
 
-export async function submitUrlEncodedPayload(payload: Record<string, string>): Promise<void> {
-  const webhookUrl = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_URL || '';
-  const webhookToken = process.env.NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN || '';
-
-  if (!webhookUrl || !webhookToken) {
-    throw new Error('Webhook configuration is missing.');
+function submitViaHiddenForm(webhookUrl: string, payload: Record<string, string>): Promise<void> {
+  if (typeof document === 'undefined') {
+    return Promise.reject(new Error('Browser form transport is unavailable.'));
   }
 
-  const body = new URLSearchParams();
-  Object.entries({ ...payload, webhookToken }).forEach(([key, value]) => {
-    body.set(key, value);
-  });
+  return new Promise((resolve, reject) => {
+    const transportId = `midts_webhook_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const iframe = document.createElement('iframe');
+    const form = document.createElement('form');
+    let settled = false;
 
-  try {
-    await fetch(webhookUrl, {
-      method: 'POST',
-      mode: 'no-cors',
-      body,
-      signal: withTimeout(REQUEST_TIMEOUT_MS),
+    const cleanup = () => {
+      window.setTimeout(() => {
+        iframe.remove();
+        form.remove();
+      }, 1000);
+    };
+
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      resolve();
+    };
+
+    const fail = () => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      reject(new Error('Network request failed.'));
+    };
+
+    iframe.name = transportId;
+    iframe.style.display = 'none';
+    iframe.setAttribute('aria-hidden', 'true');
+
+    form.method = 'POST';
+    form.action = webhookUrl;
+    form.target = transportId;
+    form.enctype = 'application/x-www-form-urlencoded';
+    form.style.display = 'none';
+
+    Object.entries(payload).forEach(([key, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
     });
-  } catch (error) {
-    if (error instanceof Error && error.name === 'AbortError') {
-      throw new Error(`Request timed out after ${REQUEST_TIMEOUT_MS / 1000} seconds.`);
-    }
-    throw new Error('Network request failed.');
-  }
+
+    iframe.addEventListener('load', finish, { once: true });
+    iframe.addEventListener('error', fail, { once: true });
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    form.submit();
+
+    window.setTimeout(finish, 3000);
+  });
+}
+
+export async function submitUrlEncodedPayload(payload: Record<string, string>): Promise<void> {
+  const { webhookUrl, webhookToken } = assertWebhookConfig();
+  const payloadWithToken = { ...payload, webhookToken };
+
+  await submitViaHiddenForm(webhookUrl, payloadWithToken);
 }
 
 export type EncodedUploadFile = {
