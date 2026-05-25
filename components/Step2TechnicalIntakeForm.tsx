@@ -3,7 +3,7 @@
 import { FormEvent, useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import FileUploadZone from '@/components/FileUploadZone';
-import { filesToBase64, submitJsonPayload, submitUrlEncodedPayload } from '@/components/formSubmission';
+import { filesToBase64, submitUrlEncodedPayload } from '@/components/formSubmission';
 
 const fieldClass =
   'field_input border-0 border-b border-black/20 bg-transparent px-0 py-3 text-[var(--ink)] outline-none transition placeholder:text-neutral-400 focus:border-black';
@@ -33,6 +33,8 @@ export default function Step2TechnicalIntakeForm() {
       if (!leadId) throw new Error('Missing lead ID.');
 
       const form = event.currentTarget;
+      const submittedAt = new Date().toISOString();
+      const submissionId = `${leadId}-step2-${submittedAt.replace(/[^0-9]/g, '')}`;
       const formData = new FormData(form);
       const payload: Record<string, string> = {};
       formData.forEach((value, key) => {
@@ -40,12 +42,14 @@ export default function Step2TechnicalIntakeForm() {
       });
 
       const hadFiles = files.length > 0;
-      const result = await submitJsonPayload({
+      await submitUrlEncodedPayload({
         ...payload,
         formStage: 'step2',
         leadId,
         source: 'WebsiteStep2',
         pageUrl: window.location.href,
+        submissionId,
+        submittedAt,
       });
 
       if (hadFiles) {
@@ -69,12 +73,16 @@ export default function Step2TechnicalIntakeForm() {
           formStage: 'step2_file_upload',
           leadId,
           files: JSON.stringify(uploadPayload),
+          source: 'WebsiteStep2',
+          pageUrl: window.location.href,
+          submissionId,
+          submittedAt,
         });
       }
 
       setUploadProgress(100);
       setUploadPhase('complete');
-      setSubmissionInfo(result);
+      setSubmissionInfo({ submissionId, timestamp: submittedAt });
       setIncludedFileUpload(hadFiles);
       setSubmitted(true);
       setFiles([]);
