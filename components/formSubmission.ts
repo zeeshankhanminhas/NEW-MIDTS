@@ -22,6 +22,45 @@ function assertWebhookConfig(): { webhookUrl: string; webhookToken: string } {
   return { webhookUrl, webhookToken };
 }
 
+
+export type StructuredWebhookResponse<T = Record<string, unknown>> = {
+  success: boolean;
+  message: string;
+  data?: T;
+};
+
+export async function submitStructuredPayload<T = Record<string, unknown>>(payload: Record<string, unknown>): Promise<StructuredWebhookResponse<T>> {
+  const { webhookUrl, webhookToken } = assertWebhookConfig();
+
+  let response: Response;
+  try {
+    response = await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...payload, webhookToken }),
+      signal: withTimeout(REQUEST_TIMEOUT_MS),
+    });
+  } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw new Error(`Request timed out after ${REQUEST_TIMEOUT_MS / 1000} seconds.`);
+    }
+    throw new Error('Network request failed.');
+  }
+
+  const json = (await response.json().catch(() => ({}))) as Partial<StructuredWebhookResponse<T>>;
+  const message = typeof json.message === 'string' ? json.message : `Request failed with status ${response.status}.`;
+
+  if (!response.ok) {
+    throw new Error(message);
+  }
+
+  return {
+    success: json.success === true,
+    message,
+    data: json.data as T | undefined,
+  };
+}
+
 export async function submitJsonPayload(payload: Record<string, unknown>): Promise<SubmitResult> {
   const { webhookUrl, webhookToken } = assertWebhookConfig();
 
