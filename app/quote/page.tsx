@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import QuoteAcceptancePageContent from '@/components/QuoteAcceptancePageContent';
 
-export default function QuoteAcceptancePage() {
+export default function QuotePage() {
   return (
     <>
       <Header />
