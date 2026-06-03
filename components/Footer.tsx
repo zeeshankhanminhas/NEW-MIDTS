@@ -1,6 +1,8 @@
+import Link from 'next/link';
+
 const contactDetails = [
   { label: 'Email', href: 'mailto:intake@midts.com', text: 'intake@midts.com' },
-  { label: 'Phone', href: 'tel:+441223656090', text: '01223 656 090' },
+  { label: 'Phone', href: 'tel:+441223656090', text: '012223 656 090' },
   { label: 'Address', href: null, text: '1010 Cambourne Business Center, Cambridge CB23 6DP' },
 ];
 
@@ -60,15 +62,15 @@ export default function Footer() {
               )}
             </div>
             <div className="grid gap-2">
-              <a className="text_link w-fit transition hover:text-white" href="/privacy/">
+              <Link className="text_link w-fit transition hover:text-white" href="/privacy/">
                 Privacy Policy
-              </a>
-              <a className="text_link w-fit transition hover:text-white" href="/cookie-policy/">
+              </Link>
+              <Link className="text_link w-fit transition hover:text-white" href="/cookie-policy/">
                 Cookie Policy
-              </a>
-              <a className="text_link w-fit transition hover:text-white" href="/terms/">
+              </Link>
+              <Link className="text_link w-fit transition hover:text-white" href="/terms/">
                 Terms
-              </a>
+              </Link>
             </div>
           </div>
           <div className="social_links flex items-center gap-3" aria-label="Social and contact links">
