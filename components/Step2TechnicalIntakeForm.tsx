@@ -139,7 +139,7 @@ export default function Step2TechnicalIntakeForm() {
         {uploadPhase === 'text_submitting' ? <p className="text-xs text-[var(--subtle)]">Submitting Step 2 intake details.</p> : null}
         {uploadPhase === 'encoding' ? <p className="text-xs text-[var(--subtle)]">Encoding files for secure transfer.</p> : null}
         {uploadPhase === 'upload_submitting' ? <p className="text-xs text-[var(--subtle)]">Submitting upload queue to file intake service.</p> : null}
-        {uploadPhase === 'failed' ? <p className="text-xs text-[var(--subtle)]">Upload failed. Your queue is preserved — review and resubmit.</p> : null}
+        {uploadPhase === 'failed' ? <p className="text-xs text-[var(--subtle)]">Upload failed. Your queue is preserved - review and resubmit.</p> : null}
       </div>
 
       <div className="grid gap-4 border-t border-black/10 pt-8 md:grid-cols-[auto_1fr] md:items-center">
@@ -150,7 +150,7 @@ export default function Step2TechnicalIntakeForm() {
       </div>
 
       {submitted ? <p className="rounded-md border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">Technical intake submitted{includedFileUpload ? ' with file upload.' : '.'} Submission ID: {submissionInfo?.submissionId}.</p> : null}
-      {errorMessage ? <p className="rounded-md border border-black/10 p-4 text-sm text-[var(--ink)]">{errorMessage}</p> : null}
+      {errorMessage ? <p className="rounded-md border border-black/10 p-4 text-sm text-[var(--ink)]" role="alert">{errorMessage}</p> : null}
     </form>
   );
 }
