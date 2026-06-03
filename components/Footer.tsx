@@ -59,9 +59,17 @@ export default function Footer() {
                 ),
               )}
             </div>
-            <a className="text_link w-fit transition hover:text-white" href="/NEW-MIDTS/privacy/">
-              Privacy policy
-            </a>
+            <div className="grid gap-2">
+              <a className="text_link w-fit transition hover:text-white" href="/privacy/">
+                Privacy policy
+              </a>
+              <a className="text_link w-fit transition hover:text-white" href="/cookie-policy/">
+                Cookie policy
+              </a>
+              <a className="text_link w-fit transition hover:text-white" href="/terms/">
+                Website terms
+              </a>
+            </div>
           </div>
           <div className="social_links flex items-center gap-3" aria-label="Social and contact links">
             {socialLinks.map((link) => (
