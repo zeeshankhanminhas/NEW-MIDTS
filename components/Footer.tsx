@@ -61,13 +61,13 @@ export default function Footer() {
             </div>
             <div className="grid gap-2">
               <a className="text_link w-fit transition hover:text-white" href="/privacy/">
-                Privacy policy
+                Privacy Policy
               </a>
               <a className="text_link w-fit transition hover:text-white" href="/cookie-policy/">
-                Cookie policy
+                Cookie Policy
               </a>
               <a className="text_link w-fit transition hover:text-white" href="/terms/">
-                Website terms
+                Terms
               </a>
             </div>
           </div>
