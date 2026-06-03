@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const contactDetails = [
   { label: 'Email', href: 'mailto:intake@midts.com', text: 'intake@midts.com' },
-  { label: 'Phone', href: 'tel:+441223656090', text: '012223 656 090' },
+  { label: 'Phone', href: 'tel:+441223656090', text: '01223 656 090' },
   { label: 'Address', href: null, text: '1010 Cambourne Business Center, Cambridge CB23 6DP' },
 ];
 
