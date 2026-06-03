@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 
-const siteUrl = 'https://zeeshankhanminhas.github.io/NEW-MIDTS';
+const siteUrl = 'https://midts.co.uk';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: 'MIDTS',
     type: 'website',
+  },
+  alternates: {
+    canonical: '/',
+  },
+  icons: {
+    icon: '/favicon.svg',
   },
   twitter: {
     card: 'summary_large_image',
