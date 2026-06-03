@@ -129,7 +129,7 @@ export default function FileUploadZone({ files, onFilesChange, disabled = false 
       <div className="grid gap-2 text-xs text-[var(--subtle)]">
         <p>Allowed file types: {ALLOWED_EXTENSIONS.join(', ')}</p>
         <p>
-          Queue: {files.length}/{MAX_FILES} files · Total {formatBytes(totalSize)} / {formatBytes(MAX_TOTAL_SIZE)}
+          Queue: {files.length}/{MAX_FILES} files - Total {formatBytes(totalSize)} / {formatBytes(MAX_TOTAL_SIZE)}
         </p>
       </div>
 
