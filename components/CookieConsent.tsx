@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const CONSENT_KEY = 'midts_cookie_consent';
@@ -37,13 +38,13 @@ export default function CookieConsent() {
           <p className="text-sm font-semibold uppercase text-[var(--ink)]">Cookie preferences</p>
           <p className="max-w-3xl text-sm leading-6 text-[var(--muted)]">
             MIDTS uses essential browser storage for the site to work. Optional analytics cookies are not loaded unless you consent. Read the{' '}
-            <a className="font-medium text-[var(--ink)] underline underline-offset-4" href="/privacy/">
+            <Link className="font-medium text-[var(--ink)] underline underline-offset-4" href="/privacy/">
               Privacy Policy
-            </a>{' '}
+            </Link>{' '}
             and{' '}
-            <a className="font-medium text-[var(--ink)] underline underline-offset-4" href="/cookie-policy/">
+            <Link className="font-medium text-[var(--ink)] underline underline-offset-4" href="/cookie-policy/">
               Cookie Policy
-            </a>
+            </Link>
             .
           </p>
         </div>
