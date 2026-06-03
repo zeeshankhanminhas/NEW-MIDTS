@@ -1,22 +1,48 @@
-# Deployment
+# Hostinger Deployment
 
-The public site at `https://zeeshankhanminhas.github.io/NEW-MIDTS/` is served by GitHub Pages.
+The MIDTS website is configured as a static Next.js export for upload to Hostinger.
 
-## Why the live site can still look old
+## Build
 
-Committing Next.js source files is not enough to update GitHub Pages. The site must be built into static files and deployed from the generated `out/` directory.
+Run these commands from the project root:
 
-This repo includes a GitHub Actions workflow at `.github/workflows/pages.yml` that:
+```bash
+npm ci
+npm run build
+```
 
-1. Runs on every push to `main`.
-2. Installs dependencies with `npm ci`.
-3. Builds the static Next.js site with `npm run build`.
-4. Uploads `out/` to GitHub Pages.
+The deployable website is generated in:
 
-## Required GitHub setting
+```bash
+out/
+```
 
-In GitHub, set:
+## Upload To Hostinger
 
-`Settings` → `Pages` → `Build and deployment` → `Source` → `GitHub Actions`
+1. Open Hostinger hPanel.
+2. Go to `Websites` and open the MIDTS site.
+3. Open `File Manager`.
+4. Open `public_html`.
+5. Upload the contents of the local `out/` folder into `public_html`.
+6. Make sure `index.html` sits directly inside `public_html`, not inside a nested `out` folder.
 
-After the PR is merged into `main`, the workflow should deploy the new Next.js output to GitHub Pages.
+## Required Environment Variables
+
+Set these before building the site:
+
+```bash
+NEXT_PUBLIC_MIDTS_WEBHOOK_URL=your_apps_script_web_app_url
+NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN=your_shared_webhook_token
+```
+
+These values are baked into the static frontend at build time, so rebuild and re-upload after changing them.
+
+## Domain
+
+Production URLs and metadata use:
+
+```bash
+https://midts.co.uk
+```
+
+Do not build with a GitHub Pages base path for Hostinger.
