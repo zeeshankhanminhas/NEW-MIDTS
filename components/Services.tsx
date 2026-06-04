@@ -26,7 +26,7 @@ export default function Services() {
               Focused support for engineering teams under delivery pressure.
             </h2>
           </div>
-          <div className="grid_services mt-16 border-y border-black/10">
+          <div className="grid_services mt-16 grid gap-4 border-y border-black/10 py-4">
             {services.map((service, index) => (
               <article key={service.title} className="card_service motion_fade_up grid gap-6 border-b border-black/10 py-8 last:border-b-0 md:grid-cols-[96px_1fr] md:items-start">
                 <p className="text_label text-sm font-medium text-neutral-400">0{index + 1}</p>

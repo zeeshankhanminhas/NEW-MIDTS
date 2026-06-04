@@ -168,19 +168,19 @@ export default function ProofOfWork() {
 
           <div className="proof_output_grid motion_fade_up mt-16 grid gap-12 border-t border-black/10 pt-16 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="sample_output">
-              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-500">Sample output</p>
+              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">Sample output</p>
               <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
                 Example output: production-ready drawing pack.
               </h3>
-              <p className="text_body mt-6 max-w-2xl text-base leading-7 text-[var(--muted)]">
+              <p className="text_body mt-6 max-w-2xl text-base leading-7 text-neutral-300">
                 A typical MIDTS drawing package includes fully dimensioned technical drawings, tolerance definitions, and revision-controlled documentation ready for manufacturing or internal use.
               </p>
               <div className="mt-8">
                 <DrawingPreview />
               </div>
-              <div className="grid_drawing_details mt-6 grid gap-4 border-y border-black/10 py-5 text-xs font-medium uppercase text-[var(--subtle)] sm:grid-cols-2 lg:grid-cols-5">
+              <div className="grid_drawing_details mt-6 grid gap-4 border-y border-white/10 py-5 text-xs font-medium uppercase text-neutral-400 sm:grid-cols-2 lg:grid-cols-5">
                 {drawingDetails.map((detail) => (
-                  <p key={detail} className="text_detail lg:border-l lg:border-black/10 lg:first:border-l-0 lg:pl-4">
+                  <p key={detail} className="text_detail lg:border-l lg:border-white/10 lg:first:border-l-0 lg:pl-4">
                     {detail}
                   </p>
                 ))}
@@ -188,34 +188,34 @@ export default function ProofOfWork() {
             </div>
 
             <div className="delivery_pack">
-              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-500">Delivery</p>
+              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">Delivery</p>
               <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
                 What you actually receive.
               </h3>
-              <p className="text_body mt-6 max-w-xl text-base leading-7 text-[var(--muted)]">
+              <p className="text_body mt-6 max-w-xl text-base leading-7 text-neutral-300">
                 Every project is delivered as a structured, ready-to-use package, not a loose collection of files.
               </p>
-              <div className="card_file_tree mt-8 border border-black/10 p-6 font-mono text-sm text-[var(--ink)]">
+              <div className="card_file_tree mt-8 border border-white/15 p-6 font-mono text-sm text-neutral-200">
                 {fileTree.map((item) => (
                   <p key={`${item.level}-${item.label}`} className={`text_file py-1 ${item.indent}`}>
                     {item.level < 2 ? '+ ' : '- '}{item.label}
                   </p>
                 ))}
               </div>
-              <div className="delivery_checks mt-6 border-y border-black/10 py-5">
+              <div className="delivery_checks mt-6 border-y border-white/10 py-5">
                 {deliveryChecks.map((check) => (
-                  <p key={check} className="text_check py-2 text-sm text-[var(--muted)]">
+                  <p key={check} className="text_check py-2 text-sm text-neutral-300">
                     {check}
                   </p>
                 ))}
               </div>
-              <div className="delivery_statement mt-6 bg-[var(--black)] px-6 py-5 text-sm font-semibold text-white">
+              <div className="delivery_statement mt-6 bg-white px-6 py-5 text-sm font-semibold text-black">
                 No guesswork. No missing files. No rework loops.
               </div>
             </div>
           </div>
 
-          <div className="proof_cta mt-16 grid gap-8 border-y border-black/10 bg-[var(--paper)] px-6 py-8 md:grid-cols-[1fr_auto] md:items-center">
+          <div className="proof_cta mt-16 grid gap-8 border-y border-black/15 bg-white px-6 py-8 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-neutral-500">Ready to start?</p>
               <h3 className="heading_card text-2xl font-semibold md:text-3xl">
