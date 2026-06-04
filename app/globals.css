@@ -4,13 +4,15 @@
 
 :root {
   color-scheme: light;
-  --background: #f7f7f5;
+  --background: #ffffff;
   --foreground: #111815;
-  --paper: #f7f7f5;
+  --paper: #ffffff;
+  --technical: #eef0ef;
   --muted: #4b5651;
   --subtle: #737a76;
   --ink: #111815;
   --black: #050705;
+  --black-rgb: 5 7 5;
 }
 
 * {
@@ -62,4 +64,124 @@ textarea:focus-visible {
 
 .padding_global {
   @apply px-5 sm:px-6 md:px-10;
+}
+
+@layer utilities {
+  .motion_hero {
+    animation: heroFadeIn 680ms ease-out both;
+  }
+
+  .motion_fade_up {
+    animation: sectionFadeUp 620ms ease-out both;
+  }
+
+  .motion_button,
+  .button_primary,
+  .button_secondary,
+  .button_menu,
+  button[type="submit"],
+  button[type="button"] {
+    transition-duration: 180ms;
+    transition-property: background-color, border-color, box-shadow, color, opacity, transform;
+    transition-timing-function: ease-out;
+  }
+
+  .motion_button:hover,
+  .button_primary:hover,
+  .button_secondary:hover,
+  .button_menu:hover,
+  button[type="submit"]:hover,
+  button[type="button"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.08);
+  }
+
+  .motion_button:active,
+  .button_primary:active,
+  .button_secondary:active,
+  .button_menu:active,
+  button[type="submit"]:active,
+  button[type="button"]:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  .field_input,
+  input,
+  select,
+  textarea {
+    transition-duration: 180ms;
+    transition-property: background-color, border-color, box-shadow, color;
+    transition-timing-function: ease-out;
+  }
+
+  .field_input:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--ink);
+    box-shadow: 0 1px 0 var(--ink);
+  }
+
+  .cookie_banner {
+    animation: cookieBannerIn 420ms ease-out both;
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sectionFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cookieBannerIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .motion_button:hover,
+  .button_primary:hover,
+  .button_secondary:hover,
+  .button_menu:hover,
+  button[type="submit"]:hover,
+  button[type="button"]:hover {
+    transform: none;
+  }
 }

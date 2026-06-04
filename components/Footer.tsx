@@ -43,7 +43,7 @@ function SocialIcon({ type }: { type: string }) {
 
 export default function Footer() {
   return (
-    <footer className="section_footer bg-[#050705] py-20 text-white">
+    <footer className="section_footer border-t border-white/10 bg-[var(--black)] py-20 text-white">
       <div className="container_large padding_global">
         <div className="footer_wrapper flex flex-col gap-8 border-t border-white/10 pt-8 text-sm text-neutral-400 md:flex-row md:items-start md:justify-between">
           <div className="footer_content grid gap-5">
