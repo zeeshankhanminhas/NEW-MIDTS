@@ -9,7 +9,7 @@ export default function Testimonials() {
     <section className="section_testimonials bg-white py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="testimonials_wrapper mx-auto max-w-4xl">
-          <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Client feedback</p>
+          <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-[var(--subtle)]">Client feedback</p>
           <div className="grid_testimonials grid gap-6">
             {testimonials.map((item) => (
               <article key={`${item.name}-${item.role}`} className="card_testimonial border-y border-black/10 py-8">

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const links = [
   { label: 'Services', href: '/#services' },
@@ -13,13 +13,31 @@ const links = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    function updateScrollState() {
+      setIsScrolled(window.scrollY > 8);
+    }
+
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, []);
 
   function closeMenu() {
     setIsOpen(false);
   }
 
+  const headerStateClass = isScrolled
+    ? 'border-white/20 bg-[rgb(var(--black-rgb)/0.95)]'
+    : 'border-white/10 bg-[rgb(var(--black-rgb)/0.9)]';
+
   return (
-    <header className="section_header sticky top-0 z-50 border-b border-white/10 bg-[#050705]/90 py-4 text-white backdrop-blur">
+    <header
+      className={`section_header sticky top-0 z-50 border-b py-4 text-white backdrop-blur transition-[border-color,background-color] duration-300 ${headerStateClass}`}
+    >
       <div className="container_large padding_global">
         <div className="header_wrapper flex items-center justify-between gap-6">
           <Link className="brand_link text-lg font-semibold" href="/" aria-label="MIDTS home" onClick={closeMenu}>
@@ -33,7 +51,7 @@ export default function Header() {
             ))}
           </nav>
           <button
-            className="button_menu inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 text-neutral-200 md:hidden"
+            className="button_menu motion_button inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 text-neutral-200 md:hidden"
             type="button"
             aria-label="Toggle navigation"
             aria-expanded={isOpen}
