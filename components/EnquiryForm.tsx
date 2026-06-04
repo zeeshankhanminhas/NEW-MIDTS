@@ -9,8 +9,8 @@ type AutomationMeta = {
 };
 
 const fieldClass =
-  'field_input border-0 border-b border-white/20 bg-transparent px-0 py-3 text-white outline-none transition placeholder:text-neutral-500 focus:!border-white focus:!shadow-[0_1px_0_rgba(255,255,255,0.9)] disabled:text-neutral-500';
-const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-neutral-400';
+  'field_input border-0 border-b border-white/40 bg-transparent px-0 py-3 text-white outline-none transition placeholder:text-white focus:!border-white focus:!shadow-[0_1px_0_rgba(255,255,255,0.9)] disabled:text-white';
+const labelClass = 'field_group grid gap-2 text-xs font-medium uppercase text-white';
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -61,7 +61,7 @@ export default function EnquiryForm() {
 
   return (
     <form className="form_enquiry grid gap-8" onSubmit={handleSubmit}>
-      <p className="text_body max-w-xl text-sm leading-6 text-neutral-400">
+      <p className="text_body max-w-xl text-sm leading-6 text-white">
         Send the first request. The technical requirement form follows by email.
       </p>
 
@@ -105,14 +105,14 @@ export default function EnquiryForm() {
         Brief Requirement
         <textarea className={`${fieldClass} field_textarea min-h-24 resize-y`} id="brief-requirement" name="brief_requirement" placeholder="A short summary is enough. Technical detail comes in Step 2." required disabled={isSubmitting} />
       </label>
-      <div className="form_actions grid gap-4 border-t border-white/10 pt-8 md:grid-cols-[auto_1fr] md:items-center">
-        <button className="button_primary min-h-12 rounded-md bg-white px-7 py-3 text-sm font-medium uppercase text-black transition hover:bg-[var(--technical)] disabled:cursor-not-allowed disabled:bg-neutral-500 disabled:text-white" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting' : 'Start a request'}
+      <div className="form_actions grid gap-4 border-t border-white/40 pt-8 md:grid-cols-[auto_1fr] md:items-center">
+        <button className="button_primary min-h-12 rounded-md bg-white px-7 py-3 text-sm font-medium uppercase text-black transition hover:bg-white disabled:cursor-not-allowed disabled:bg-white disabled:text-black" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting' : 'Submit Requirement'}
         </button>
-        <p className="text_body text-sm text-neutral-400">Step 2 follows by email.</p>
+        <p className="text_body text-sm text-white">Step 2 follows by email.</p>
       </div>
       {submitted ? (
-        <p className="text_success rounded-md border border-white/15 bg-white p-4 text-sm text-[var(--muted)]" role="status">
+        <p className="text_success rounded-md border border-white bg-white p-4 text-sm text-black" role="status">
           We&apos;ve received your initial request. Check your email to complete the technical requirement form.
           {submissionInfo ? ` Submission ID: ${submissionInfo.submissionId} at ${new Date(submissionInfo.timestamp).toLocaleString()}.` : ''}
         </p>

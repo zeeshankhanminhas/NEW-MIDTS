@@ -1,27 +1,27 @@
 const workflow = [
   {
-    title: 'Client upload',
-    text: 'Secure submission of drawings, sketches, models, or reference files.',
+    title: 'Requirement',
+    text: 'Initial requirement, files, drawings, sketches, or reference material submitted for review.',
     icon: 'upload',
   },
   {
-    title: 'Initial review',
-    text: 'Feasibility check, scope definition, and clarification where needed.',
+    title: 'Technical Review',
+    text: 'Feasibility, inputs, scope boundaries, and missing information are reviewed before commitment.',
     icon: 'review',
   },
   {
-    title: 'Scope and quote',
-    text: 'Clear breakdown of deliverables, timeline, and cost.',
+    title: 'Commercial Assessment',
+    text: 'Deliverables, timing, commercial position, and approval path are made clear.',
     icon: 'clipboard',
   },
   {
-    title: 'Execution and QA',
-    text: 'CAD/CAM support, detailing, and internal quality validation.',
+    title: 'Execution',
+    text: 'CAD/CAM work, drawing production, documentation, and checks are carried out under control.',
     icon: 'gear',
   },
   {
-    title: 'Delivery pack',
-    text: 'Structured files, drawings, and documentation ready for use.',
+    title: 'Controlled Handover',
+    text: 'Structured files, drawings, documentation, and delivery notes are handed over for use.',
     icon: 'package',
   },
 ];
@@ -35,17 +35,11 @@ const drawingDetails = [
 ];
 
 const fileTree = [
-  { level: 0, label: '/MIDTS-PRJ-001/', indent: 'pl-0' },
-  { level: 1, label: 'CAD/', indent: 'pl-5' },
-  { level: 2, label: 'part_model.step', indent: 'pl-10' },
-  { level: 2, label: 'assembly.step', indent: 'pl-10' },
-  { level: 1, label: 'Drawings/', indent: 'pl-5' },
-  { level: 2, label: 'part_drawing_v1.pdf', indent: 'pl-10' },
-  { level: 2, label: 'assembly_drawing_v1.pdf', indent: 'pl-10' },
-  { level: 1, label: 'Exports/', indent: 'pl-5' },
-  { level: 2, label: 'dxf_files/', indent: 'pl-10' },
-  { level: 1, label: 'QA_Report.pdf', indent: 'pl-5' },
-  { level: 1, label: 'Revision_Log.xlsx', indent: 'pl-5' },
+  { level: 0, label: '/Production Drawings', indent: 'pl-0' },
+  { level: 0, label: '/Models', indent: 'pl-0' },
+  { level: 0, label: '/Supporting Documentation', indent: 'pl-0' },
+  { level: 0, label: '/Revision Files', indent: 'pl-0' },
+  { level: 0, label: '/Delivery Notes', indent: 'pl-0' },
 ];
 
 const deliveryChecks = [
@@ -136,53 +130,57 @@ function DrawingPreview() {
 
 export default function ProofOfWork() {
   return (
-    <section id="process" className="section_proof_work border-t border-black/10 bg-[var(--technical)] py-32 text-[var(--ink)] md:py-44">
-      <div className="container_large padding_global">
-        <div className="proof_work_wrapper mx-auto max-w-6xl">
-          <div className="proof_work_heading motion_fade_up max-w-2xl">
-            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Our process</p>
-            <h2 className="heading_section text-4xl font-semibold leading-tight md:text-5xl">
-              Not a promise. A visible workflow.
-            </h2>
-            <p className="text_body mt-8 max-w-xl text-base leading-7 text-[var(--muted)] md:text-lg">
-              Every project follows a controlled engineering process, from intake to delivery, with defined checkpoints and quality control at each stage.
-            </p>
-          </div>
+    <>
+      <section id="process" className="section_process border-t border-white/20 bg-black py-32 text-white md:py-44">
+        <div className="container_large padding_global">
+          <div className="process_wrapper mx-auto max-w-6xl">
+            <div className="process_heading motion_fade_up max-w-2xl">
+              <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-white">Process</p>
+              <h2 className="heading_section text-4xl font-semibold leading-tight text-white md:text-5xl">
+                Not A Promise. A Visible Workflow.
+              </h2>
+              <p className="text_body mt-8 max-w-xl text-base leading-7 text-white md:text-lg">
+                Requirement, technical review, commercial assessment, execution, and controlled handover give each project a visible path.
+              </p>
+            </div>
 
-          <div className="grid_workflow mt-16 grid gap-4 md:grid-cols-5">
-            {workflow.map((item, index) => (
-              <article key={item.title} className="card_workflow motion_fade_up border border-black/10 p-5">
-                <p className="text_label text-sm font-semibold text-neutral-400">0{index + 1}</p>
-                <div className="mt-7">
-                  <LineIcon type={item.icon} />
-                </div>
-                <h3 className="heading_card mt-7 text-lg font-semibold">{item.title}</h3>
-                <p className="text_body mt-4 text-sm leading-6 text-[var(--muted)]">{item.text}</p>
-              </article>
-            ))}
-          </div>
+            <div className="grid_workflow mt-16 grid gap-4 md:grid-cols-5">
+              {workflow.map((item, index) => (
+                <article key={item.title} className="card_workflow motion_fade_up border border-white/40 p-5 text-white">
+                  <p className="text_label text-sm font-semibold text-white">0{index + 1}</p>
+                  <div className="mt-7">
+                    <LineIcon type={item.icon} />
+                  </div>
+                  <h3 className="heading_card mt-7 text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="text_body mt-4 text-sm leading-6 text-white">{item.text}</p>
+                </article>
+              ))}
+            </div>
 
-          <div className="proof_note motion_fade_up mt-8 border-y border-black/10 py-5 text-sm text-[var(--muted)]">
-            Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
+            <div className="proof_note motion_fade_up mt-8 border-y border-white/40 py-5 text-sm text-white">
+              Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
+            </div>
           </div>
         </div>
       </section>
 
-          <div className="proof_output_grid motion_fade_up mt-16 grid gap-12 border-t border-black/10 pt-16 lg:grid-cols-[1.15fr_0.85fr]">
+      <section className="section_output border-t border-black/10 bg-white py-32 text-black md:py-44">
+        <div className="container_large padding_global">
+          <div className="proof_output_grid motion_fade_up mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="sample_output">
-              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">Sample output</p>
-              <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
-                Example output: production-ready drawing pack.
+              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-black">Example Output / Drawing Pack</p>
+              <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight text-black md:text-4xl">
+                Example Output: Production-Ready Drawing Pack
               </h3>
-              <p className="text_body mt-6 max-w-2xl text-base leading-7 text-neutral-300">
+              <p className="text_body mt-6 max-w-2xl text-base leading-7 text-black">
                 A typical MIDTS drawing package includes fully dimensioned technical drawings, tolerance definitions, and revision-controlled documentation ready for manufacturing or internal use.
               </p>
               <div className="mt-8">
                 <DrawingPreview />
               </div>
-              <div className="grid_drawing_details mt-6 grid gap-4 border-y border-white/10 py-5 text-xs font-medium uppercase text-neutral-400 sm:grid-cols-2 lg:grid-cols-5">
+              <div className="grid_drawing_details mt-6 grid gap-4 border-y border-black/20 py-5 text-xs font-medium uppercase text-black sm:grid-cols-2 lg:grid-cols-5">
                 {drawingDetails.map((detail) => (
-                  <p key={detail} className="text_detail lg:border-l lg:border-white/10 lg:first:border-l-0 lg:pl-4">
+                  <p key={detail} className="text_detail lg:border-l lg:border-black/20 lg:first:border-l-0 lg:pl-4">
                     {detail}
                   </p>
                 ))}
@@ -190,48 +188,30 @@ export default function ProofOfWork() {
             </div>
 
             <div className="delivery_pack">
-              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">Delivery</p>
-              <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
-                What you actually receive.
+              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-black">What You Actually Receive</p>
+              <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight text-black md:text-4xl">
+                What You Actually Receive.
               </h3>
-              <p className="text_body mt-6 max-w-xl text-base leading-7 text-neutral-300">
+              <p className="text_body mt-6 max-w-xl text-base leading-7 text-black">
                 Every project is delivered as a structured, ready-to-use package, not a loose collection of files.
               </p>
-              <div className="card_file_tree mt-8 border border-white/15 p-6 font-mono text-sm text-neutral-200">
+              <div className="card_file_tree mt-8 border border-black/20 p-6 font-mono text-sm text-black">
                 {fileTree.map((item) => (
                   <p key={`${item.level}-${item.label}`} className={`text_file py-1 ${item.indent}`}>
-                    {item.level < 2 ? '+ ' : '- '}{item.label}
+                    + {item.label}
                   </p>
                 ))}
               </div>
-              <div className="delivery_checks mt-6 border-y border-white/10 py-5">
+              <div className="delivery_checks mt-6 border-y border-black/20 py-5">
                 {deliveryChecks.map((check) => (
-                  <p key={check} className="text_check py-2 text-sm text-neutral-300">
+                  <p key={check} className="text_check py-2 text-sm text-black">
                     {check}
                   </p>
                 ))}
               </div>
-              <div className="delivery_statement mt-6 bg-white px-6 py-5 text-sm font-semibold text-black">
+              <div className="delivery_statement mt-6 border border-black bg-black px-6 py-5 text-sm font-semibold text-white">
                 No guesswork. No missing files. No rework loops.
               </div>
-            </div>
-          </div>
-
-          <div className="proof_cta mt-16 grid gap-8 border-y border-black/15 bg-white px-6 py-8 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-neutral-500">Ready to start?</p>
-              <h3 className="heading_card text-2xl font-semibold md:text-3xl">
-                Send your drawings. Get clarity. Move forward.
-              </h3>
-              <p className="text_body mt-3 text-sm text-[var(--muted)]">Quick response. Clear scope. Zero pressure.</p>
-            </div>
-            <div className="proof_cta_actions flex flex-wrap gap-4">
-              <a className="button_primary motion_button inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" href="#contact">
-                Start your request
-              </a>
-              <a className="button_secondary motion_button inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-7 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black/50" href="#services">
-                View services
-              </a>
             </div>
           </div>
         </div>

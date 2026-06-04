@@ -43,15 +43,21 @@ export default function Header() {
           <Link className="brand_link text-lg font-semibold" href="/" aria-label="MIDTS home" onClick={closeMenu}>
             MIDTS
           </Link>
-          <nav className="nav_primary hidden items-center gap-5 text-sm text-neutral-300 md:flex md:gap-7" aria-label="Primary navigation">
+          <nav className="nav_primary hidden items-center gap-5 text-sm text-white md:flex md:gap-7" aria-label="Primary navigation">
             {links.map((link) => (
               <Link key={link.href} className="text_link transition hover:text-white" href={link.href}>
                 {link.label}
               </Link>
             ))}
           </nav>
+          <Link
+            className="button_primary motion_button hidden min-h-10 items-center justify-center rounded-md bg-white px-5 py-2 text-xs font-medium uppercase text-black transition hover:bg-white md:inline-flex"
+            href="/#contact"
+          >
+            Submit Requirement
+          </Link>
           <button
-            className="button_menu motion_button inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 text-neutral-200 md:hidden"
+            className="button_menu motion_button inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/40 text-white md:hidden"
             type="button"
             aria-label="Toggle navigation"
             aria-expanded={isOpen}
@@ -65,12 +71,15 @@ export default function Header() {
           </button>
         </div>
         {isOpen ? (
-          <nav className="nav_mobile mt-4 grid border-t border-white/10 pt-4 text-sm text-neutral-300 md:hidden" aria-label="Mobile navigation">
+          <nav className="nav_mobile mt-4 grid border-t border-white/40 pt-4 text-sm text-white md:hidden" aria-label="Mobile navigation">
             {links.map((link) => (
-              <Link key={link.href} className="text_link border-b border-white/10 py-3 transition last:border-b-0 hover:text-white" href={link.href} onClick={closeMenu}>
+              <Link key={link.href} className="text_link border-b border-white/30 py-3 transition last:border-b-0 hover:text-white" href={link.href} onClick={closeMenu}>
                 {link.label}
               </Link>
             ))}
+            <Link className="text_link py-3 font-semibold uppercase" href="/#contact" onClick={closeMenu}>
+              Submit Requirement
+            </Link>
           </nav>
         ) : null}
       </div>

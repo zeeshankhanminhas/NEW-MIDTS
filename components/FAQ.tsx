@@ -1,42 +1,42 @@
 const faqs = [
   {
-    question: 'Can you quote from the initial request?',
+    question: 'What file formats do you support?',
     answer:
-      'We review the initial request first, then ask for the technical brief where needed. Quote follows technical review so scope, timing, and deliverables are clear.',
+      'Typical inputs include SolidWorks, Fusion 360, AutoCAD, Inventor, STEP, IGES, DXF, PDF, sketches, scan data, photos, and reference parts.',
   },
   {
-    question: 'What files can we send?',
+    question: 'Can you support urgent projects?',
     answer:
-      'Typical inputs include CAD files, drawings, sketches, scan data, DXF files, PDFs, photos, or reference parts. Step 2 collects the detail needed for review.',
+      'Urgent projects can be reviewed when the requirement, files, scope, and expected delivery window are clear enough for technical assessment.',
   },
   {
-    question: 'Is confidential engineering data handled under NDA?',
+    question: 'How are projects reviewed?',
     answer:
-      'Yes. The workflow is NDA-ready for confidential projects and controlled file handoff.',
+      'Each request moves through requirement review, technical assessment, commercial assessment, execution, and controlled handover.',
   },
   {
-    question: 'What type of support is MIDTS built for?',
+    question: 'Do you work with existing engineering teams?',
     answer:
-      'MIDTS is built for CAD/CAM overflow, reverse engineering, production drawings, documentation packs, and supplier-ready engineering outputs.',
+      'Yes. MIDTS is designed to add structured engineering capacity alongside existing internal teams when delivery requirements exceed available resource.',
   },
 ];
 
 export default function FAQ() {
   return (
-    <section id="faq" className="section_faq border-t border-black/10 bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
+    <section id="faq" className="section_faq border-t border-black/10 bg-white py-32 text-black md:py-44">
       <div className="container_large padding_global">
         <div className="faq_wrapper mx-auto max-w-4xl">
           <div className="faq_heading motion_fade_up mx-auto max-w-2xl text-center">
-            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">FAQ</p>
-            <h2 className="heading_section text-3xl font-semibold leading-tight md:text-4xl">
+            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-black">FAQ</p>
+            <h2 className="heading_section text-3xl font-semibold leading-tight text-black md:text-4xl">
               Common questions before sending a request.
             </h2>
           </div>
-          <div className="grid_faq mt-16 border-y border-white/15">
+          <div className="grid_faq mt-16 border-y border-black/20">
             {faqs.map((item) => (
-              <article key={item.question} className="card_faq motion_fade_up grid gap-4 border-b border-black/10 py-7 last:border-b-0 md:grid-cols-[0.75fr_1fr]">
-                <h3 className="heading_card text-lg font-semibold">{item.question}</h3>
-                <p className="text_body text-base leading-7 text-white">{item.answer}</p>
+              <article key={item.question} className="card_faq motion_fade_up grid gap-4 border-b border-black/20 py-7 last:border-b-0 md:grid-cols-[0.75fr_1fr]">
+                <h3 className="heading_card text-lg font-semibold text-black">{item.question}</h3>
+                <p className="text_body text-base leading-7 text-black">{item.answer}</p>
               </article>
             ))}
           </div>
