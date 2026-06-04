@@ -24,13 +24,13 @@ export default function Proof() {
               Built for teams that need reliable engineering output, not more coordination overhead.
             </h2>
           </div>
-          <div className="grid_proof mt-16 border-y border-black/10">
+          <div className="grid_proof mt-16 border-y border-white/15">
             {reasons.map((reason, index) => (
               <article key={reason.title} className="card_reason motion_fade_up grid gap-6 border-b border-black/10 py-8 last:border-b-0 md:grid-cols-[96px_1fr] md:items-start">
                 <p className="text_label text-sm font-medium text-neutral-400">0{index + 1}</p>
                 <div>
                   <h3 className="heading_card text-xl font-semibold md:text-2xl">{reason.title}</h3>
-                  <p className="text_body mt-4 max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">{reason.text}</p>
+                  <p className="text_body mt-4 max-w-2xl text-base leading-7 text-white md:text-lg">{reason.text}</p>
                 </div>
               </article>
             ))}

@@ -1,5 +1,9 @@
+const fs = require('fs');
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
-const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+const hasCustomDomain = fs.existsSync(path.join(__dirname, 'public', 'CNAME'));
+const useRepositoryBasePath = process.env.GITHUB_PAGES === 'true' && !hasCustomDomain;
 
 const nextConfig = {
   reactStrictMode: true,
@@ -8,8 +12,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isGitHubPages ? '/NEW-MIDTS' : undefined,
-  assetPrefix: isGitHubPages ? '/NEW-MIDTS/' : undefined,
+  basePath: useRepositoryBasePath ? '/NEW-MIDTS' : undefined,
+  assetPrefix: useRepositoryBasePath ? '/NEW-MIDTS/' : undefined,
 };
 
 module.exports = nextConfig;

@@ -41,7 +41,7 @@ export default function Services() {
             <p className="text_eyebrow text-xs font-semibold uppercase text-neutral-500">Common file and software workflows</p>
             <div className="grid_software mt-5 grid gap-3 text-xs font-medium uppercase text-[var(--subtle)] sm:grid-cols-2 md:grid-cols-3">
               {software.map((item) => (
-                <p key={item} className="text_software border-t border-black/10 pt-3 sm:border-t-0 sm:border-l sm:pl-4 sm:[&:nth-child(2n+1)]:border-l-0 md:[&:nth-child(2n+1)]:border-l md:[&:nth-child(3n+1)]:border-l-0">
+                <p key={item} className="text_software border-t border-black/20 pt-3 sm:border-t-0 sm:border-l sm:pl-4 sm:[&:nth-child(2n+1)]:border-l-0 md:[&:nth-child(2n+1)]:border-l md:[&:nth-child(3n+1)]:border-l-0">
                   {item}
                 </p>
               ))}

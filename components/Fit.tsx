@@ -16,7 +16,7 @@ export default function Fit() {
       <div className="container_large padding_global">
         <div className="fit_wrapper motion_fade_up mx-auto max-w-5xl border-y border-black/10 py-12">
           <div className="fit_heading max-w-2xl">
-            <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-500">Fit</p>
+            <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-[var(--subtle)]">Fit</p>
             <h2 className="heading_section text-3xl font-semibold leading-tight md:text-4xl">
               Best when the requirement needs engineering control, not a rushed estimate.
             </h2>
@@ -24,7 +24,7 @@ export default function Fit() {
           <div className="grid_fit mt-12 grid gap-10 md:grid-cols-2">
             <div className="fit_column">
               <h3 className="heading_card text-lg font-semibold">Works well for</h3>
-              <div className="mt-6 grid gap-4 border-t border-black/10 pt-5">
+              <div className="mt-6 grid gap-4 border-t border-black/20 pt-5">
                 {goodFit.map((item) => (
                   <p key={item} className="text_body text-sm leading-6 text-[var(--muted)]">
                     {item}
@@ -34,7 +34,7 @@ export default function Fit() {
             </div>
             <div className="fit_column">
               <h3 className="heading_card text-lg font-semibold">Not the right fit for</h3>
-              <div className="mt-6 grid gap-4 border-t border-black/10 pt-5">
+              <div className="mt-6 grid gap-4 border-t border-black/20 pt-5">
                 {notFit.map((item) => (
                   <p key={item} className="text_body text-sm leading-6 text-[var(--muted)]">
                     {item}

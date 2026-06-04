@@ -59,7 +59,7 @@ function LineIcon({ type }: { type: string }) {
   const common = 'stroke-current';
 
   return (
-    <svg className="h-10 w-10 text-[var(--ink)]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    <svg className="h-10 w-10 text-current" viewBox="0 0 48 48" fill="none" aria-hidden="true">
       {type === 'upload' ? (
         <>
           <path className={common} d="M24 32V10" strokeWidth="1.6" strokeLinecap="round" />
@@ -165,6 +165,8 @@ export default function ProofOfWork() {
           <div className="proof_note motion_fade_up mt-8 border-y border-black/10 py-5 text-sm text-[var(--muted)]">
             Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
           </div>
+        </div>
+      </section>
 
           <div className="proof_output_grid motion_fade_up mt-16 grid gap-12 border-t border-black/10 pt-16 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="sample_output">
@@ -233,7 +235,7 @@ export default function ProofOfWork() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

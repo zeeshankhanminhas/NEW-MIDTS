@@ -32,11 +32,11 @@ export default function FAQ() {
               Common questions before sending a request.
             </h2>
           </div>
-          <div className="grid_faq mt-16 border-y border-black/10">
+          <div className="grid_faq mt-16 border-y border-white/15">
             {faqs.map((item) => (
               <article key={item.question} className="card_faq motion_fade_up grid gap-4 border-b border-black/10 py-7 last:border-b-0 md:grid-cols-[0.75fr_1fr]">
                 <h3 className="heading_card text-lg font-semibold">{item.question}</h3>
-                <p className="text_body text-base leading-7 text-[var(--muted)]">{item.answer}</p>
+                <p className="text_body text-base leading-7 text-white">{item.answer}</p>
               </article>
             ))}
           </div>

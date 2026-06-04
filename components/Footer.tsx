@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <footer className="section_footer bg-[var(--black)] py-20 text-white">
       <div className="container_large padding_global">
-        <div className="footer_wrapper flex flex-col gap-8 border-t border-white/10 pt-8 text-sm text-neutral-400 md:flex-row md:items-start md:justify-between">
+        <div className="footer_wrapper flex flex-col gap-8 border-t border-white/10 pt-8 text-sm text-neutral-200 md:flex-row md:items-start md:justify-between">
           <div className="footer_content grid gap-5">
             <p className="text_body text-white">MIDTS | Overflow CAD/CAM engineering support.</p>
             <div className="footer_contact grid gap-2">
@@ -77,7 +77,7 @@ export default function Footer() {
             {socialLinks.map((link) => (
               <a
                 key={link.label}
-                className="social_link inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 text-neutral-400 transition hover:border-white/30 hover:text-white"
+                className="social_link inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/10 text-neutral-200 transition hover:border-white/30 hover:text-white"
                 href={link.href}
                 aria-label={link.label}
                 target={link.icon === 'linkedin' ? '_blank' : undefined}
