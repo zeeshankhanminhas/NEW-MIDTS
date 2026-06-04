@@ -2,7 +2,7 @@ import EnquiryForm from './EnquiryForm';
 
 export default function CTA() {
   return (
-    <section id="contact" className="section_cta bg-white py-32 text-[var(--ink)] md:py-44">
+    <section id="contact" className="section_cta border-t border-black/10 bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="cta_wrapper motion_fade_up mx-auto grid max-w-5xl gap-12 border-y border-black/10 py-12 md:grid-cols-[0.85fr_1.15fr] md:items-start">
           <div className="cta_content">

@@ -7,10 +7,12 @@
   --background: #f7f7f5;
   --foreground: #111815;
   --paper: #f7f7f5;
+  --technical: #ecefeb;
   --muted: #4b5651;
   --subtle: #737a76;
   --ink: #111815;
   --black: #050705;
+  --black-rgb: 5 7 5;
 }
 
 * {

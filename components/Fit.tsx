@@ -12,7 +12,7 @@ const notFit = [
 
 export default function Fit() {
   return (
-    <section className="section_fit bg-white py-32 text-[var(--ink)] md:py-44">
+    <section className="section_fit border-t border-black/10 bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="fit_wrapper motion_fade_up mx-auto max-w-5xl border-y border-black/10 py-12">
           <div className="fit_heading max-w-2xl">

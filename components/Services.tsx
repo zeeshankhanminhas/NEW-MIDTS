@@ -17,7 +17,7 @@ const software = ['SOLIDWORKS', 'Fusion 360', 'AutoCAD', 'Inventor', 'STEP / IGE
 
 export default function Services() {
   return (
-    <section id="services" className="section_services bg-white py-32 text-[var(--ink)] md:py-44">
+    <section id="services" className="section_services border-t border-black/10 bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="services_wrapper mx-auto max-w-4xl">
           <div className="services_heading motion_fade_up mx-auto max-w-2xl text-center">
