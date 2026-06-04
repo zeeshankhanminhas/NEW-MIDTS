@@ -209,7 +209,7 @@ export default function QuoteAcceptanceForm({ initialQuoteId = '', initialToken 
       </div>
 
       {quote ? (
-        <div className="grid gap-5 rounded-md border border-black/10 bg-white p-6">
+        <div className="grid gap-5 rounded-md border border-black/10 bg-[var(--technical)] p-6">
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <p className="text-xs font-medium uppercase text-[var(--subtle)]">Quote ID</p>

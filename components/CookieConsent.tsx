@@ -30,7 +30,7 @@ export default function CookieConsent() {
 
   return (
     <section
-      className="cookie_banner fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-white px-5 py-5 text-[var(--ink)]  sm:px-6 md:px-10"
+      className="cookie_banner fixed inset-x-0 bottom-0 z-50 border-t border-black/10 bg-[#f7f7f5] px-5 py-5 text-[var(--ink)] shadow-[0_-12px_40px_rgba(0,0,0,0.08)] sm:px-6 md:px-10"
       aria-label="Cookie consent"
     >
       <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-[1fr_auto] md:items-center">
@@ -57,7 +57,7 @@ export default function CookieConsent() {
             Accept Analytics
           </button>
           <button
-            className="motion_button min-h-11 rounded-md border border-black/30 px-5 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black"
+            className="motion_button min-h-11 rounded-md border border-black/20 px-5 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black"
             type="button"
             onClick={() => saveChoice('rejected')}
           >

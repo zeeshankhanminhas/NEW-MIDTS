@@ -102,7 +102,7 @@ function LineIcon({ type }: { type: string }) {
 
 function DrawingPreview() {
   return (
-    <div className="drawing_preview border border-black/20 bg-white p-4">
+    <div className="drawing_preview border border-black/15 bg-[var(--paper)] p-4">
       <svg viewBox="0 0 640 420" className="h-auto w-full text-[var(--ink)]" fill="none" aria-label="Sample technical drawing preview">
         <rect x="18" y="18" width="604" height="384" stroke="currentColor" strokeWidth="1" />
         <path d="M74 154h118l38-46h150l40 46h80v70h-84l-36 44H230l-40-44H74z" stroke="currentColor" strokeWidth="2" />
@@ -136,108 +136,102 @@ function DrawingPreview() {
 
 export default function ProofOfWork() {
   return (
-    <>
-      <section id="process" className="section_proof_work border-y border-white/10 bg-[var(--black)] py-32 text-white md:py-44">
-        <div className="container_large padding_global">
-          <div className="proof_work_wrapper mx-auto max-w-6xl">
-            <div className="proof_work_heading motion_fade_up max-w-2xl">
-              <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-200">Our process</p>
-              <h2 className="heading_section text-4xl font-semibold leading-tight md:text-5xl">
-                Not a promise. A visible workflow.
-              </h2>
-              <p className="text_body mt-8 max-w-xl text-base leading-7 text-white md:text-lg">
-                Every project follows a controlled engineering process, from intake to delivery, with defined checkpoints and quality control at each stage.
-              </p>
-            </div>
+    <section id="process" className="section_proof_work border-t border-black/10 bg-[var(--technical)] py-32 text-[var(--ink)] md:py-44">
+      <div className="container_large padding_global">
+        <div className="proof_work_wrapper mx-auto max-w-6xl">
+          <div className="proof_work_heading motion_fade_up max-w-2xl">
+            <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Our process</p>
+            <h2 className="heading_section text-4xl font-semibold leading-tight md:text-5xl">
+              Not a promise. A visible workflow.
+            </h2>
+            <p className="text_body mt-8 max-w-xl text-base leading-7 text-[var(--muted)] md:text-lg">
+              Every project follows a controlled engineering process, from intake to delivery, with defined checkpoints and quality control at each stage.
+            </p>
+          </div>
 
-            <div className="grid_workflow mt-16 grid gap-4 md:grid-cols-5">
-              {workflow.map((item, index) => (
-                <article key={item.title} className="card_workflow motion_fade_up border border-white/20 bg-[var(--black)] p-5">
-                  <p className="text_label text-sm font-semibold text-neutral-200">0{index + 1}</p>
-                  <div className="mt-7 text-white">
-                    <LineIcon type={item.icon} />
-                  </div>
-                  <h3 className="heading_card mt-7 text-lg font-semibold text-white">{item.title}</h3>
-                  <p className="text_body mt-4 text-sm leading-6 text-white">{item.text}</p>
-                </article>
-              ))}
-            </div>
+          <div className="grid_workflow mt-16 grid gap-4 md:grid-cols-5">
+            {workflow.map((item, index) => (
+              <article key={item.title} className="card_workflow motion_fade_up border border-black/10 p-5">
+                <p className="text_label text-sm font-semibold text-neutral-400">0{index + 1}</p>
+                <div className="mt-7">
+                  <LineIcon type={item.icon} />
+                </div>
+                <h3 className="heading_card mt-7 text-lg font-semibold">{item.title}</h3>
+                <p className="text_body mt-4 text-sm leading-6 text-[var(--muted)]">{item.text}</p>
+              </article>
+            ))}
+          </div>
 
-            <div className="proof_note motion_fade_up mt-8 border-y border-white/20 px-5 py-5 text-sm text-white">
-              Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
-            </div>
+          <div className="proof_note motion_fade_up mt-8 border-y border-black/10 py-5 text-sm text-[var(--muted)]">
+            Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
           </div>
         </div>
       </section>
 
-      <section className="section_deliverables border-y border-black/15 bg-white py-32 text-[var(--ink)] md:py-44">
-        <div className="container_large padding_global">
-          <div className="proof_work_wrapper mx-auto max-w-6xl">
-            <div className="proof_output_grid motion_fade_up grid gap-12 border-y border-black/20 py-12 lg:grid-cols-[1.15fr_0.85fr]">
-              <div className="sample_output">
-                <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-[var(--subtle)]">Sample output</p>
-                <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
-                  Example output: production-ready drawing pack.
-                </h3>
-                <p className="text_body mt-6 max-w-2xl text-base leading-7 text-[var(--muted)]">
-                  A typical MIDTS drawing package includes fully dimensioned technical drawings, tolerance definitions, and revision-controlled documentation ready for manufacturing or internal use.
-                </p>
-                <div className="mt-8">
-                  <DrawingPreview />
-                </div>
-                <div className="grid_drawing_details mt-6 grid gap-4 border-y border-black/20 py-5 text-xs font-semibold uppercase text-[var(--subtle)] sm:grid-cols-2 lg:grid-cols-5">
-                  {drawingDetails.map((detail) => (
-                    <p key={detail} className="text_detail lg:border-l lg:border-black/20 lg:first:border-l-0 lg:pl-4">
-                      {detail}
-                    </p>
-                  ))}
-                </div>
+          <div className="proof_output_grid motion_fade_up mt-16 grid gap-12 border-t border-black/10 pt-16 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="sample_output">
+              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">Sample output</p>
+              <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
+                Example output: production-ready drawing pack.
+              </h3>
+              <p className="text_body mt-6 max-w-2xl text-base leading-7 text-neutral-300">
+                A typical MIDTS drawing package includes fully dimensioned technical drawings, tolerance definitions, and revision-controlled documentation ready for manufacturing or internal use.
+              </p>
+              <div className="mt-8">
+                <DrawingPreview />
               </div>
-
-              <div className="delivery_pack border border-black/20 p-6 md:p-8">
-                <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-[var(--subtle)]">Delivery</p>
-                <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
-                  What you actually receive.
-                </h3>
-                <p className="text_body mt-6 max-w-xl text-base leading-7 text-[var(--muted)]">
-                  Every project is delivered as a structured, ready-to-use package, not a loose collection of files.
-                </p>
-                <div className="card_file_tree mt-8 border border-black/20 p-6 font-mono text-sm text-[var(--ink)]">
-                  {fileTree.map((item) => (
-                    <p key={`${item.level}-${item.label}`} className={`text_file py-1 ${item.indent}`}>
-                      {item.level < 2 ? '+ ' : '- '}{item.label}
-                    </p>
-                  ))}
-                </div>
-                <div className="delivery_checks mt-6 border-y border-black/20 py-5">
-                  {deliveryChecks.map((check) => (
-                    <p key={check} className="text_check py-2 text-sm text-[var(--muted)]">
-                      {check}
-                    </p>
-                  ))}
-                </div>
-                <div className="delivery_statement mt-6 bg-[var(--black)] px-6 py-5 text-sm font-semibold text-white">
-                  No guesswork. No missing files. No rework loops.
-                </div>
+              <div className="grid_drawing_details mt-6 grid gap-4 border-y border-white/10 py-5 text-xs font-medium uppercase text-neutral-400 sm:grid-cols-2 lg:grid-cols-5">
+                {drawingDetails.map((detail) => (
+                  <p key={detail} className="text_detail lg:border-l lg:border-white/10 lg:first:border-l-0 lg:pl-4">
+                    {detail}
+                  </p>
+                ))}
               </div>
             </div>
 
-            <div className="proof_cta mt-16 grid gap-8 border-y border-black/20 px-6 py-8 md:grid-cols-[1fr_auto] md:items-center">
-              <div>
-                <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-[var(--subtle)]">Ready to start?</p>
-                <h3 className="heading_card text-2xl font-semibold md:text-3xl">
-                  Send your drawings. Get clarity. Move forward.
-                </h3>
-                <p className="text_body mt-3 text-sm text-[var(--muted)]">Quick response. Clear scope. Zero pressure.</p>
+            <div className="delivery_pack">
+              <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">Delivery</p>
+              <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
+                What you actually receive.
+              </h3>
+              <p className="text_body mt-6 max-w-xl text-base leading-7 text-neutral-300">
+                Every project is delivered as a structured, ready-to-use package, not a loose collection of files.
+              </p>
+              <div className="card_file_tree mt-8 border border-white/15 p-6 font-mono text-sm text-neutral-200">
+                {fileTree.map((item) => (
+                  <p key={`${item.level}-${item.label}`} className={`text_file py-1 ${item.indent}`}>
+                    {item.level < 2 ? '+ ' : '- '}{item.label}
+                  </p>
+                ))}
               </div>
-              <div className="proof_cta_actions flex flex-wrap gap-4">
-                <a className="button_primary motion_button inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" href="#contact">
-                  Start your request
-                </a>
-                <a className="button_secondary motion_button inline-flex min-h-12 items-center justify-center rounded-md border border-black/30 px-7 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black" href="#services">
-                  View services
-                </a>
+              <div className="delivery_checks mt-6 border-y border-white/10 py-5">
+                {deliveryChecks.map((check) => (
+                  <p key={check} className="text_check py-2 text-sm text-neutral-300">
+                    {check}
+                  </p>
+                ))}
               </div>
+              <div className="delivery_statement mt-6 bg-white px-6 py-5 text-sm font-semibold text-black">
+                No guesswork. No missing files. No rework loops.
+              </div>
+            </div>
+          </div>
+
+          <div className="proof_cta mt-16 grid gap-8 border-y border-black/15 bg-white px-6 py-8 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p className="text_eyebrow mb-4 text-sm font-semibold uppercase text-neutral-500">Ready to start?</p>
+              <h3 className="heading_card text-2xl font-semibold md:text-3xl">
+                Send your drawings. Get clarity. Move forward.
+              </h3>
+              <p className="text_body mt-3 text-sm text-[var(--muted)]">Quick response. Clear scope. Zero pressure.</p>
+            </div>
+            <div className="proof_cta_actions flex flex-wrap gap-4">
+              <a className="button_primary motion_button inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" href="#contact">
+                Start your request
+              </a>
+              <a className="button_secondary motion_button inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-7 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black/50" href="#services">
+                View services
+              </a>
             </div>
           </div>
         </div>

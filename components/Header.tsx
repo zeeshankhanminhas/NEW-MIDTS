@@ -31,12 +31,12 @@ export default function Header() {
   }
 
   const headerStateClass = isScrolled
-    ? 'border-white/20 bg-[rgb(var(--black-rgb)/0.95)]'
-    : 'border-white/10 bg-[rgb(var(--black-rgb)/0.9)]';
+    ? 'border-white/15 bg-[#050705]/95 shadow-[0_10px_30px_rgba(0,0,0,0.18)]'
+    : 'border-white/10 bg-[#050705]/90 shadow-none';
 
   return (
     <header
-      className={`section_header sticky top-0 z-50 border-b py-4 text-white backdrop-blur transition-[border-color,background-color] duration-300 ${headerStateClass}`}
+      className={`section_header sticky top-0 z-50 border-b py-4 text-white backdrop-blur transition-[border-color,box-shadow,background-color] duration-300 ${headerStateClass}`}
     >
       <div className="container_large padding_global">
         <div className="header_wrapper flex items-center justify-between gap-6">

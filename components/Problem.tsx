@@ -7,7 +7,7 @@ const signals = [
 
 export default function Problem() {
   return (
-    <section className="section_problem border-y border-white/10 bg-[var(--black)] py-32 text-white md:py-44">
+    <section className="section_problem border-t border-black/10 bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="problem_wrapper mx-auto max-w-2xl text-center">
           <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-200">The pressure point</p>
