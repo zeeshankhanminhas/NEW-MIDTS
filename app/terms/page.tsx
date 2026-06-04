@@ -13,7 +13,7 @@ export default function TermsPage() {
   return (
     <>
       <Header />
-      <main className="section_terms bg-white py-32 text-[var(--ink)] md:py-44">
+      <main className="section_terms bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
         <div className="container_large padding_global">
           <div className="terms_wrapper mx-auto max-w-3xl">
             <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Terms</p>

@@ -17,7 +17,7 @@ const software = ['SOLIDWORKS', 'Fusion 360', 'AutoCAD', 'Inventor', 'STEP / IGE
 
 export default function Services() {
   return (
-    <section id="services" className="section_services bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
+    <section id="services" className="section_services border-t border-black/10 bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="services_wrapper mx-auto max-w-4xl">
           <div className="services_heading motion_fade_up mx-auto max-w-2xl text-center">
@@ -28,7 +28,7 @@ export default function Services() {
           </div>
           <div className="grid_services mt-16 grid gap-4 border-y border-black/10 py-4">
             {services.map((service, index) => (
-              <article key={service.title} className="card_service motion_fade_up grid gap-6 border border-black/10 bg-[var(--technical)] px-5 py-8 md:grid-cols-[96px_1fr] md:items-start md:px-6">
+              <article key={service.title} className="card_service motion_fade_up grid gap-6 border-b border-black/10 py-8 last:border-b-0 md:grid-cols-[96px_1fr] md:items-start">
                 <p className="text_label text-sm font-medium text-neutral-400">0{index + 1}</p>
                 <div>
                   <h3 className="heading_card text-xl font-semibold md:text-2xl">{service.title}</h3>

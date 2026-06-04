@@ -23,7 +23,7 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="section_faq bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
+    <section id="faq" className="section_faq border-t border-black/10 bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="faq_wrapper mx-auto max-w-4xl">
           <div className="faq_heading motion_fade_up mx-auto max-w-2xl text-center">

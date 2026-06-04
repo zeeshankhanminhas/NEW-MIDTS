@@ -151,7 +151,7 @@ export default function ProofOfWork() {
 
           <div className="grid_workflow mt-16 grid gap-4 md:grid-cols-5">
             {workflow.map((item, index) => (
-              <article key={item.title} className="card_workflow motion_fade_up border border-black/20 bg-white p-5">
+              <article key={item.title} className="card_workflow motion_fade_up border border-black/10 p-5">
                 <p className="text_label text-sm font-semibold text-neutral-400">0{index + 1}</p>
                 <div className="mt-7">
                   <LineIcon type={item.icon} />
@@ -162,11 +162,11 @@ export default function ProofOfWork() {
             ))}
           </div>
 
-          <div className="proof_note motion_fade_up mt-8 border-y border-black/15 bg-white px-5 py-5 text-sm text-[var(--muted)]">
+          <div className="proof_note motion_fade_up mt-8 border-y border-black/10 py-5 text-sm text-[var(--muted)]">
             Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
           </div>
 
-          <div className="proof_output_grid motion_fade_up mt-16 grid gap-12 border-y border-white/10 bg-[var(--black)] p-6 text-white md:p-8 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="proof_output_grid motion_fade_up mt-16 grid gap-12 border-t border-black/10 pt-16 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="sample_output">
               <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-400">Sample output</p>
               <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
