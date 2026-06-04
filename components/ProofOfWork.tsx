@@ -102,7 +102,7 @@ function LineIcon({ type }: { type: string }) {
 
 function DrawingPreview() {
   return (
-    <div className="drawing_preview border border-black/15 bg-white p-4">
+    <div className="drawing_preview border border-black/15 bg-[var(--paper)] p-4">
       <svg viewBox="0 0 640 420" className="h-auto w-full text-[var(--ink)]" fill="none" aria-label="Sample technical drawing preview">
         <rect x="18" y="18" width="604" height="384" stroke="currentColor" strokeWidth="1" />
         <path d="M74 154h118l38-46h150l40 46h80v70h-84l-36 44H230l-40-44H74z" stroke="currentColor" strokeWidth="2" />
@@ -136,10 +136,10 @@ function DrawingPreview() {
 
 export default function ProofOfWork() {
   return (
-    <section id="process" className="section_proof_work bg-white py-32 text-[var(--ink)] md:py-44">
+    <section id="process" className="section_proof_work border-t border-black/10 bg-[var(--technical)] py-32 text-[var(--ink)] md:py-44">
       <div className="container_large padding_global">
         <div className="proof_work_wrapper mx-auto max-w-6xl">
-          <div className="proof_work_heading max-w-2xl">
+          <div className="proof_work_heading motion_fade_up max-w-2xl">
             <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Our process</p>
             <h2 className="heading_section text-4xl font-semibold leading-tight md:text-5xl">
               Not a promise. A visible workflow.
@@ -151,7 +151,7 @@ export default function ProofOfWork() {
 
           <div className="grid_workflow mt-16 grid gap-4 md:grid-cols-5">
             {workflow.map((item, index) => (
-              <article key={item.title} className="card_workflow border border-black/10 p-5">
+              <article key={item.title} className="card_workflow motion_fade_up border border-black/10 p-5">
                 <p className="text_label text-sm font-semibold text-neutral-400">0{index + 1}</p>
                 <div className="mt-7">
                   <LineIcon type={item.icon} />
@@ -162,11 +162,11 @@ export default function ProofOfWork() {
             ))}
           </div>
 
-          <div className="proof_note mt-8 border-y border-black/10 py-5 text-sm text-[var(--muted)]">
+          <div className="proof_note motion_fade_up mt-8 border-y border-black/10 py-5 text-sm text-[var(--muted)]">
             Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
           </div>
 
-          <div className="proof_output_grid mt-16 grid gap-12 border-t border-black/10 pt-16 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="proof_output_grid motion_fade_up mt-16 grid gap-12 border-t border-black/10 pt-16 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="sample_output">
               <p className="text_eyebrow mb-6 text-sm font-semibold uppercase text-neutral-500">Sample output</p>
               <h3 className="heading_section max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
@@ -224,10 +224,10 @@ export default function ProofOfWork() {
               <p className="text_body mt-3 text-sm text-[var(--muted)]">Quick response. Clear scope. Zero pressure.</p>
             </div>
             <div className="proof_cta_actions flex flex-wrap gap-4">
-              <a className="button_primary inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" href="#contact">
+              <a className="button_primary motion_button inline-flex min-h-12 items-center justify-center rounded-md bg-[var(--ink)] px-7 py-3 text-sm font-medium uppercase text-white transition hover:bg-black" href="#contact">
                 Start your request
               </a>
-              <a className="button_secondary inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-7 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black/50" href="#services">
+              <a className="button_secondary motion_button inline-flex min-h-12 items-center justify-center rounded-md border border-black/20 px-7 py-3 text-sm font-medium uppercase text-[var(--ink)] transition hover:border-black/50" href="#services">
                 View services
               </a>
             </div>

@@ -13,7 +13,7 @@ export default function PrivacyPage() {
   return (
     <>
       <Header />
-      <main className="section_privacy bg-white py-32 text-[var(--ink)] md:py-44">
+      <main className="section_privacy bg-[var(--paper)] py-32 text-[var(--ink)] md:py-44">
         <div className="container_large padding_global">
           <div className="privacy_wrapper mx-auto max-w-3xl">
             <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-neutral-500">Privacy Policy</p>

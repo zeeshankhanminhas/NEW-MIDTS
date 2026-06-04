@@ -7,9 +7,9 @@ const points = [
 
 export default function TrustStrip() {
   return (
-    <section className="section_trust bg-[#050705] py-8 text-white">
+    <section className="section_trust border-b border-black/10 bg-[var(--technical)] py-8 text-[var(--ink)]">
       <div className="container_large padding_global">
-        <div className="trust_wrapper grid gap-4 border-y border-white/10 py-6 text-sm font-medium text-neutral-300 sm:grid-cols-2 md:grid-cols-4">
+        <div className="trust_wrapper motion_fade_up grid gap-4 border-y border-black/10 py-6 text-sm font-medium text-[var(--muted)] sm:grid-cols-2 md:grid-cols-4">
           {points.map((point) => (
             <p key={point} className="text_body">
               {point}

@@ -7,7 +7,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="process" className="section_process bg-[#111815] py-32 text-white md:py-44">
+    <section id="process" className="section_process bg-[var(--ink)] py-32 text-white md:py-44">
       <div className="container_large padding_global">
         <div className="process_wrapper mx-auto max-w-4xl">
           <div className="process_heading mx-auto max-w-2xl text-center">
