@@ -30,12 +30,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Verify webhook build secrets
-        run: |
-          test -n "$NEXT_PUBLIC_MIDTS_WEBHOOK_URL" || (echo "Missing MIDTS_WEBHOOK_URL secret" && exit 1)
-          test -n "$NEXT_PUBLIC_MIDTS_WEBHOOK_TOKEN" || (echo "Missing MIDTS_WEBHOOK_TOKEN secret" && exit 1)
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build static site
         run: npm run build
       - name: Setup Pages
