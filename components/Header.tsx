@@ -11,7 +11,7 @@ const links = [
   { label: 'Contact', href: '/#contact' },
 ];
 
-const logoSrc = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/midts-logo.svg`;
+const logoSrc = '/NEW-MIDTS/midts-logo.svg';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
