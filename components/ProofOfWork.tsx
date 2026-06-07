@@ -137,7 +137,7 @@ export default function ProofOfWork() {
             <div className="process_heading motion_fade_up max-w-2xl">
               <p className="text_eyebrow mb-8 text-sm font-semibold uppercase text-white">Process</p>
               <h2 className="heading_section text-4xl font-semibold leading-tight text-white md:text-5xl">
-                Not A Promise. A Visible Workflow.
+                A Visible Workflow Before Work Begins.
               </h2>
               <p className="text_body mt-8 max-w-xl text-base leading-7 text-white md:text-lg">
                 Requirement, technical review, commercial assessment, execution, and controlled handover give each project a visible path.
@@ -158,7 +158,7 @@ export default function ProofOfWork() {
             </div>
 
             <div className="proof_note motion_fade_up mt-8 border-y border-white/40 py-5 text-sm text-white">
-              Every stage is logged, reviewed, and controlled, not passed loosely between freelancers.
+              Every stage is reviewed, controlled, and handed over with clear ownership.
             </div>
           </div>
         </div>
