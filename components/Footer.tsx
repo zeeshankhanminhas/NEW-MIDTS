@@ -1,91 +1,87 @@
 import Link from 'next/link';
 
+const quickLinks = [
+  { label: 'Services', href: '/#services' },
+  { label: 'Process', href: '/#process' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Contact', href: '/#contact' },
+];
+
+const legalLinks = [
+  { label: 'Privacy', href: '/privacy/' },
+  { label: 'Terms', href: '/terms/' },
+  { label: 'Cookie Policy', href: '/cookie-policy/' },
+];
+
 const contactDetails = [
   { label: 'Email', href: 'mailto:intake@midts.com', text: 'intake@midts.com' },
   { label: 'Phone', href: 'tel:+441223656090', text: '01223 656 090' },
   { label: 'Address', href: null, text: '1010 Cambourne Business Center, Cambridge CB23 6DP' },
 ];
 
-const socialLinks = [
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/midts/',
-    icon: 'linkedin',
-  },
-  {
-    label: 'Email',
-    href: 'mailto:intake@midts.com',
-    icon: 'email',
-  },
-];
-
-function SocialIcon({ type }: { type: string }) {
-  return (
-    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      {type === 'linkedin' ? (
-        <>
-          <path d="M7.2 9.2V18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-          <path d="M11 18v-5.1c0-2.2 1.3-3.7 3.3-3.7 2.1 0 3.2 1.4 3.2 3.7V18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M11 9.5V18" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-          <circle cx="7.2" cy="6.2" r="1.2" fill="currentColor" />
-          <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" stroke="currentColor" strokeWidth="1.4" />
-        </>
-      ) : null}
-      {type === 'email' ? (
-        <>
-          <rect x="3.5" y="5.5" width="17" height="13" rx="2" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M5 8l7 5 7-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </>
-      ) : null}
-    </svg>
-  );
-}
-
 export default function Footer() {
   return (
-    <footer className="section_footer bg-[var(--black)] py-20 text-white">
+    <footer className="section_footer bg-black py-20 text-white">
       <div className="container_large padding_global">
-        <div className="footer_wrapper flex flex-col gap-8 border-t border-white/40 pt-8 text-sm text-white md:flex-row md:items-start md:justify-between">
-          <div className="footer_content grid gap-5">
-            <p className="text_body text-white">MIDTS | Overflow CAD/CAM engineering support.</p>
-            <div className="footer_contact grid gap-2">
+        <div className="footer_wrapper grid gap-10 border-t border-white/40 pt-10 text-sm text-white lg:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
+          <div className="footer_brand max-w-md">
+            <Link className="inline-flex text-2xl font-semibold uppercase tracking-normal text-white" href="/" aria-label="MIDTS home">
+              MIDTS
+            </Link>
+            <p className="mt-5 text-base leading-7 text-white">
+              Engineering capacity when delivery requirements exceed internal resource.
+            </p>
+          </div>
+
+          <div className="footer_links">
+            <p className="text-xs font-semibold uppercase text-white">Site</p>
+            <div className="mt-5 grid gap-3">
+              {quickLinks.map((link) => (
+                <Link key={link.href} className="text_link w-fit text-white transition hover:text-white" href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="footer_legal">
+            <p className="text-xs font-semibold uppercase text-white">Legal</p>
+            <div className="mt-5 grid gap-3">
+              {legalLinks.map((link) => (
+                <Link key={link.href} className="text_link w-fit text-white transition hover:text-white" href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="footer_contact">
+            <p className="text-xs font-semibold uppercase text-white">Contact</p>
+            <div className="mt-5 grid gap-3">
               {contactDetails.map((item) =>
                 item.href ? (
-                  <a key={item.label} className="text_link w-fit transition hover:text-white" href={item.href}>
+                  <a key={item.label} className="text_link w-fit text-white transition hover:text-white" href={item.href}>
                     {item.text}
                   </a>
                 ) : (
-                  <p key={item.label} className="text_body max-w-sm">
+                  <p key={item.label} className="text_body max-w-sm text-white">
                     {item.text}
                   </p>
                 ),
               )}
             </div>
-            <div className="grid gap-2">
-              <Link className="text_link w-fit transition hover:text-white" href="/privacy/">
-                Privacy Policy
-              </Link>
-              <Link className="text_link w-fit transition hover:text-white" href="/cookie-policy/">
-                Cookie Policy
-              </Link>
-              <Link className="text_link w-fit transition hover:text-white" href="/terms/">
-                Terms
-              </Link>
-            </div>
           </div>
-          <div className="social_links flex items-center gap-3" aria-label="Social and contact links">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                className="social_link inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/40 text-white transition hover:border-white hover:text-white"
-                href={link.href}
-                aria-label={link.label}
-                target={link.icon === 'linkedin' ? '_blank' : undefined}
-                rel={link.icon === 'linkedin' ? 'noreferrer' : undefined}
-              >
-                <SocialIcon type={link.icon} />
-              </a>
-            ))}
+        </div>
+
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/40 pt-6 text-xs font-medium uppercase text-white md:flex-row md:items-center md:justify-between">
+          <p>© 2026 MIDTS. All rights reserved.</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <a className="text-white transition hover:text-white" href="mailto:intake@midts.com">
+              intake@midts.com
+            </a>
+            <a className="text-white transition hover:text-white" href="tel:+441223656090">
+              01223 656 090
+            </a>
           </div>
         </div>
       </div>
