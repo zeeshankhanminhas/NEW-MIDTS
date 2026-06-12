@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 
 function BodyParagraphs({ paragraphs }: { paragraphs: string[] }) {
   return (
-    <div className="grid gap-4">
+    <>
       {paragraphs.map((paragraph) => (
         <p key={paragraph}>{paragraph}</p>
       ))}
-    </div>
+    </>
   );
 }
 
@@ -40,17 +40,17 @@ export default function CapabilityStatementPage() {
       </DocumentPage>
 
       <DocumentPage>
-        <div className={`flex flex-1 flex-col ${midtsBrand.document.bodyPageClassName}`}>
+        <div className={midtsBrand.document.bodyFrameClassName}>
           <DocumentHeader documentType={data.documentType} reference={data.reference} />
 
-          <div className="mt-12">
+          <div className={midtsBrand.document.bodyFirstSectionClassName}>
             <SectionDivider eyebrow={capacitySection.eyebrow} title={capacitySection.title} />
             <ContentBlock title={capacitySection.blockTitle}>
               <BodyParagraphs paragraphs={capacitySection.body} />
             </ContentBlock>
           </div>
 
-          <div className="mt-6">
+          <div className={midtsBrand.document.bodySectionClassName}>
             <SectionDivider eyebrow={servicesSection.eyebrow} title={servicesSection.title} />
             <ContentBlock title={servicesSection.blockTitle}>
               <BodyParagraphs paragraphs={servicesSection.body} />
@@ -62,17 +62,17 @@ export default function CapabilityStatementPage() {
       </DocumentPage>
 
       <DocumentPage>
-        <div className={`flex flex-1 flex-col ${midtsBrand.document.bodyPageClassName}`}>
+        <div className={midtsBrand.document.bodyFrameClassName}>
           <DocumentHeader documentType={data.documentType} reference={data.reference} />
 
-          <div className="mt-12">
+          <div className={midtsBrand.document.bodyFirstSectionClassName}>
             <SectionDivider eyebrow={engagementSection.eyebrow} title={engagementSection.title} />
             <ContentBlock title={engagementSection.blockTitle}>
               <BodyParagraphs paragraphs={engagementSection.body} />
             </ContentBlock>
           </div>
 
-          <div className="mt-auto">
+          <div className={midtsBrand.document.bodyClosingClassName}>
             <ContentBlock title={data.closing.title}>
               <BodyParagraphs paragraphs={data.closing.body} />
             </ContentBlock>
