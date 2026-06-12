@@ -24,6 +24,10 @@ export const midtsBrand = {
     pageClassName:
       'midts-document-page mx-auto flex h-[297mm] min-h-[297mm] w-full max-w-[210mm] flex-col overflow-hidden bg-white text-[#050705] shadow-[0_24px_80px_rgba(0,0,0,0.16)] print:m-0 print:w-[210mm] print:max-w-none print:shadow-none',
     bodyPageClassName: 'px-[20mm] py-[18mm]',
+    bodyFrameClassName: 'flex flex-1 flex-col px-[20mm] py-[18mm]',
+    bodyFirstSectionClassName: 'mt-12',
+    bodySectionClassName: 'mt-6',
+    bodyClosingClassName: 'mt-auto',
     coverPageClassName: 'bg-[#050705] px-[20mm] py-[18mm] text-white',
     headerClassName: 'flex items-start justify-between border-b border-[#d8d8d2] pb-5 text-xs uppercase text-[#4b5651]',
     headerDocumentTypeClassName: 'mt-1 text-[#b4975a]',
@@ -45,6 +49,7 @@ export const midtsBrand = {
     coverDescriptorClassName: 'text-[10px] font-semibold uppercase tracking-[0.18em]',
     coverMessageClassName: 'text-3xl font-semibold leading-tight',
     bodyClassName: 'text-base leading-8',
+    bodyStackClassName: 'grid gap-4',
     sectionTitleClassName: 'text-4xl font-semibold leading-tight tracking-normal',
     metadataLabelClassName: 'text-[10px] font-semibold uppercase tracking-normal',
     metadataValueClassName: 'text-sm font-semibold leading-5',
