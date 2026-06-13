@@ -32,46 +32,50 @@ export const capabilityStatementData: CapabilityStatementData = {
   cover: {
     title: 'Capability\nStatement',
     messageTitle: 'Engineering Capacity On Demand',
-    message: 'Overflow CAD/CAM support for teams that can’t slow down.',
+    message: "Overflow CAD/CAM support for teams that can't slow down.",
     metadata: [
+      { label: 'Descriptor', value: 'OVERFLOW ENGINEERING PARTNER' },
       { label: 'Version', value: '1.0' },
-      { label: 'Date', value: 'June 2026' },
       { label: 'Reference', value: 'MIDTS-CS-2026' },
     ],
   },
   sections: [
     {
-      eyebrow: 'Capacity',
       title: 'Engineering Capacity Without Hiring',
       body: [
-        'MIDTS provides controlled overflow CAD/CAM engineering support for teams that need additional production capacity without adding permanent headcount.',
-        'The work is structured around clear requirements, technical review, agreed scope, and controlled handover, so internal teams can keep delivery moving without losing engineering control.',
+        'MIDTS provides overflow CAD/CAM engineering support for manufacturing, production, and technical teams requiring additional engineering capacity without increasing permanent headcount.',
       ],
     },
     {
-      eyebrow: 'Services',
       title: 'Core Services',
-      blockTitle: 'Practical Engineering Support',
       body: [
-        'CAD Modelling, CAM Programming, Reverse Engineering, Production Drawings, Technical Documentation, and Overflow Engineering Support.',
-        'Each service is delivered as a controlled engineering output for review, manufacture, supplier communication, or internal release.',
+        'CAD Modelling — Controlled 3D modelling support for production, design development, and supplier communication.',
+        'CAM Programming — Structured CAM programming support for manufacturing teams requiring additional machining capacity.',
+        'Reverse Engineering — Measurement-led recreation of components where legacy data, drawings, or CAD files are incomplete.',
+        'Production Drawings — Clear technical drawings prepared for manufacture, review, approval, or controlled release.',
+        'Technical Documentation — Concise engineering documentation that supports traceability, review, and handover.',
+        'Overflow Engineering Support — Responsive CAD/CAM capacity during workload peaks, project pressure, and temporary resource constraints.',
       ],
     },
     {
-      eyebrow: 'Engagement',
       title: 'Engagement Model',
-      blockTitle: 'Controlled From Requirement To Handover',
       body: [
-        'Requirement, Technical Review, Proposal, Approval, Execution, and Controlled Handover.',
-        'This model keeps scope, inputs, timing, and deliverables visible before work begins and traceable when work is handed back.',
+        'Requirement — Confirm the engineering need, inputs, constraints, and expected output.',
+        'Technical Review — Review supplied data, feasibility, risks, and delivery requirements.',
+        'Proposal — Define scope, deliverables, assumptions, timing, and commercial basis.',
+        'Approval — Confirm acceptance before work begins.',
+        'Execution — Complete the agreed CAD/CAM or documentation work under controlled scope.',
+        'Controlled Handover — Return outputs with the required files, notes, and release context.',
       ],
     },
   ],
   closing: {
-    title: 'MIDTS',
+    title: 'Why MIDTS',
     body: [
-      'midts.com',
-      'Overflow Engineering Partner',
+      'Structured.',
+      'Responsive.',
+      'Controlled.',
+      'MIDTS supports engineering teams requiring overflow capacity during periods of increased workload, project pressure, and temporary resource constraints.',
     ],
   },
 };
