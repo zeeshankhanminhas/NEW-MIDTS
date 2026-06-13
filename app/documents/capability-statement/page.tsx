@@ -12,13 +12,30 @@ export const metadata: Metadata = {
   description: 'MIDTS capability statement for overflow CAD/CAM engineering support.',
 };
 
-function SplitLine({ line }: { line: string }) {
+function splitLine(line: string) {
   const [label, detail] = line.split(' — ');
+  return { label, detail };
+}
+
+function ServiceItem({ line }: { line: string }) {
+  const { label, detail } = splitLine(line);
 
   return (
-    <div className="grid grid-cols-[42mm_1fr] gap-8 border-t border-[#d8d8d2] py-3.5 last:border-b">
+    <div className="border-t border-[#d8d8d2] pt-3">
       <p className="text-[11px] font-semibold uppercase tracking-normal text-[#050705]">{label}</p>
-      <p className="text-[13px] leading-6 text-[#111815]">{detail}</p>
+      <p className="mt-2 text-[12px] leading-5 text-[#4b5651]">{detail}</p>
+    </div>
+  );
+}
+
+function ProcessItem({ line, index }: { line: string; index: number }) {
+  const { label, detail } = splitLine(line);
+
+  return (
+    <div className="grid grid-cols-[14mm_34mm_1fr] gap-5 border-t border-[#d8d8d2] py-2.5 last:border-b">
+      <p className="text-[10px] font-semibold text-[#b4975a]">{String(index + 1).padStart(2, '0')}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-normal text-[#050705]">{label}</p>
+      <p className="text-[12px] leading-5 text-[#4b5651]">{detail}</p>
     </div>
   );
 }
@@ -44,40 +61,35 @@ export default function CapabilityStatementPage() {
         <div className={midtsBrand.document.bodyFrameClassName}>
           <DocumentHeader documentType={data.documentType} reference={data.reference} />
 
-          <main className="mt-12 grid grid-cols-[50mm_1fr] gap-x-14">
-            <aside className="pt-1">
-              <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Capability</p>
-              <div className="mt-5 h-px w-16 bg-[#050705]" />
-            </aside>
-
-            <section>
-              <h1 className="max-w-[112mm] text-[42px] font-semibold leading-[1.02] tracking-normal text-[#050705]">
-                {capacitySection.title}
-              </h1>
-              <p className="mt-8 max-w-[118mm] text-[18px] leading-8 text-[#111815]">
-                {capacitySection.body[0]}
-              </p>
-            </section>
+          <main className="mt-12">
+            <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Capability</p>
+            <div className="mt-5 h-px w-20 bg-[#050705]" />
+            <h1 className="mt-8 max-w-[132mm] text-[46px] font-semibold leading-[1] tracking-normal text-[#050705]">
+              {capacitySection.title}
+            </h1>
+            <p className="mt-8 max-w-[132mm] text-[18px] leading-8 text-[#111815]">
+              {capacitySection.body[0]}
+            </p>
           </main>
 
-          <section className="mt-14 grid grid-cols-[50mm_1fr] gap-x-14">
+          <section className="mt-14 grid grid-cols-[36mm_1fr] gap-x-12">
             <div>
               <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{servicesSection.title}</p>
             </div>
-            <div>
+            <div className="grid grid-cols-2 gap-x-10 gap-y-6">
               {servicesSection.body.map((line) => (
-                <SplitLine key={line} line={line} />
+                <ServiceItem key={line} line={line} />
               ))}
             </div>
           </section>
 
-          <section className="mt-12 grid grid-cols-[50mm_1fr] gap-x-14">
+          <section className="mt-12 grid grid-cols-[36mm_1fr] gap-x-12">
             <div>
               <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{engagementSection.title}</p>
             </div>
             <div>
-              {engagementSection.body.map((line) => (
-                <SplitLine key={line} line={line} />
+              {engagementSection.body.map((line, index) => (
+                <ProcessItem key={line} line={line} index={index} />
               ))}
             </div>
           </section>
