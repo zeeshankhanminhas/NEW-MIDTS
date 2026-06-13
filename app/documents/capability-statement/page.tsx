@@ -22,20 +22,19 @@ function ServiceItem({ line }: { line: string }) {
 
   return (
     <div className="border-t border-[#d8d8d2] pt-3">
-      <p className="text-[11px] font-semibold uppercase tracking-normal text-[#050705]">{label}</p>
-      <p className="mt-2 text-[12px] leading-5 text-[#4b5651]">{detail}</p>
+      <p className="text-[10px] font-semibold uppercase tracking-normal text-[#050705]">{label}</p>
+      <p className="mt-1.5 text-[11px] leading-[1.45] text-[#4b5651]">{detail}</p>
     </div>
   );
 }
 
-function ProcessItem({ line, index }: { line: string; index: number }) {
-  const { label, detail } = splitLine(line);
+function ProcessStep({ line, index }: { line: string; index: number }) {
+  const { label } = splitLine(line);
 
   return (
-    <div className="grid grid-cols-[14mm_34mm_1fr] gap-5 border-t border-[#d8d8d2] py-2.5 last:border-b">
+    <div className="border-t border-[#d8d8d2] pt-2.5">
       <p className="text-[10px] font-semibold text-[#b4975a]">{String(index + 1).padStart(2, '0')}</p>
-      <p className="text-[11px] font-semibold uppercase tracking-normal text-[#050705]">{label}</p>
-      <p className="text-[12px] leading-5 text-[#4b5651]">{detail}</p>
+      <p className="mt-2 text-[10px] font-semibold uppercase leading-4 tracking-normal text-[#050705]">{label}</p>
     </div>
   );
 }
@@ -61,35 +60,35 @@ export default function CapabilityStatementPage() {
         <div className={midtsBrand.document.bodyFrameClassName}>
           <DocumentHeader documentType={data.documentType} reference={data.reference} />
 
-          <main className="mt-12">
+          <main className="mt-10">
             <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Capability</p>
-            <div className="mt-5 h-px w-20 bg-[#050705]" />
-            <h1 className="mt-8 max-w-[132mm] text-[46px] font-semibold leading-[1] tracking-normal text-[#050705]">
+            <div className="mt-4 h-px w-20 bg-[#050705]" />
+            <h1 className="mt-7 max-w-[130mm] text-[42px] font-semibold leading-[1] tracking-normal text-[#050705]">
               {capacitySection.title}
             </h1>
-            <p className="mt-8 max-w-[132mm] text-[18px] leading-8 text-[#111815]">
+            <p className="mt-7 max-w-[128mm] text-[16px] leading-7 text-[#111815]">
               {capacitySection.body[0]}
             </p>
           </main>
 
-          <section className="mt-14 grid grid-cols-[36mm_1fr] gap-x-12">
+          <section className="mt-11 grid grid-cols-[32mm_1fr] gap-x-10">
             <div>
               <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{servicesSection.title}</p>
             </div>
-            <div className="grid grid-cols-2 gap-x-10 gap-y-6">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-5">
               {servicesSection.body.map((line) => (
                 <ServiceItem key={line} line={line} />
               ))}
             </div>
           </section>
 
-          <section className="mt-12 grid grid-cols-[36mm_1fr] gap-x-12">
+          <section className="mt-10 grid grid-cols-[32mm_1fr] gap-x-10">
             <div>
               <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{engagementSection.title}</p>
             </div>
-            <div>
+            <div className="grid grid-cols-6 gap-x-4 border-b border-[#d8d8d2] pb-3">
               {engagementSection.body.map((line, index) => (
-                <ProcessItem key={line} line={line} index={index} />
+                <ProcessStep key={line} line={line} index={index} />
               ))}
             </div>
           </section>
