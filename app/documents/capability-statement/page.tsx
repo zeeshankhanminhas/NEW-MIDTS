@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import MIDTSLogo from '@/src/components/brand/MIDTSLogo';
-import ContentBlock from '@/src/components/documents/ContentBlock';
 import DocumentCover from '@/src/components/documents/DocumentCover';
 import DocumentFooter from '@/src/components/documents/DocumentFooter';
 import DocumentHeader from '@/src/components/documents/DocumentHeader';
 import DocumentPage from '@/src/components/documents/DocumentPage';
-import SectionDivider from '@/src/components/documents/SectionDivider';
 import { midtsBrand } from '@/src/lib/midts-brand';
 import { capabilityStatementData } from '@/src/lib/documents/capability-statement-data';
 
@@ -14,13 +12,14 @@ export const metadata: Metadata = {
   description: 'MIDTS capability statement for overflow CAD/CAM engineering support.',
 };
 
-function BodyParagraphs({ paragraphs }: { paragraphs: string[] }) {
+function SplitLine({ line }: { line: string }) {
+  const [label, detail] = line.split(' — ');
+
   return (
-    <>
-      {paragraphs.map((paragraph) => (
-        <p key={paragraph}>{paragraph}</p>
-      ))}
-    </>
+    <div className="grid grid-cols-[42mm_1fr] gap-8 border-t border-[#d8d8d2] py-3.5 last:border-b">
+      <p className="text-[11px] font-semibold uppercase tracking-normal text-[#050705]">{label}</p>
+      <p className="text-[13px] leading-6 text-[#111815]">{detail}</p>
+    </div>
   );
 }
 
@@ -45,26 +44,43 @@ export default function CapabilityStatementPage() {
         <div className={midtsBrand.document.bodyFrameClassName}>
           <DocumentHeader documentType={data.documentType} reference={data.reference} />
 
-          <div className={midtsBrand.document.bodyFirstSectionClassName}>
-            <SectionDivider eyebrow={capacitySection.eyebrow} title={capacitySection.title} />
-            <ContentBlock title={capacitySection.blockTitle}>
-              <BodyParagraphs paragraphs={capacitySection.body} />
-            </ContentBlock>
-          </div>
+          <main className="mt-12 grid grid-cols-[50mm_1fr] gap-x-14">
+            <aside className="pt-1">
+              <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Capability</p>
+              <div className="mt-5 h-px w-16 bg-[#050705]" />
+            </aside>
 
-          <div className={midtsBrand.document.bodySectionClassName}>
-            <SectionDivider eyebrow={servicesSection.eyebrow} title={servicesSection.title} />
-            <ContentBlock title={servicesSection.blockTitle}>
-              <BodyParagraphs paragraphs={servicesSection.body} />
-            </ContentBlock>
-          </div>
+            <section>
+              <h1 className="max-w-[112mm] text-[42px] font-semibold leading-[1.02] tracking-normal text-[#050705]">
+                {capacitySection.title}
+              </h1>
+              <p className="mt-8 max-w-[118mm] text-[18px] leading-8 text-[#111815]">
+                {capacitySection.body[0]}
+              </p>
+            </section>
+          </main>
 
-          <div className={midtsBrand.document.bodySectionClassName}>
-            <SectionDivider eyebrow={engagementSection.eyebrow} title={engagementSection.title} />
-            <ContentBlock title={engagementSection.blockTitle}>
-              <BodyParagraphs paragraphs={engagementSection.body} />
-            </ContentBlock>
-          </div>
+          <section className="mt-14 grid grid-cols-[50mm_1fr] gap-x-14">
+            <div>
+              <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{servicesSection.title}</p>
+            </div>
+            <div>
+              {servicesSection.body.map((line) => (
+                <SplitLine key={line} line={line} />
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-12 grid grid-cols-[50mm_1fr] gap-x-14">
+            <div>
+              <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{engagementSection.title}</p>
+            </div>
+            <div>
+              {engagementSection.body.map((line) => (
+                <SplitLine key={line} line={line} />
+              ))}
+            </div>
+          </section>
 
           <DocumentFooter reference={data.reference} />
         </div>
