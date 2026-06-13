@@ -28,15 +28,18 @@ export type CapabilityStatementData = {
 
 export const capabilityStatementData: CapabilityStatementData = {
   documentType: 'capabilityStatement',
-  reference: 'MIDTS-CS-2026',
+  reference: 'MIDTS-CS-CLIENT-001',
   cover: {
     title: 'Capability\nStatement',
     messageTitle: 'Engineering Capacity On Demand',
     message: "Overflow CAD/CAM support for teams that can't slow down.",
     metadata: [
-      { label: 'Descriptor', value: 'OVERFLOW ENGINEERING PARTNER' },
-      { label: 'Version', value: '1.0' },
-      { label: 'Reference', value: 'MIDTS-CS-2026' },
+      { label: 'Prepared For', value: 'Client Name' },
+      { label: 'Reference', value: 'MIDTS-CS-CLIENT-001' },
+      { label: 'Date Issued', value: 'June 2026' },
+      { label: 'Revision', value: 'A' },
+      { label: 'Prepared By', value: 'MIDTS' },
+      { label: 'Validity', value: '30 Days From Issue' },
     ],
   },
   sections: [
