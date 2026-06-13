@@ -1,10 +1,11 @@
 import { midtsBrand } from '@/src/lib/midts-brand';
 
+const basePath = process.env.GITHUB_PAGES === 'true' ? '/NEW-MIDTS' : '';
+const logoSrc = `${basePath}/midts-logo.svg`;
+
 type MIDTSLogoProps = {
   inverse?: boolean;
 };
-
-const logoSrc = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/midts-logo.svg`;
 
 export default function MIDTSLogo({ inverse = false }: MIDTSLogoProps) {
   return (
