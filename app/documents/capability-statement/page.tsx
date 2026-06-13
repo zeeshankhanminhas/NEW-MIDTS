@@ -17,13 +17,18 @@ function splitLine(line: string) {
   return { label, detail };
 }
 
-function ServiceItem({ line }: { line: string }) {
+function ServiceItem({ line, index }: { line: string; index: number }) {
   const { label, detail } = splitLine(line);
 
   return (
-    <div className="border-t border-[#d8d8d2] pt-3">
-      <p className="text-[10px] font-semibold uppercase tracking-normal text-[#050705]">{label}</p>
-      <p className="mt-1.5 text-[11px] leading-[1.45] text-[#4b5651]">{detail}</p>
+    <div className="group relative min-h-[29mm] border-t border-[#d8d8d2] pt-3">
+      <div className="flex items-start gap-3">
+        <span className="mt-0.5 text-[9px] font-semibold leading-none text-[#b4975a]">{String(index + 1).padStart(2, '0')}</span>
+        <div>
+          <p className="text-[10px] font-semibold uppercase leading-none tracking-normal text-[#050705]">{label}</p>
+          <p className="mt-2 max-w-[55mm] text-[11px] leading-[1.45] text-[#4b5651]">{detail}</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -32,9 +37,9 @@ function ProcessStep({ line, index }: { line: string; index: number }) {
   const { label } = splitLine(line);
 
   return (
-    <div className="border-t border-[#d8d8d2] pt-2.5">
-      <p className="text-[10px] font-semibold text-[#b4975a]">{String(index + 1).padStart(2, '0')}</p>
-      <p className="mt-2 text-[10px] font-semibold uppercase leading-4 tracking-normal text-[#050705]">{label}</p>
+    <div className="relative border-t border-[#050705] pt-3">
+      <p className="text-[9px] font-semibold text-[#b4975a]">{String(index + 1).padStart(2, '0')}</p>
+      <p className="mt-2 text-[9px] font-semibold uppercase leading-[1.25] tracking-normal text-[#050705]">{label}</p>
     </div>
   );
 }
@@ -57,36 +62,44 @@ export default function CapabilityStatementPage() {
       </DocumentPage>
 
       <DocumentPage>
-        <div className={midtsBrand.document.bodyFrameClassName}>
+        <div className="flex flex-1 flex-col px-[20mm] py-[18mm]">
           <DocumentHeader documentType={data.documentType} reference={data.reference} />
 
-          <main className="mt-10">
-            <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Capability</p>
-            <div className="mt-4 h-px w-20 bg-[#050705]" />
-            <h1 className="mt-7 max-w-[130mm] text-[42px] font-semibold leading-[1] tracking-normal text-[#050705]">
-              {capacitySection.title}
-            </h1>
-            <p className="mt-7 max-w-[128mm] text-[16px] leading-7 text-[#111815]">
-              {capacitySection.body[0]}
-            </p>
+          <main className="mt-10 grid grid-cols-[34mm_1fr] gap-x-12">
+            <aside className="pt-1">
+              <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Capability</p>
+              <div className="mt-5 h-[1px] w-14 bg-[#050705]" />
+              <p className="mt-5 text-[9px] font-semibold uppercase leading-4 tracking-normal text-[#4b5651]">
+                Overflow<br />Engineering<br />Partner
+              </p>
+            </aside>
+
+            <section>
+              <h1 className="max-w-[116mm] text-[45px] font-semibold leading-[0.98] tracking-[-0.02em] text-[#050705]">
+                {capacitySection.title}
+              </h1>
+              <p className="mt-7 max-w-[112mm] border-l-2 border-[#b4975a] pl-6 text-[16px] leading-7 text-[#111815]">
+                {capacitySection.body[0]}
+              </p>
+            </section>
           </main>
 
-          <section className="mt-11 grid grid-cols-[32mm_1fr] gap-x-10">
+          <section className="mt-12 grid grid-cols-[34mm_1fr] gap-x-12">
             <div>
               <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{servicesSection.title}</p>
             </div>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-5">
-              {servicesSection.body.map((line) => (
-                <ServiceItem key={line} line={line} />
+            <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+              {servicesSection.body.map((line, index) => (
+                <ServiceItem key={line} line={line} index={index} />
               ))}
             </div>
           </section>
 
-          <section className="mt-10 grid grid-cols-[32mm_1fr] gap-x-10">
+          <section className="mt-11 grid grid-cols-[34mm_1fr] gap-x-12">
             <div>
               <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>{engagementSection.title}</p>
             </div>
-            <div className="grid grid-cols-6 gap-x-4 border-b border-[#d8d8d2] pb-3">
+            <div className="grid grid-cols-6 gap-x-5">
               {engagementSection.body.map((line, index) => (
                 <ProcessStep key={line} line={line} index={index} />
               ))}
