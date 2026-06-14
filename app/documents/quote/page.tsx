@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
+import MIDTSLogo from '@/src/components/brand/MIDTSLogo';
 import CommercialSummary from '@/src/components/documents/CommercialSummary';
-import ContentBlock from '@/src/components/documents/ContentBlock';
 import DocumentFooter from '@/src/components/documents/DocumentFooter';
 import DocumentHeader from '@/src/components/documents/DocumentHeader';
 import DocumentPage from '@/src/components/documents/DocumentPage';
 import MetadataGrid from '@/src/components/documents/MetadataGrid';
 import SectionDivider from '@/src/components/documents/SectionDivider';
-import SignatureBlock from '@/src/components/documents/SignatureBlock';
 import StatusBadge from '@/src/components/documents/StatusBadge';
 import { quoteData } from '@/src/lib/documents/quote-data';
 import { midtsBrand } from '@/src/lib/midts-brand';
@@ -16,15 +15,20 @@ export const metadata: Metadata = {
   description: 'Controlled MIDTS quote document.',
 };
 
-const metadataItems = [
+const coverMetadata = [
   { label: 'Prepared For', value: quoteData.preparedFor },
-  { label: 'Prepared By', value: quoteData.preparedBy },
-  { label: 'Quote Reference', value: quoteData.reference },
-  { label: 'Project Reference', value: quoteData.projectReference },
+  { label: 'Reference', value: quoteData.reference },
   { label: 'Date Issued', value: quoteData.dateIssued },
   { label: 'Revision', value: quoteData.revision },
   { label: 'Validity', value: quoteData.validity },
-  { label: 'Status', value: <StatusBadge status={quoteData.status} /> },
+  { label: 'Prepared By', value: quoteData.preparedBy },
+];
+
+const controlMetadata = [
+  { label: 'Prepared For', value: quoteData.preparedFor },
+  { label: 'Prepared By', value: quoteData.preparedBy },
+  { label: 'Project Reference', value: quoteData.projectReference },
+  { label: 'Document Status', value: <StatusBadge status={quoteData.status} /> },
 ];
 
 const commercialItems = [
@@ -34,66 +38,108 @@ const commercialItems = [
   { label: 'Quote Total', value: quoteData.totals.total },
 ];
 
+function IndexedList({ items }: { items: string[] }) {
+  return (
+    <div className="grid gap-5">
+      {items.map((item, index) => (
+        <div key={item} className="grid grid-cols-[10mm_1fr] gap-4 border-t border-white/18 pt-4">
+          <p className="text-[9px] font-semibold text-[#b4975a]">{String(index + 1).padStart(2, '0')}</p>
+          <p className="max-w-[78mm] text-[12px] leading-6 text-white/76">{item}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function QuotePage() {
   return (
     <>
       <DocumentPage>
-        <div className={midtsBrand.document.bodyFrameClassName}>
-          <DocumentHeader documentType={quoteData.documentType} reference={quoteData.reference} />
+        <div className={`flex min-h-[297mm] flex-1 flex-col ${midtsBrand.document.coverPageClassName}`}>
+          <header className="flex items-start justify-between">
+            <MIDTSLogo inverse />
+            <p className="text-right text-[10px] font-semibold uppercase leading-5 tracking-normal text-white/62">
+              {quoteData.reference}
+              <br />
+              Rev {quoteData.revision}
+            </p>
+          </header>
 
-          <section className={midtsBrand.document.bodyFirstSectionClassName}>
+          <main className="mt-[42mm]">
             <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>
               Controlled Commercial Document
             </p>
-            <h1 className={`mt-4 max-w-[128mm] text-[#050705] ${midtsBrand.typography.coverTitleClassName}`}>
+            <h1 className={`mt-8 max-w-[142mm] text-white ${midtsBrand.typography.coverTitleClassName}`}>
               Quote
             </h1>
-            <p className={`mt-8 max-w-[132mm] text-[#111815] ${midtsBrand.typography.bodyClassName}`}>
-              {quoteData.scopeSummary}
+            <div className={midtsBrand.componentStyles.coverDividerClassName} />
+            <p className="mt-8 max-w-[114mm] text-3xl font-semibold leading-tight text-white">
+              Commercial scope and controlled pricing for engineering support.
             </p>
-          </section>
+            <p className={midtsBrand.componentStyles.coverMessageTextClassName}>{quoteData.scopeSummary}</p>
+          </main>
 
-          <div className="mt-12">
-            <MetadataGrid items={metadataItems} />
-          </div>
+          <MetadataGrid items={coverMetadata} variant="cover" />
 
-          <DocumentFooter reference={`${quoteData.reference} / Rev ${quoteData.revision}`} />
+          <DocumentFooter variant="cover" />
         </div>
       </DocumentPage>
 
       <DocumentPage>
-        <div className={midtsBrand.document.bodyFrameClassName}>
+        <div className="flex flex-1 flex-col px-[20mm] py-[18mm]">
           <DocumentHeader documentType={quoteData.documentType} reference={quoteData.reference} />
 
-          <section className={midtsBrand.document.bodyFirstSectionClassName}>
-            <SectionDivider eyebrow="Commercial Scope" title="Quoted Works" />
+          <main className="mt-10 grid grid-cols-[34mm_1fr] gap-x-12">
+            <aside className="pt-1">
+              <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Quote Control</p>
+              <div className="mt-5 h-[1px] w-14 bg-[#050705]" />
+              <p className="mt-5 text-[9px] font-semibold uppercase leading-4 tracking-normal text-[#4b5651]">
+                Scope
+                <br />
+                Commercial
+                <br />
+                Basis
+              </p>
+            </aside>
 
-            <div className="overflow-hidden border-y border-[#050705]">
-              <table className="w-full border-collapse text-left text-sm text-[#111815]">
-                <thead>
-                  <tr className="border-b border-[#050705] text-[10px] font-semibold uppercase text-[#b4975a]">
-                    <th className="w-[12mm] py-4 pr-4">Item</th>
-                    <th className="py-4 pr-4">Description</th>
-                    <th className="w-[24mm] py-4 pr-4">Qty</th>
-                    <th className="w-[28mm] py-4 pr-4">Rate</th>
-                    <th className="w-[28mm] py-4 text-right">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {quoteData.lineItems.map((lineItem) => (
-                    <tr key={lineItem.item} className="border-b border-[#d8d8d2] last:border-b-0">
-                      <td className="py-4 pr-4 align-top text-xs font-semibold text-[#050705]">{lineItem.item}</td>
-                      <td className="py-4 pr-4 align-top leading-6">{lineItem.description}</td>
-                      <td className="py-4 pr-4 align-top font-semibold">{lineItem.quantity}</td>
-                      <td className="py-4 pr-4 align-top font-semibold">{lineItem.rate}</td>
-                      <td className="py-4 text-right align-top font-semibold text-[#050705]">{lineItem.total}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <section>
+              <h2 className="max-w-[116mm] text-[45px] font-semibold leading-[0.98] tracking-normal text-[#050705]">
+                Quoted Works
+              </h2>
+              <p className="mt-7 max-w-[112mm] border-l-2 border-[#b4975a] pl-6 text-[16px] leading-7 text-[#111815]">
+                {quoteData.scopeSummary}
+              </p>
+            </section>
+          </main>
+
+          <div className="mt-10">
+            <MetadataGrid items={controlMetadata} />
+          </div>
+
+          <section className="mt-10">
+            <div className="grid grid-cols-[34mm_1fr] gap-x-12">
+              <div>
+                <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Commercial Lines</p>
+              </div>
+
+              <div className="border-y border-[#050705]">
+                {quoteData.lineItems.map((lineItem) => (
+                  <div key={lineItem.item} className="grid grid-cols-[12mm_1fr_26mm_28mm] border-b border-[#d8d8d2] py-5 last:border-b-0">
+                    <p className="text-[9px] font-semibold text-[#b4975a]">{lineItem.item}</p>
+                    <div className="pr-8">
+                      <p className="text-[13px] font-semibold leading-5 text-[#050705]">{lineItem.description}</p>
+                      <p className="mt-2 text-[10px] font-semibold uppercase tracking-normal text-[#4b5651]">
+                        Qty {lineItem.quantity} / Rate {lineItem.rate}
+                      </p>
+                    </div>
+                    <p className="text-right text-[11px] font-semibold uppercase text-[#4b5651]">Total</p>
+                    <p className="text-right text-[18px] font-semibold leading-none text-[#050705]">{lineItem.total}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 ml-[46mm]">
               <CommercialSummary items={commercialItems} />
             </div>
           </section>
@@ -103,43 +149,65 @@ export default function QuotePage() {
       </DocumentPage>
 
       <DocumentPage>
-        <div className={midtsBrand.document.bodyFrameClassName}>
-          <DocumentHeader documentType={quoteData.documentType} reference={quoteData.reference} />
+        <div className={`flex min-h-[297mm] flex-1 flex-col ${midtsBrand.document.coverPageClassName}`}>
+          <header className="flex items-start justify-between">
+            <MIDTSLogo inverse />
+            <p className="text-right text-[10px] font-semibold uppercase leading-5 tracking-normal text-white/62">
+              Approval Basis
+              <br />
+              {quoteData.reference}
+            </p>
+          </header>
 
-          <section className={`${midtsBrand.document.bodyFirstSectionClassName} grid gap-8 sm:grid-cols-3`}>
-            <ContentBlock title="Assumptions">
-              <ul>
-                {quoteData.assumptions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </ContentBlock>
+          <main className="mt-[34mm]">
+            <p className={`${midtsBrand.typography.smallUppercaseClassName} text-[#b4975a]`}>Commercial Conditions</p>
+            <h2 className="mt-8 max-w-[144mm] text-[56px] font-semibold leading-[0.98] tracking-normal text-white">
+              Assumptions.
+              <br />
+              Exclusions.
+              <br />
+              Approval.
+            </h2>
+            <div className={midtsBrand.componentStyles.coverDividerClassName} />
 
-            <ContentBlock title="Exclusions">
-              <ul>
-                {quoteData.exclusions.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </ContentBlock>
+            <section className="mt-12 grid grid-cols-3 gap-10">
+              <div>
+                <h3 className="text-[10px] font-semibold uppercase tracking-normal text-[#b4975a]">Assumptions</h3>
+                <div className="mt-5">
+                  <IndexedList items={quoteData.assumptions} />
+                </div>
+              </div>
 
-            <ContentBlock title="Payment Terms">
-              <ul>
-                {quoteData.paymentTerms.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </ContentBlock>
+              <div>
+                <h3 className="text-[10px] font-semibold uppercase tracking-normal text-[#b4975a]">Exclusions</h3>
+                <div className="mt-5">
+                  <IndexedList items={quoteData.exclusions} />
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[10px] font-semibold uppercase tracking-normal text-[#b4975a]">Payment Terms</h3>
+                <div className="mt-5">
+                  <IndexedList items={quoteData.paymentTerms} />
+                </div>
+              </div>
+            </section>
+          </main>
+
+          <section className="mt-auto border-t border-white/18 pt-7">
+            <p className="max-w-[126mm] text-[14px] leading-7 text-white/78">{quoteData.approval.confirmationText}</p>
+            <div className="mt-9 grid grid-cols-2 gap-10">
+              {[quoteData.approval.clientParty, quoteData.approval.supplierParty].map((party) => (
+                <div key={party}>
+                  <div className="h-12 border-b border-white" />
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-normal text-white">{party}</p>
+                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-normal text-white/54">Signature / confirmation</p>
+                </div>
+              ))}
+            </div>
           </section>
 
-          <section className={midtsBrand.document.bodySectionClassName}>
-            <ContentBlock title="Approval">
-              <p>{quoteData.approval.confirmationText}</p>
-            </ContentBlock>
-            <SignatureBlock parties={[quoteData.approval.clientParty, quoteData.approval.supplierParty]} />
-          </section>
-
-          <DocumentFooter reference={`${quoteData.reference} / Rev ${quoteData.revision}`} />
+          <DocumentFooter variant="cover" />
         </div>
       </DocumentPage>
     </>
